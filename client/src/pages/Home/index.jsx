@@ -1,9 +1,13 @@
 import React from 'react'
+import s from './s.module.scss'
 
 function Home() {
+
   return (
-    <div>Home</div>
+    <div className={s.home}>
+      <h1 className={s.h}>Home</h1>
+    </div>
   )
 }
 
-export default Home
+export default Home;
