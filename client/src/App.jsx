@@ -23,6 +23,6 @@ function App() {
       </Routes>
     </Suspense>
   );
-}
+};
 
-export default App
+export default App;
