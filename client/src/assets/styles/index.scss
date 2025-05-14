@@ -1,5 +1,9 @@
 @use './var.scss' as var;
 
+:root {
+  --containerPadding: 2rem;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -26,4 +30,17 @@ body {
   @include var.flex(center, space-between, column);
   width: 100%;
   min-height: 100vh;
+}
+
+
+@media screen and (min-width: 1440px) {
+  :root {
+    --containerPadding: 4rem;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  :root {
+    --containerPadding: 10vh;
+  }
 }

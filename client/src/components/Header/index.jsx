@@ -31,6 +31,47 @@ function Header() {
         />
       </Link>
 
+      <nav
+        className={s.nav}
+        data-open={isOpenMenu}
+        onClick={handleClickMenu}
+      >
+        <ul className={s.navList}>
+          <li className={s.navLi}>
+            <Link
+              className={s.navLink}
+              to="/"
+            >
+              Main Page
+            </Link>
+          </li>
+          <li className={s.navLi}>
+            <Link
+              className={s.navLink}
+              to="/categories"
+            >
+              Categories
+            </Link>
+          </li>
+          <li className={s.navLi}>
+            <Link
+              className={s.navLink}
+              to="/categories/all"
+            >
+              All products
+            </Link>
+          </li>
+          <li className={s.navLi}>
+            <Link
+              className={s.navLink}
+              to="/categories/sales"
+            >
+              All sales
+            </Link>
+          </li>
+        </ul>
+      </nav>
+
       <Link
         className={s.cart}
         to="/cart"
@@ -47,47 +88,6 @@ function Header() {
       </Link>
 
       <Hamburger isOpen={isOpenMenu} onClick={handleOpenMenu} />
-
-      <nav
-        className={s.nav}
-        data-open={isOpenMenu}
-        onClick={handleClickMenu}
-      >
-        <ul className={s.list}>
-          <li className={s.li}>
-            <Link
-              className={s.link}
-              to="/"
-            >
-              Home
-            </Link>
-          </li>
-          <li className={s.li}>
-            <Link
-              className={s.link}
-              to="/categories"
-            >
-              Categories
-            </Link>
-          </li>
-          <li className={s.li}>
-            <Link
-              className={s.link}
-              to="/categories/all"
-            >
-              All products
-            </Link>
-          </li>
-          <li className={s.li}>
-            <Link
-              className={s.link}
-              to="/categories/sales"
-            >
-              All sales
-            </Link>
-          </li>
-        </ul>
-      </nav>
 
     </header>
   )

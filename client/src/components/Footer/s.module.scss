@@ -1,0 +1,16 @@
+@use '../../assets/styles/var.scss' as var;
+
+.footer {
+  width: 100%;
+  padding: 1.2rem var(--containerPadding);
+  background: var.$bgColor;
+}
+
+.map {
+  width: 100%;
+  height: 25rem;
+
+  // .place-card {
+  //   display: none;
+  // }
+}

@@ -5,10 +5,10 @@
   grid-template-columns: 1fr auto auto;
   align-items: center;
   gap: 2rem;
-  position: sticky;
+  position: relative;
   z-index: 100;
   width: 100%;
-  padding: 1.2rem var.$containerPadding;
+  padding: 1.2rem var(--containerPadding);
   background: var.$bgColor;
   border-bottom: 0.1rem solid var.$borderColor;
 
@@ -18,16 +18,18 @@
   }
 }
 
+// Logo
 .logo {
   width: 4.4rem;
   height: 4.4rem;
 
-  svg {
+  img {
     width: 100%;
     height: 100%;
   }
 }
 
+// Navigation
 .nav {
   @include var.flex(center, flex-end);
   position: fixed;
@@ -40,7 +42,7 @@
   transition: translate var.$transitionTime ease-in-out;
 }
 
-.list {
+.navList {
   @include var.flex(center, flex-start, column);
   gap: 3.2rem;
   width: 61.5%;
@@ -53,46 +55,55 @@
   transition: translate var.$transitionTime ease-in-out;
 }
 
+.navLi {
+  @include var.flex(center, flex-start);
+  width: 100%;
+}
+
+.navLink {
+  text-decoration: none;
+  color: var.$textColor;
+  font-size: 1.8rem;
+  font-weight: 500;
+  width: 100%;
+
+  &:hover {
+    color: var.$primaryColor;
+  }
+}
+
+
 .nav[data-open="true"] {
   translate: 0;
   background: rgba(0, 0, 0, 0.1);
   transition: background var.$transitionTime ease-in-out;
 
-  .list {
+  .navList {
     translate: 0;
   }
 }
 
-.li {
-  @include var.flex(center, flex-start);
-  width: 100%;
-}
 
-.link {
-  text-decoration: none;
-  color: var.$textColor;
-  font-size: 1.8rem;
-  line-height: 130%;
-  font-weight: 500;
-  width: 100%;
-}
+// Cart
 
 .cart {
+  @include var.flex(center, flex-end);
   position: relative;
   width: 3.2rem;
   height: 3.2rem;
 
   svg {
-    width: 100%;
+    width: 90%;
     height: 100%;
   }
+
 }
 
 .count {
   @include var.flex(center, center);
   position: absolute;
+  top: 15%;
   left: 0;
-  bottom: 1rem;
   min-width: 1.7rem;
   height: 1.7rem;
   padding: 0.1rem;
@@ -102,4 +113,96 @@
   font-weight: 600;
   font-size: 0.8rem;
   line-height: 90%;
+}
+
+// Media
+
+@media screen and (min-width: 480px) {
+  .navList {
+    gap: 3.6rem;
+  }
+
+  .navLink {
+    font-size: 2.4rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    @include var.flex(center, space-between);
+    padding: 2rem var(--containerPadding);
+
+    button[aria-label="menu"] {
+      display: none;
+    }
+  }
+
+  .logo {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .nav {
+    position: static;
+    z-index: 0;
+    width: auto;
+    height: 4rem;
+    translate: 0;
+
+  }
+
+  .navList {
+    flex-direction: row;
+    gap: 0;
+    width: auto;
+    height: 100%;
+    width: auto;
+    height: 100%;
+    translate: 0 0.2rem;
+    padding: 0.2rem;
+    overflow: hidden;
+    transition: none;
+  }
+
+  .navLi {
+    height: 100%;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .navLink {
+    padding: 0 1rem;
+    @include var.flex(center, center);
+    width: 100%;
+    height: 100%;
+    text-wrap: nowrap;
+    font-size: 2rem;
+  }
+
+  .nav[data-open="true"] {
+    transition: none;
+    background: none;
+  }
+
+  .cart {
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+
+  .count {
+    min-width: 2.6rem;
+    height: 2.6rem;
+    font-size: 1.2rem;
+  }
+}
+
+
+@media screen and (min-width: 1000px) {
+  .header {
+    height: 12.8rem;
+  }
+
+  .navList {
+    gap: 1.2rem;
+  }
 }
