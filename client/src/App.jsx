@@ -1,11 +1,14 @@
 import {
   lazy,
-  Suspense
+  Suspense,
 } from "react";
-
-import { Route, Routes } from "react-router-dom";
+import {
+  Route,
+  Routes,
+} from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Loader from "./components/UI/Loader";
 
 const Home = lazy(() => import("./pages/Home"));
 const Products = lazy(() => import("./pages/Products"));
@@ -20,13 +23,13 @@ function App() {
   return <>
     <Header />
 
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader />}>
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/categories" element={<Categories />} />
-        <Route path="/products/categories/:id" element={<Product />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/categories/:id" element={<Products />} />
+        <Route path="/products/:id" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

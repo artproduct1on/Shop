@@ -1,9 +1,29 @@
+@use './var.scss' as var;
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  font-size: 62.5%;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
 body {
+  @include var.flex(flex-start, center);
+  background: var.$bgColor;
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+#root {
+  @include var.flex(center, space-between, column);
+  width: 100%;
   min-height: 100vh;
 }

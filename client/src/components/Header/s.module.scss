@@ -1,0 +1,105 @@
+@use '../../assets/styles/var.scss' as var;
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 2rem;
+  position: sticky;
+  z-index: 100;
+  width: 100%;
+  padding: 1.2rem var.$containerPadding;
+  background: var.$bgColor;
+  border-bottom: 0.1rem solid var.$borderColor;
+
+  button[aria-label="menu"] {
+    position: relative;
+    z-index: 100;
+  }
+}
+
+.logo {
+  width: 4.4rem;
+  height: 4.4rem;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.nav {
+  @include var.flex(center, flex-end);
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  translate: 100%;
+  transition: translate var.$transitionTime ease-in-out;
+}
+
+.list {
+  @include var.flex(center, flex-start, column);
+  gap: 3.2rem;
+  width: 61.5%;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 10rem 3.2rem 2rem;
+  list-style-type: none;
+  background-color: var.$bgColor;
+  translate: 100%;
+  transition: translate var.$transitionTime ease-in-out;
+}
+
+.nav[data-open="true"] {
+  translate: 0;
+  background: rgba(0, 0, 0, 0.1);
+  transition: background var.$transitionTime ease-in-out;
+
+  .list {
+    translate: 0;
+  }
+}
+
+.li {
+  @include var.flex(center, flex-start);
+  width: 100%;
+}
+
+.link {
+  text-decoration: none;
+  color: var.$textColor;
+  font-size: 1.8rem;
+  line-height: 130%;
+  font-weight: 500;
+  width: 100%;
+}
+
+.cart {
+  position: relative;
+  width: 3.2rem;
+  height: 3.2rem;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.count {
+  @include var.flex(center, center);
+  position: absolute;
+  left: 0;
+  bottom: 1rem;
+  min-width: 1.7rem;
+  height: 1.7rem;
+  padding: 0.1rem;
+  border-radius: 50%;
+  background: var.$primaryColor;
+  color: var.$bgColor;
+  font-weight: 600;
+  font-size: 0.8rem;
+  line-height: 90%;
+}
