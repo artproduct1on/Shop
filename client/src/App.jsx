@@ -1,11 +1,15 @@
 import {
   lazy,
-  Suspense
+  Suspense,
 } from "react";
 
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+
+
+
+
 
 const Home = lazy(() => import("./pages/Home"));
 const Products = lazy(() => import("./pages/Products"));
@@ -16,12 +20,12 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 
 function App() {
-
+  
   return <>
     <Header />
 
     <Suspense fallback={<div>Loading...</div>}>
-
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />

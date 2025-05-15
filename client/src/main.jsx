@@ -3,9 +3,14 @@ import { BrowserRouter } from 'react-router-dom'
 import 'normalize.css'
 import './assets/styles/index.scss'
 import App from './App.jsx'
+import { store } from './app/store';
+import { Provider } from 'react-redux';
+
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </BrowserRouter>
 );
