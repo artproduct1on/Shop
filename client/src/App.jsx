@@ -1,22 +1,23 @@
 import {
   lazy,
-  Suspense
+  Suspense,
 } from "react";
 
-import { Route, Routes } from "react-router-dom";
+import {
+  Route, Routes, 
+} from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-const Home = lazy(() => import("./pages/Home"));
-const Products = lazy(() => import("./pages/Products"));
-const Product = lazy(() => import("./pages/Product"));
-const Categories = lazy(() => import("./pages/Categories"));
-const Cart = lazy(() => import("./pages/Cart"));
-const NotFound = lazy(() => import("./pages/NotFound"));
-
+const Home = lazy(() => import("./pages/Home"),);
+const Products = lazy(() => import("./pages/Products"),);
+const Product = lazy(() => import("./pages/Product"),);
+const Categories = lazy(() => import("./pages/Categories"),);
+const Cart = lazy(() => import("./pages/Cart"),);
+const NotFound = lazy(() => import("./pages/NotFound"),);
 
 function App() {
-
+  
   return <>
     <Header />
 
@@ -34,7 +35,7 @@ function App() {
     </Suspense>
 
     <Footer />
-  </>
+  </>;
 };
 
 export default App;

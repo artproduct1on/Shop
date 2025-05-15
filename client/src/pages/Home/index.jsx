@@ -1,5 +1,5 @@
-import React from 'react'
-import s from './s.module.scss'
+import React from "react";
+import s from "./s.module.scss";
 
 function Home() {
 
@@ -7,7 +7,7 @@ function Home() {
     <div className={s.home}>
       <h1 className={s.h}>Home</h1>
     </div>
-  )
+  );
 }
 
 export default Home;
