@@ -1,16 +1,131 @@
 @use '../../assets/styles/var.scss' as var;
 
 .footer {
+  @include var.flex(center, flex-start, column);
+  gap: 2.4rem;
   width: 100%;
-  padding: 1.2rem var(--containerPadding);
+  padding: 5.6rem var(--containerPadding);
   background: var.$bgColor;
+
+  h2 {
+    width: 100%;
+  }
+}
+
+.contact {
+  width: 100%;
+  display: grid;
+  gap: 1.2rem;
+}
+
+.contactBlock {
+  @include var.flex(flex-start, flex-start, row, wrap);
+  gap: 1.2rem 2rem;
+  background-color: #F2F6D3;
+  padding: 2.4rem 2rem;
+  border-radius: var.$radiusBig;
+}
+
+
+.contactTitle {
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 130%;
+  color: var.$spanColor;
+}
+
+.contactInfo {
+  width: 100%;
+  font-weight: 600;
+  font-size: 2.8rem;
+  line-height: 110%;
+  color: var.$textColor;
+  text-decoration: none;
+  letter-spacing: 0%;
+
+  &:hover {
+    color: var.$primaryColor;
+  }
+}
+
+.social {
+  @include var.flex(flex-start, center, row, wrap);
+  gap: 1.2rem;
+  list-style-type: none;
+}
+
+.socialIcon {
+  @include var.flex(center, center);
+  fill: var.$textColor;
+  width: 4.4rem;
+  height: 4.4rem;
+
+  svg {
+    width: 3.8rem;
+    height: 3.8rem;
+  }
 }
 
 .map {
   width: 100%;
   height: 25rem;
+  border-radius: var.$radiusBig;
+  border: none;
+}
 
-  // .place-card {
-  //   display: none;
-  // }
+@media screen and (min-width: 768px) {
+  .footer {
+    gap: 3.2rem;
+    padding: 6rem var(--containerPadding);
+  }
+
+  .contact {
+    grid-template-columns: 1fr 22.9rem;
+    gap: 2rem;
+  }
+
+  .contactBlock {
+    @include var.flex(flex-start, flex-start, column);
+    padding: 3.2rem;
+    gap: 1.6rem;
+  }
+
+  .contactTitle {
+    font-size: 2rem;
+  }
+
+  .contactInfo {
+    font-size: 4rem;
+  }
+
+  .social {
+    gap: 1.6rem;
+  }
+
+  .map {
+    grid-column: 1 / 3;
+  }
+
+}
+
+@media screen and (min-width: 1000px) {
+  .contact {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .footer {
+    gap: 4rem;
+    padding: 8rem var(--containerPadding);
+  }
+
+  .contact {
+    grid-template-columns: 1fr 40.295%;
+    gap: 3.2rem;
+  }
+
+  .map {
+    height: 35rem;
+  }
 }

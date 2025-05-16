@@ -14,7 +14,7 @@ function Header() {
   };
   const handleClickMenu = (e) => {
     const classTarget = e.target.className;
-    if (classTarget === s.nav || classTarget === s.link) {
+    if (classTarget === s.nav || classTarget === s.navLink) {
       setIsOpenMenu(false);
     };
   };
@@ -84,7 +84,9 @@ function Header() {
             {count}
           </span>
         }
+
         <Icon id="cart" />
+
       </Link>
 
       <Hamburger isOpen={isOpenMenu} onClick={handleOpenMenu} />

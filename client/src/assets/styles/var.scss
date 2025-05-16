@@ -10,7 +10,9 @@ $borderColor: #DDDDDD;
 // Animations
 $transitionTime: 0.3s;
 
-
+// Radius
+$radiusSmall: 0.6rem;
+$radiusBig: 1.2rem;
 
 // Mixins
 @mixin flex($ai: center, $jc: center, $fd: row, $fw: nowrap) {

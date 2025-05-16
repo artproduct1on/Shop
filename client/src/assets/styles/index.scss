@@ -11,7 +11,9 @@
 }
 
 html {
+
   font-size: 62.5%;
+
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
@@ -32,6 +34,30 @@ body {
   min-height: 100vh;
 }
 
+.section-title {
+  font-weight: 700;
+  font-size: 4rem;
+  line-height: 110%;
+  color: var.$textColor;
+}
+
+@media screen and (min-width: 480px) {
+  .section-title {
+    font-size: 4.8rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .section-title {
+    font-size: 5.6rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .section-title {
+    font-size: 6.4rem;
+  }
+}
 
 @media screen and (min-width: 1440px) {
   :root {
@@ -42,5 +68,21 @@ body {
 @media screen and (min-width: 2000px) {
   :root {
     --containerPadding: 10vh;
+  }
+
+  html {
+    font-size: 100%;
+  }
+}
+
+@media screen and (min-width: 2500px) {
+  html {
+    font-size: 130%;
+  }
+}
+
+@media screen and (min-width: 3000px) {
+  html {
+    font-size: 150%;
   }
 }

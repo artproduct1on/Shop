@@ -1,6 +1,7 @@
+
 const Icon = ({ id }) => (
   <svg aria-hidden="true">
-    <use href={`/sprite.svg#${id}`} />
+    <use xlinkHref={`/Sprite.svg#${id}`} />
   </svg>
 );
 
