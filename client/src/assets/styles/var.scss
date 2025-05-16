@@ -1,5 +1,30 @@
 // Variables and mixins for the project
 
+// Colors
 $primaryColor: #92A134;
 $textColor: #424436;
 $spanColor: #8B8B8B;
+$bgColor: #FFFFF1;
+$borderColor: #DDDDDD;
+
+// Animations
+$transitionTime: 0.3s;
+
+// Radius
+$radiusSmall: 0.6rem;
+$radiusBig: 1.2rem;
+
+// Mixins
+@mixin flex($ai: center, $jc: center, $fd: row, $fw: nowrap) {
+  display: flex;
+  align-items: $ai;
+  justify-content: $jc;
+  flex-direction: $fd;
+  flex-wrap: $fw;
+}
+
+@mixin positionCenter {
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}

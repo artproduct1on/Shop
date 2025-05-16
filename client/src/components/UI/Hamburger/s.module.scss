@@ -1,0 +1,42 @@
+@use '../../../assets/styles/var.scss' as var;
+
+.btn {
+  @include var.flex(center, center, column);
+  gap: 0.7rem;
+  width: 4.4rem;
+  height: 4.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  hr {
+    width: 3.2rem;
+    height: 0.3rem;
+    background-color: var.$textColor;
+    border: 0;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.btn[data-open="true"] {
+
+  hr {
+    border-radius: 1rem;
+    width: 2.5rem;
+  }
+
+  hr:nth-child(1) {
+    rotate: 45deg;
+    translate: 0 1rem;
+  }
+
+  hr:nth-child(2) {
+    opacity: 0;
+  }
+
+  hr:nth-child(3) {
+    rotate: -45deg;
+    translate: 0 -1rem;
+  }
+
+}

@@ -1,0 +1,66 @@
+@use '../../../assets/styles/var.scss' as var;
+
+.container {
+  position: fixed;
+  @include var.flex;
+  @include var.positionCenter;
+}
+
+.loader {
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  border: .3rem solid;
+  border-color: var.$spanColor var.$spanColor transparent transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.loader::after,
+.loader::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid;
+  border-color: transparent transparent var.$primaryColor var.$primaryColor;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotationBack 0.5s linear infinite;
+  transform-origin: center center;
+}
+
+.loader::before {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-color: var.$textColor var.$textColor transparent transparent;
+  animation: rotation 1.5s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}

@@ -1,10 +1,9 @@
 import {
-  createRoot, 
+  createRoot,
 } from "react-dom/client";
 import {
-  BrowserRouter, 
+  BrowserRouter,
 } from "react-router-dom";
-import "normalize.css";
 import "./assets/styles/index.scss";
 import App from "./App.jsx";
 import { store } from "./app/store";
