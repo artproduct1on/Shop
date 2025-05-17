@@ -11,9 +11,7 @@
 }
 
 html {
-
   font-size: 62.5%;
-
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
@@ -71,18 +69,6 @@ body {
   }
 
   html {
-    font-size: 100%;
-  }
-}
-
-@media screen and (min-width: 2500px) {
-  html {
-    font-size: 130%;
-  }
-}
-
-@media screen and (min-width: 3000px) {
-  html {
-    font-size: 150%;
+    font-size: 65%;
   }
 }
