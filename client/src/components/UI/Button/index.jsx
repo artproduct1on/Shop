@@ -6,6 +6,7 @@ function Button({
   type = "button",
   onClick,
   name,
+  variant = "green",
 }) {
 
   if (to) return (
@@ -22,7 +23,7 @@ function Button({
   return (
     <button
       onClick={onClick}
-      className={s.button}
+      className={`${s.button} ${variant === "green" ? s.green : s.white}`}
       type={type}
       name={name}
       title={name}
