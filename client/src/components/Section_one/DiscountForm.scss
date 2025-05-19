@@ -1,0 +1,230 @@
+@use '../../assets/styles/var.scss' as var;
+
+.discount-section {
+  max-width: 144rem;
+  width: calc(100% - 8rem);
+  height: 48.6rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  margin: 0 auto;
+  background: linear-gradient(to right, #87933D, #55610B);
+  border-radius: 1.6rem;
+  overflow: hidden; 
+  
+  .section-title {
+    font-size: 6.4rem;
+    text-align: center;
+    grid-row: 1;
+    color: #FFFFFF;
+    margin-top: 3.2rem;
+    font-weight: 600;
+  }
+  
+  .discount-content {
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 3.2rem;
+    
+    .discount-image {
+      max-width: 100%;
+      max-height: 100%;
+      width: 76.8rem;
+      height: 38.8rem;
+      object-fit: contain;
+      display: block;
+      border: none;
+      outline: none;
+      padding-bottom: 3rem;
+    }
+    
+    .discount-form-container {
+      padding: 3rem;
+      position: relative;
+      
+      .discount-form {
+        display: grid;
+        gap: 3rem;
+        width: 100%;
+        
+        .form-group {
+          display: grid;
+          gap: 0.8rem;
+          color: var.$bgColor;
+
+          input {
+            color: var.$bgColor;
+            padding: 1.6rem;
+            border: 1px solid var.$bgColor;
+            border-radius: 8px;
+            font-size: 1.6rem;
+            background: none;
+            transition: all 0.3s ease;
+            width: 100%;
+            
+            &::placeholder {
+              color: var.$bgColor;
+            }
+            &:focus {
+              outline: none;
+              border-color: var.$bgColor;
+            }
+          }
+          
+          .error-message {
+            color: red;
+            font-size: 1.4rem;
+            background: none;
+          }
+        }
+        
+        .success-message {
+          color: var.$bgColor;
+          font-size: 1.4rem;
+          background: none;
+        }
+        
+        .submit-button {
+          padding: 1.6rem;
+          background-color: var.$bgColor;
+          color: var.$textColor;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 1.6rem;
+          font-weight: 600;
+          transition: all 0.3s ease;
+          margin-top: 1rem;
+          width: 100%;
+          
+          &:hover {
+            transform: translateY(-2px);
+          }
+          
+          &:active {
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .discount-section {
+    width: calc(100% - 4rem);
+    height: auto;
+    
+    .discount-content {
+      .discount-image {
+        width: 100%;
+        height: auto;
+        max-height: 32rem;
+        object-fit: contain;
+        object-position: left center;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .discount-section {
+    .discount-content {
+      .discount-image {
+        max-height: 24rem;
+  
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .discount-section {
+    width: calc(100% - 4rem);
+    height: auto;
+    
+    .section-title {
+      font-size: 4.8rem;
+      margin-top: 2rem;
+    }
+
+    .discount-content {
+      .discount-image {
+        max-height: 20rem;
+        object-position: left center;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .discount-section {
+    width: calc(100% - 4rem);
+    border-radius: 8px;
+    height: auto;
+
+    .section-title {
+      font-size: 3.6rem;
+      margin-top: 1.6rem;
+    }
+
+    .discount-content {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      
+      .discount-image {
+        object-fit: none;      
+      }
+
+      .discount-form-container {
+        order: 1;
+        padding: 1.6rem;
+        
+        .discount-form {
+          gap: 1.6rem;
+          max-width: 100%;
+
+          .form-group {
+            input {
+              font-size: 1.4rem;
+              padding: 1.2rem;
+            }
+          }
+
+          .submit-button {
+            font-size: 1.4rem;
+            padding: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .discount-section {
+    .discount-content {
+      .discount-image {
+        max-height: 12rem;
+      }
+      
+      .discount-form-container {
+        .discount-form {
+          .form-group {
+            input {
+              padding: 1rem;
+              font-size: 1.2rem;
+            }
+          }
+          
+          .submit-button {
+            padding: 1rem;
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+}

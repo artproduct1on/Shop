@@ -7,9 +7,14 @@ import {
   Routes,
 } from "react-router-dom";
 
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Loader from "./components/UI/Loader";
+import DiscountForm from "./components/Section_one/DiscountForm";
+import PromoBanner from "./components/Section_three/PromoBanner";
+
+
 
 const Home = lazy(() => import("./pages/Home"),);
 const Products = lazy(() => import("./pages/Products"),);
@@ -33,6 +38,8 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <PromoBanner />
+      <DiscountForm />
 
     </Suspense>
 
