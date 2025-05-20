@@ -2,9 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  urlCategories: "http://localhost:3333/categories/",
-  urlProducts: "http://localhost:3333/products/",
-
   categories: {
     data: [],
     status: "idle",
@@ -22,12 +19,12 @@ const fetchFunction = async (url) => {
 };
 export const fetchCategories = createAsyncThunk(
   "global/fetchCategories",
-  fetchFunction(initialState.urlCategories + "all")
+  fetchFunction("/api/categories/all")
 );
 
 export const fetchProducts = createAsyncThunk(
   "global/fetchProducts",
-  fetchFunction(initialState.urlProducts + "all")
+  fetchFunction("/api/products/all")
 );
 
 const globalSlice = createSlice({
