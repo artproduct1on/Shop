@@ -10,18 +10,27 @@ const cors = require('cors')
 const Category = require('./database/models/category');
 const Product = require('./database/models/product');
 const PORT = process.env.PORT || 5000;
+const path = require('path');
 
 Category.hasMany(Product);
 
 const app = express();
 app.use(express.static('public'))
+    .use(express.json())
     .use(cors({ origin: '*' }))
     .use(express.urlencoded())
-    .use('/categories', categories)
-    .use('/products', products)
-    .use('/sale', sale)
-    .use('/order', order)
-    .use(express.json());
+    .use('/api/categories', categories)
+    .use('/api/products', products)
+    .use('/api/sale', sale)
+    .use('/api/order', order)
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/dist')));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../client', 'dist', 'index.html'));
+    });
+}
 
 const start = async () => {
     try {

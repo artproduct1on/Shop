@@ -1,0 +1,32 @@
+@use "../../assets/styles/var.scss" as var;
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    text-decoration: none;
+    color: inherit;
+  
+    width: 100%;        // растягивается на всю доступную ширину ячейки
+    height: auto;
+    transition: all 0.3s ease;
+  }
+  
+
+  .img {
+    height: auto;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var.$radiusBig;
+    object-fit: cover;
+  }
+
+.title {
+  font-family: Montserrat, sans-serif;
+  font-weight: 350;
+  font-size: 1.8rem;
+  line-height: 1.3;
+  text-align: center;
+  color: var.$black;
+  min-height: 2.3rem;
+}

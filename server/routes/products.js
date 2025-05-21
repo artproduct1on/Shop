@@ -3,7 +3,6 @@ const Product = require('../database/models/product');
 const router = express.Router();
 
 
-
 router.get('/all', (req, res) => {
     async function all() {
         const all = await Product.findAll();
@@ -11,7 +10,6 @@ router.get('/all', (req, res) => {
     }
     all();
 })
-
 
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
@@ -29,7 +27,6 @@ router.get('/:id', async (req, res) => {
 
     res.json(all);
 })
-
 
 router.get('/add/:title/:price/:discont_price/:description', (req, res) => {
     const { title, price, discont_price, description } = req.params;
