@@ -22,12 +22,12 @@ const fetchFunction = async (url) => {
 };
 export const fetchCategories = createAsyncThunk(
   "global/fetchCategories",
-  fetchFunction(initialState.urlCategories + "all")
+  () => fetchFunction(initialState.urlCategories + "all")
 );
 
 export const fetchProducts = createAsyncThunk(
   "global/fetchProducts",
-  fetchFunction(initialState.urlProducts + "all")
+  () => fetchFunction(initialState.urlProducts + "all")
 );
 
 const globalSlice = createSlice({
