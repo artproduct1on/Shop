@@ -16,6 +16,10 @@ export default defineConfig({
         target: "http://localhost:3333",
         changeOrigin: true,
       },
+      "/category_img": {
+        target: "http://localhost:3333",
+        changeOrigin: true,
+      },
     },
     port: 3000,
   },

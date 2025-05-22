@@ -19,12 +19,12 @@ const fetchFunction = async (url) => {
 };
 export const fetchCategories = createAsyncThunk(
   "global/fetchCategories",
-  fetchFunction("/api/categories/all")
+  () => fetchFunction("/api/categories/all")
 );
 
 export const fetchProducts = createAsyncThunk(
   "global/fetchProducts",
-  fetchFunction("/api/products/all")
+  () => fetchFunction("/api/products/all")
 );
 
 const globalSlice = createSlice({
