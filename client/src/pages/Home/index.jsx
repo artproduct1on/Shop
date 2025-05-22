@@ -39,13 +39,13 @@ function Home() {
 
   return (
     <>
-      {/* <section className={s.banner}>
+      <section className={s.banner}>
         <h1 className={s.bannerTitle}>
           Amazing Discounts <br />
           on Garden Products!
         </h1>
         <Button to="/all-sales" name="Check out" />
-      </section> */}
+      </section>
 
       <section className={s.discount}>
         <h2 className={s.discountTitle}>5% off on the first order</h2>
