@@ -10,6 +10,7 @@ import {
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Loader from "./components/UI/Loader";
+import useAppInitializer from "./hooks/useAppInitializer";
 
 const Home = lazy(() => import("./pages/Home"),);
 const Products = lazy(() => import("./pages/Products"),);
@@ -19,6 +20,8 @@ const Cart = lazy(() => import("./pages/Cart"),);
 const NotFound = lazy(() => import("./pages/NotFound"),);
 
 function App() {
+
+  useAppInitializer();
 
   return <>
     <Header />

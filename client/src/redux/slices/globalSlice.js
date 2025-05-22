@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_GET } from "../../utils/constants";
 
 const initialState = {
   categories: {
@@ -19,12 +20,12 @@ const fetchFunction = async (url) => {
 };
 export const fetchCategories = createAsyncThunk(
   "global/fetchCategories",
-  fetchFunction("/api/categories/all")
+  () => fetchFunction(API_GET.CATEGORIES + "all")
 );
 
 export const fetchProducts = createAsyncThunk(
   "global/fetchProducts",
-  fetchFunction("/api/products/all")
+  () => fetchFunction(API_GET.PRODUCTS + "all")
 );
 
 const globalSlice = createSlice({

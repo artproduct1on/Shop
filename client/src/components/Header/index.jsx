@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import s from "./s.module.scss";
 import Hamburger from "../UI/Hamburger";
 import Icon from "../UI/Icon";
 
 function Header() {
 
-  const count = 1; // waiting for Redux
+  const { cartList } = useSelector((state) => state.cart);
+  const count = cartList.length;
 
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const handleOpenMenu = () => {
