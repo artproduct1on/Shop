@@ -1,0 +1,72 @@
+@use '../../assets/styles/var.scss' as var;
+
+
+.form {
+  @include var.flex(center, flex-start, column);
+  width: 100%;
+  gap: 0.8rem;
+
+  button {
+    margin-top: 1.2rem;
+    width: 100%;
+  }
+}
+
+.input {
+  @include var.flex(center, flex-start, column);
+  background: none;
+  outline: none;
+  width: 100%;
+  padding: 1.2rem var(--containerPadding);
+  border: 0.1rem solid var.$bgColor;
+  border-radius: var.$radiusSmall;
+  color: var.$secondTextColor;
+
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 130%;
+  letter-spacing: 0%;
+
+  &::placeholder {
+    color: var.$secondTextColor;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 2rem;
+}
+
+.success {
+  color: var.$secondTextColor;
+  font-size: 2rem;
+}
+
+
+@media screen and (min-width: 768px) {
+  .form {
+    gap: 1.2rem;
+
+    button {
+      margin-top: 0.8rem;
+    }
+  }
+
+  .input {
+    font-size: 2rem;
+  }
+}
+
+
+
+
+@media screen and (min-width: 1440px) {
+  .form {
+    gap: 1.6rem;
+
+    button {
+      margin-top: 1.6rem;
+    }
+  }
+}

@@ -5,8 +5,8 @@
   gap: 2.4rem;
   position: relative;
   width: 100%;
-  min-height: 70vh;
-  padding: 5rem var(--containerPadding) 25.1rem;
+  height: calc(100vh - 6.9rem);
+  padding: 5rem var(--containerPadding) 0;
   background-image: url("../../assets/img/section1.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -18,200 +18,136 @@
   font-size: 5.2rem;
   line-height: 1.2;
   letter-spacing: 0;
-  color: white;
+  color: var.$secondTextColor;
+}
+
+// ----------------
+
+.discount {
+  position: relative;
+  @include var.flex(center, flex-start, column);
+  width: calc(100% - var(--containerPadding) * 2);
+  margin-top: 5.6rem;
+  padding: 2.4rem 2rem 23.2rem;
+  gap: 2.4rem;
+  background: linear-gradient(80.46deg, #87933D -0.68%, #55610B 66.66%);
+  border-radius: var.$radiusBig;
+
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    translate: -50%;
+    z-index: 100;
+    content: "";
+    background-image: url("../../assets/img/discount_form.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 23.2rem;
+  }
+}
+
+.discountTitle {
+  font-weight: 700;
+  font-size: 4rem;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-align: center;
+  color: var.$secondTextColor;
 }
 
 
 @media screen and (min-width: 480px) {
-   .banner {
-    padding: 6rem var(--containerPadding) 21.5rem;
+  .banner {
+    padding: 6rem var(--containerPadding) 0;
   }
+
   .bannerTitle {
     font-size: 6rem;
+  }
+
+  .discount {
+    padding: 2.4rem 2rem 21.4rem;
+
+    &::after {
+      height: 21.4rem;
+    }
+  }
+
+  .discountTitle {
+    font-size: 4.8rem;
   }
 }
 
 @media screen and (min-width: 768px) {
   .banner {
-    padding-bottom: 32.6rem;
     gap: 4rem;
   }
 
   .bannerTitle {
     font-size: 6.7rem;
   }
-}
-@media screen and (min-width: 1000px) {
-  .banner {
-    padding-bottom: 12rem;
+
+  .discount {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 3.2rem 2rem;
+    overflow: hidden;
+
+    &::after {
+      height: 30.8rem;
+      width: 60.2rem;
+      translate: -101.5%;
+    }
+
+    form {
+      grid-column: 2/3;
+    }
   }
 
+  .discountTitle {
+    grid-column: 1/3;
+    font-size: 5.6rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
   .bannerTitle {
     font-size: 8.9rem;
   }
+
+  .discountTitle {
+    font-size: 6.4rem;
+  }
 }
+
 @media screen and (min-width: 1440px) {
   .banner {
-    padding: 8rem var(--containerPadding) 21rem;
+    padding: 8rem var(--containerPadding) 0;
   }
 
   .bannerTitle {
     font-size: 9.6rem;
   }
-}
 
+  .discount {
+    display: grid;
+    grid-template-columns: 1fr 51.6rem;
+    gap: 5.6rem;
+    padding: 3.2rem;
 
-.discount {
-  @include var.flex(center, flex-start, column);
-  min-height: 60vh;
-  margin: 5.6rem 2rem 0;
-  gap: 2.4rem;
-  background: linear-gradient(to right, #87933D, #55610B );
-  border-radius: var.$radiusBig;
-}
-.discountTitle {
-  padding: 2.4rem var(--containerPadding) 0;
-  font-weight: 700;
-  font-size: 4rem;
-  line-height: 1.2;
-  letter-spacing: 0;
-  text-align: center;
-  color: white;
-}
-.discountContent {
-  @include var.flex(center, flex-start, column);
+    &::after {
+      height: 36rem;
+      width: 74.8rem;
+      left: 3.2rem;
+      translate: 0;
     }
-.discountForm {
-  @include var.flex(center, flex-start, column);
-  width: 100%;
-  padding: 0 var(--containerPadding);
-  gap: 0.8rem;
-  button {
-    width: 100%;
-    padding: 1.2rem var(--containerPadding);
+
+    form {
+      grid-column: 2/3;
+    }
   }
 }
-.discountInput {
-  @include var.flex(center, flex-start, column);
-  width: 100%;
-  padding: 1.2rem var(--containerPadding);
-  border: 0.1rem solid var.$bgColor;
-  border-radius: var.$radiusSmall;
-  background: none;
-  color: white;
-  &::placeholder {
-    width: 500;
-    font-size: 1.8rem;
-    line-height: 1.3;
-    letter-spacing: 0;
-    color: white;
-  }
-  &:focus {
-    font-size: 1.8rem;
-    outline: none;
-    border-color: white;
-    color: white; 
-  }
-}
-.error {
-  color: red;
-  font-size: 2rem;
-}
-.success {
-  color: white;
-  font-size: 2rem;
-}
-.discountImage {
-  width: 100%;
-  height: 23.2rem;
-  object-fit: cover;
-}
-  @media screen and (min-width: 480px) {
-    .discountTitle {
-      font-size: 4.8rem;
-    }
-    .discountContent {
-  @include var.flex(center, flex-start, column);
-   width: 100%;
-    }
-    .discountImage {
-      width: 100%;
-      height: 21.4rem;
-      object-fit: cover;
-}
-  }
-  @media screen and (min-width: 768px) {
-    .discount {
-      min-height: 50vh;
-      overflow: hidden;
-    }
-    .discountContent {
-      @include var.flex(center, flex-start, row-reverse);
-    }
-    .discountTitle {
-      padding: 3.2rem var(--containerPadding) 0;
-      line-height: 1.1;
-      font-size: 5.6rem;
-    }
-    .discountForm {
-      button {
-      width: 100%;
-      padding: 1.6rem var(--containerPadding);
-  }
-    }
-    .discountInput {
-      padding: 1.6rem var(--containerPadding);
-       &::placeholder{
-        font-size: 2rem;
-      }
-       &:focus {
-        font-size: 2rem;
-    }
-  }
-  }
-   @media screen and (min-width: 1000px) {
-    .discount {
-     min-height: 55vh;
-     overflow: hidden;
-    }
-    .discountContent {
-      @include var.flex(center, flex-start, row-reverse);
-    }
-    .discountTitle {
-     font-size: 6.4rem;
-    }
-    .discountImage {
-     width: 75%;
-    }
-  }
-  @media screen and (min-width: 1440px) {
-    .discount {
-      min-height: 50vh;
-      margin: 8rem 4rem 0;
-    }
-    .discountTitle {
-      font-size: 6.4rem;
-      padding: 3.2rem 3.2rem 0;
-    }
-    .discountContent {
-      @include var.flex(center, flex-start, row-reverse);
-    }
-    .discountForm {
-      gap: 1.6rem;
-      button {
-      width: 100%;
-      padding: 1.6rem 3.2rem;
-  }
-  }
-    .discountInput {
-      padding: 1.6rem 3.2rem;
-      gap: 1.2rem;
-       &::placeholder{
-        font-size: 2rem;
-       }
-    }
-    .discountImage {
-      min-width: 50%;
-    }
-  }
-  
