@@ -1,142 +1,75 @@
 @use '../../assets/styles/var.scss' as var;
 
-// --- Общая секция ---
-.section {
-  width: 100%;
-  padding: 0 2rem;
-  margin-top: 4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
-}
-
-// --- Заголовок секции ---
-.sectionHeader {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-
-  // Визуальный контейнер с заголовком, линией и кнопкой
-  .sectionHeaderContent {
-    display: flex;
-    align-items: center;
-    width: 100%;
-
-  }
-
-  h2 {
-    
-    margin-right: 3rem;
-  }
-
-  .sectionDivider {
-    flex-grow: 1;
-    height: 0.1rem;
-    background-color: var.$borderColor;
-    display: none;
-  }
-}
-
-// --- Сетка категорий и товаров ---
-.categoryGrid,
-.saleGrid {
+.sectionCards {
   display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  align-items: center;
+  width: 100%;
+  padding: 0 var(--containerPadding);
+  margin-top: 4rem;
+  gap: 2.4rem 0.8rem;
 }
 
-// --- Кнопки ---
-.actions {
-  display: flex;
-  justify-content: center;
-
-  .allCategories {
-    font-size: 1.4rem;
-    padding: 1rem 2rem;
-    border: 0.1rem solid black;
-    border-radius: var.$radiusSmall;
-    text-decoration: none;
-    color: var.$textColor;
-    transition: var.$transitionTime;
-
-    &:hover {
-      background-color: var.$textColor;
-    }
-  }
-}
-
-// Внизу (до 480px)
-.actionsFooter {
-  display: flex;
-  justify-content: center;
-}
-
-// Справа от заголовка (с 480px)
-.actionsHeader {
+.sectionCardsDivider {
   display: none;
+  border: none;
+  height: 0.1rem;
+  background-color: var.$borderColor;
+}
+
+.sectionCardsContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.sectionCardsLink {
+  margin: auto;
 }
 
 @media screen and (min-width: 480px) {
-  .sectionHeader {
-    .sectionHeaderContent {
-      justify-content: space-between;
-    }
-
-    .sectionDivider {
-      display: block;
-    }
-
-    .actionsHeader {
-      display: flex;
-      align-items: center;
-
-      .allCategories {
-        font-size: 1.4rem;
-        padding: 1rem 2rem;
-        border: 0.1rem solid #DDDDDD;
-        border-radius: var.$radiusSmall;
-        text-decoration: none;
-        color: var.$textColor;
-      }
-
-      &::before {
-        content: "";
-        display: block;
-        width: 1px;
-        height: 100%;
-        background-color:var.$borderColor;
-      }
-    }
+  .sectionCards {
+    grid-template-columns: min-content 1fr min-content;
   }
 
-  .actionsFooter {
-    display: none;
+  .sectionCardsDivider {
+    display: block;
+    translate: 0.8rem 0.5rem;
   }
 
-  .categoryGrid {
-    grid-template-columns: repeat(2, 1fr);
+  .sectionCardsLink {
+    translate: 0 0.5rem;
   }
 
-  .saleGrid {
-    grid-template-columns: repeat(2, 1fr);
+  .sectionCardsContainer {
+    grid-column: 1/4;
+    order: 4;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.4rem 2rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .sectionCards {
+    gap: 3.2rem 0.8rem;
+  }
+
+  .sectionCardsContainer {
+    gap: 2rem;
   }
 }
 
 @media screen and (min-width: 1000px) {
-  .categoryGrid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .saleGrid {
+  .sectionCardsContainer {
     grid-template-columns: repeat(4, 1fr);
   }
 }
-@media screen and (min-width: 1440px){
-  .saleGrid,
-  .categoryGrid{
-    gap: 3.2rem;
+
+@media screen and (min-width: 1440px) {
+  .sectionCards {
+    gap: 4rem 0.8rem;
   }
 
-
+  .sectionCardsContainer {
+    gap: 3.2rem
+  }
 }

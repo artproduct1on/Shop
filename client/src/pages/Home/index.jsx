@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories, fetchProducts } from "../../features/globalSlice";
-import { Link } from "react-router-dom";
+import LinkPages from "../../components/UI/LinkPages";
 import s from "./s.module.scss";
 import CardCategory from "../../components/CardCategory";
 import CardProduct from "../../components/CardProduct";
@@ -32,41 +32,25 @@ function Home() {
 
   return (
     <>
-      {/* Категории */}
-      <section className={s.section}>
-        <div className={s.sectionHeader}>
-          <div className={s.sectionHeaderContent}>
-            <h2 className="section-title">Categories</h2>
-            <div className={s.sectionDivider}></div>
-            <div className={`${s.actions} ${s.actionsHeader}`}>
-              <Link to="/categories" className={s.allCategories}>All categories</Link>
-            </div>
-          </div>
-        </div>
-
-        <div className={s.categoryGrid}>
+      <section className={s.sectionCards}>
+        <h2 className="section-title">Categories</h2>
+        <hr className={s.sectionCardsDivider} />
+        <div className={s.sectionCardsContainer}>
           {categories.slice(0, 4).map((card) => (
             <CardCategory key={card.id} category={card} />
           ))}
         </div>
-
-        <div className={`${s.actions} ${s.actionsFooter}`}>
-          <Link to="/categories" className={s.allCategories}>All categories</Link>
-        </div>
+        <LinkPages
+          to="/categories"
+          title="All categories"
+          className={s.sectionCardsLink}
+        />
       </section>
 
-      <section className={s.section}>
-        <div className={s.sectionHeader}>
-          <div className={s.sectionHeaderContent}>
-            <h2 className="section-title">Sale</h2>
-            <div className={s.sectionDivider}></div>
-            <div className={`${s.actions} ${s.actionsHeader}`}>
-              <Link to="/products" className={s.allCategories}>On sale</Link>
-            </div>
-          </div>
-        </div>
-
-        <div className={s.saleGrid}>
+      <section className={s.sectionCards}>
+        <h2 className="section-title">Sale</h2>
+        <hr className={s.sectionCardsDivider} />
+        <div className={s.sectionCardsContainer}>
           {saleProducts.length > 0 ? (
             saleProducts.map((product) => (
               <CardProduct key={product.id} product={product} />
@@ -75,10 +59,12 @@ function Home() {
             <p>No sale products available</p>
           )}
         </div>
+        <LinkPages
+          to="/categories"
+          title="On sale"
+          className={s.sectionCardsLink}
+        />
 
-        <div className={`${s.actions} ${s.actionsFooter}`}>
-          <Link to="/products" className={s.allCategories}>On sale</Link>
-        </div>
       </section>
     </>
   );
