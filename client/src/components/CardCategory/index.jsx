@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import s from "./s.module.scss";
 
-function CardCategory({category}) {
+function CardCategory({ category }) {
   return (
     <Link
       to={`/categories/${category.id}`}

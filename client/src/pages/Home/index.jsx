@@ -35,36 +35,49 @@ function Home() {
       {/* Категории */}
       <section className={s.section}>
         <div className={s.sectionHeader}>
-          <h2 className={`section-title ${s.categoriesTitle}`}>Categories</h2>
+          <div className={s.sectionHeaderContent}>
+            <h2 className="section-title">Categories</h2>
+            <div className={s.sectionDivider}></div>
+            <div className={`${s.actions} ${s.actionsHeader}`}>
+              <Link to="/categories" className={s.allCategories}>All categories</Link>
+            </div>
+          </div>
         </div>
+
         <div className={s.categoryGrid}>
-          {categories.slice(0, 4).map((card) => <CardCategory key={card.id} category={card}/>)}
+          {categories.slice(0, 4).map((card) => (
+            <CardCategory key={card.id} category={card} />
+          ))}
         </div>
-        <div className={s.actions}>
-          <Link to="/categories" className={s.allCategories}>
-            All categories
-          </Link>
+
+        <div className={`${s.actions} ${s.actionsFooter}`}>
+          <Link to="/categories" className={s.allCategories}>All categories</Link>
         </div>
       </section>
 
-      {/* Скидки */}
       <section className={s.section}>
         <div className={s.sectionHeader}>
-          <h2 className={s.saleTitle}>Sale</h2>
+          <div className={s.sectionHeaderContent}>
+            <h2 className="section-title">Sale</h2>
+            <div className={s.sectionDivider}></div>
+            <div className={`${s.actions} ${s.actionsHeader}`}>
+              <Link to="/products" className={s.allCategories}>On sale</Link>
+            </div>
+          </div>
         </div>
+
         <div className={s.saleGrid}>
-  {saleProducts.length > 0 ? (
-    saleProducts.map((product) => (
-      <CardProduct key={product.id} product={product} />
-    ))
-  ) : (
-    <p>No sale products available</p>
-  )}
-</div>
-        <div className={s.actions}>
-          <Link to="/products" className={s.allCategories}>
-            on sale
-          </Link>
+          {saleProducts.length > 0 ? (
+            saleProducts.map((product) => (
+              <CardProduct key={product.id} product={product} />
+            ))
+          ) : (
+            <p>No sale products available</p>
+          )}
+        </div>
+
+        <div className={`${s.actions} ${s.actionsFooter}`}>
+          <Link to="/products" className={s.allCategories}>On sale</Link>
         </div>
       </section>
     </>

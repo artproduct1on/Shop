@@ -14,39 +14,39 @@
 .sectionHeader {
   width: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 1.6rem;
- 
+
+  // Визуальный контейнер с заголовком, линией и кнопкой
+  .sectionHeaderContent {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+  }
 
   h2 {
-    font-size: 4rem;
-    font-weight: 700;
-    line-height: 1.2;
+    
+    margin-right: 3rem;
+  }
+
+  .sectionDivider {
+    flex-grow: 1;
+    height: 0.1rem;
+    background-color: var.$borderColor;
+    display: none;
   }
 }
 
-// --- Сетка категорий ---
-.categoryGrid {
+// --- Сетка категорий и товаров ---
+.categoryGrid,
+.saleGrid {
   display: grid;
   gap: 2rem;
-
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 }
 
-
-
-
-
-// --- Сетка товаров по акции ---
-.saleGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-
-
-// --- Кнопка снизу ---
+// --- Кнопки ---
 .actions {
   display: flex;
   justify-content: center;
@@ -54,76 +54,89 @@
   .allCategories {
     font-size: 1.4rem;
     padding: 1rem 2rem;
-    border: 1px solid black;
+    border: 0.1rem solid black;
     border-radius: var.$radiusSmall;
     text-decoration: none;
     color: var.$textColor;
-    transition: background 0.2s;
+    transition: var.$transitionTime;
 
     &:hover {
-      background-color: grey;
+      background-color: var.$textColor;
     }
   }
 }
 
-// --- Заголовок SALE секции (если нужен отдельно) ---
-.saleTitle {
-  width: 32rem;
-  height: 4.4rem;
-  font-family: Montserrat;
-  font-weight: 700;
-  font-size: 4rem;
-  line-height: 1.1;
-  letter-spacing: 0;
-  color: var.$textColor;
+// Внизу (до 480px)
+.actionsFooter {
+  display: flex;
+  justify-content: center;
+}
+
+// Справа от заголовка (с 480px)
+.actionsHeader {
+  display: none;
 }
 
 @media screen and (min-width: 480px) {
   .sectionHeader {
-    width: 44rem;
-    height: 5.3rem;
-    gap: 1.6rem;
-    justify-content: space-between;
+    .sectionHeaderContent {
+      justify-content: space-between;
+    }
 
-    // Добавляем actions рядом с заголовком
-    .actions {
-      margin-left: auto;
+    .sectionDivider {
+      display: block;
+    }
+
+    .actionsHeader {
       display: flex;
       align-items: center;
-      gap: 1.6rem;
 
       .allCategories {
         font-size: 1.4rem;
         padding: 1rem 2rem;
-        border: 1px solid var.$borderColor;
+        border: 0.1rem solid #DDDDDD;
         border-radius: var.$radiusSmall;
         text-decoration: none;
         color: var.$textColor;
       }
 
-      // Вертикальная линия между заголовком и кнопкой
       &::before {
         content: "";
         display: block;
-        width: 0.24rem;
+        width: 1px;
         height: 100%;
-        background-color: var.$borderColor;
-        margin-right: 1.6rem;
+        background-color:var.$borderColor;
       }
     }
   }
 
-  .categoryGrid {
-    grid-template-columns: repeat(2, 1fr); // 2 карточки в ряд
-    justify-content: center;
+  .actionsFooter {
+    display: none;
   }
 
-  
+  .categoryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   .saleGrid {
     grid-template-columns: repeat(2, 1fr);
-    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .categoryGrid {
+    grid-template-columns: repeat(4, 1fr);
   }
 
-  
+  .saleGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (min-width: 1440px){
+  .saleGrid,
+  .categoryGrid{
+    gap: 3.2rem;
+  }
+
+
 }

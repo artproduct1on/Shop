@@ -9,7 +9,7 @@
   
     width: 100%;        // растягивается на всю доступную ширину ячейки
     height: auto;
-    transition: all 0.3s ease;
+    transition: var.$transitionTime;
   }
   
 
@@ -27,6 +27,22 @@
   font-size: 1.8rem;
   line-height: 1.3;
   text-align: center;
-  color: var.$black;
+  color: var.$textColor;
   min-height: 2.3rem;
+}
+
+@media screen and (min-width: 480px) {
+  .img{
+    height: 26rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .img{
+    height: 25rem;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .img{
+    height: 35rem;
+  }
 }
