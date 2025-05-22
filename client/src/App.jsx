@@ -5,10 +5,11 @@ import {
 import {
   Route,
   Routes,
-} from "react-router-dom"
+} from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Loader from "./components/UI/Loader";
+
 
 const Home = lazy(() => import("./pages/Home"),);
 const Products = lazy(() => import("./pages/Products"),);

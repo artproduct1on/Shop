@@ -24,7 +24,7 @@ function Button({
   return (
     <button
       onClick={onClick}
-      className={className}
+      className={`${s.button} ${variant === "green" ? s.green : s.white}`}
       type={type}
       name={name}
       title={name}
