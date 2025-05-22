@@ -2,16 +2,25 @@
 
 .button {
   border-radius: var.$radiusSmall;
-  background: var.$primaryColor;
-  color: white;
   padding: 1.2rem 5.2rem;
   font-size: 1.8rem;
   line-height: 130%;
   text-align: center;
   font-weight: 600;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   border: none;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.green {
+  background: var.$primaryColor;
+  color: white;
+}
+
+.white {
+  background: var.$bgColor;
+  color: var.$textColor;
 }
 
 @media screen and (min-width: 768px) {
