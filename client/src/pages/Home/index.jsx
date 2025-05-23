@@ -89,7 +89,7 @@ function Home() {
               productsStatus === "loading" ?
               <Loader />
               : productsStatus === "failed" ?
-                <h3>Error: {categoryError}</h3>
+                <h3>Error: {productsError}</h3>
                 : productsArray.length === 0 ?
                   <h3>No sale products available</h3>
                   : productsArray.map((product) => <CardProduct key={product.id} product={product} />)
