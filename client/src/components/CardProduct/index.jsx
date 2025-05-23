@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import s from "./s.module.scss";
+import formatPrice from "../../utils/formatPrice";
 
 function CardProduct({ product }) {
   const { id, image, title, price, discont_price } = product;
@@ -20,8 +21,8 @@ function CardProduct({ product }) {
         <div className={s.priceBlock}>
           {hasDiscount ? (
             <>
-              <span className={s.newPrice}>${discont_price.toFixed(2)}</span>
-              <span className={s.oldPrice}>${price.toFixed(2)}</span>
+              <span className={s.newPrice}>${formatPrice(discont_price)}</span>
+              <span className={s.oldPrice}>${formatPrice(price)}</span>
             </>
           ) : (
             <span className={s.newPrice}>${price.toFixed(2)}</span>

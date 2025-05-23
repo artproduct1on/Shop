@@ -8,7 +8,7 @@
 @media screen and (min-width: 768px) {
   .nav {
     @include var.flex(center, flex-start);
-    padding: 3.2rem var(--containerPadding);
+    padding: 3.2rem var(--containerPadding) 0;
   }
 
   .hr {
@@ -21,6 +21,6 @@
 
 @media screen and (min-width: 1000px) {
   .nav {
-    padding: 4rem var(--containerPadding);
+    padding: 4rem var(--containerPadding) 0;
   }
 }

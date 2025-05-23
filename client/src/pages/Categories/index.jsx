@@ -1,7 +1,8 @@
-import { useParams } from "react-router-dom";
 import RouteTracker from "../../components/RouteTracker";
 import { useSelector } from "react-redux";
-import { searchItemHelper } from "../../utils/helpers";
+import CardCategory from "../../components/CardCategory";
+import Loader from "../../components/UI/Loader";
+import s from "./s.module.scss"; 
 
 function Categories() {
 
@@ -18,7 +19,17 @@ function Categories() {
 
   return <>
     <RouteTracker pathArray={pathArray} />
-    <h1>Categories</h1>
+    <div className={s.cardsContainer}>
+      <h2 className={`section-title ${s.categoriesTitle}`}>Categories</h2>
+      {
+        categoryStatus === "idle" ||
+              categoryStatus === "loading" ?
+          <Loader />
+          : categoryStatus === "failed" ?
+            <h3>Error: {categoryError}</h3>
+            : dataCategories.map((card) => <CardCategory key={card.id} category={card} />)
+      }
+    </div>
   </>;
 }
 
