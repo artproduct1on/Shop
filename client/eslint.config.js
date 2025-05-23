@@ -48,7 +48,7 @@ export default defineConfig([
       "no-unused-vars": "off",
       "no-undef": "error", // Предупреждение при использовании необъявленных переменных
       "semi": ["error", "always",], // Всегда использовать точку с запятой
-      "indent": ["warn", 2,], // Отступ в 2 пробела
+      "indent": ["warn", 2, { "SwitchCase": 1 }], // Отступ в 2 пробела
       "no-var": "error", // Запрет на использование var
       "quotes": ["warn", "double",], // Использовать только двойные кавычки
       "eol-last": ["warn", "always",], // Требовать пустую строку в конце файла

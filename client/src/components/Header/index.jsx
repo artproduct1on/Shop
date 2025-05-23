@@ -62,7 +62,7 @@ function Header() {
           <li className={s.navLi}>
             <Link
               className={s.navLink}
-              to="/categories/all"
+              to="/products"
             >
               All products
             </Link>
@@ -70,7 +70,7 @@ function Header() {
           <li className={s.navLi}>
             <Link
               className={s.navLink}
-              to="/categories/sales"
+              to="/sales"
             >
               All sales
             </Link>

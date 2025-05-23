@@ -2,7 +2,7 @@ import s from "./s.module.scss";
 import { Fragment } from "react";
 import LinkPages from "../UI/LinkPages";
 
-function RouteTracker(pathArray = []) {
+function RouteTracker({ pathArray = [] }) {
 
   return (
     <nav className={s.nav}>
