@@ -97,7 +97,7 @@ function Home() {
         </div>
         <LinkPages
           to="/categories"
-          title="On sale"
+          title="All sales"
           className={s.sectionCardsLink}
         />
 
