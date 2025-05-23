@@ -1,12 +1,14 @@
 @use '../../assets/styles/var.scss' as var;
 
 .header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 999;
   display: grid;
   grid-template-columns: 1fr auto auto;
   align-items: center;
   gap: 2rem;
-  position: relative;
-  z-index: 100;
   width: 100%;
   padding: 1.2rem var(--containerPadding);
   background: var.$bgColor;

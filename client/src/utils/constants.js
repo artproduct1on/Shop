@@ -1,5 +1,6 @@
 export const LOCAL_STORAGE_KEYS = {
   CART: "cart_state",
+  DISCOUNT: "discount_request",
 };
 
 export const API_GET = {

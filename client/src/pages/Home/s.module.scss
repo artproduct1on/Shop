@@ -1,7 +1,229 @@
 @use '../../assets/styles/var.scss' as var;
 
+.banner {
+  @include var.flex(flex-start, flex-start, column);
+  gap: 2.4rem;
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 6.9rem);
+  padding: 5rem var(--containerPadding) 0;
+  background-image: url("../../assets/img/section1.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.bannerTitle {
+  font-weight: 700;
+  font-size: 5.2rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: var.$secondTextColor;
+}
+
+// ----------------
+
+.discount {
+  position: relative;
+  @include var.flex(center, flex-start, column);
+  width: calc(100% - var(--containerPadding) * 2);
+  margin-top: 5.6rem;
+  padding: 2.4rem 2rem 23.2rem;
+  gap: 2.4rem;
+  background: linear-gradient(80.46deg, #87933D -0.68%, #55610B 66.66%);
+  border-radius: var.$radiusBig;
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 50%;
+    translate: -50%;
+    background-image: url("../../assets/img/discount_form.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 23.2rem;
+  }
+}
+
+.discountTitle {
+  font-weight: 700;
+  font-size: 4rem;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-align: center;
+  color: var.$secondTextColor;
+}
+
+// ----------------
+
+.sectionCards {
+  display: grid;
+  align-items: center;
+  margin-top: 5.6rem;
+  width: 100%;
+  padding: 0 var(--containerPadding);
+  gap: 2.4rem 0.8rem;
+}
+
+.sectionCardsDivider {
+  display: none;
+  border: none;
+  height: 0.1rem;
+  background-color: var.$borderColor;
+}
+
+.sectionCardsContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.sectionCardsLink {
+  margin: auto;
+}
 
 
-.h {
-  color: var.$primaryColor;
+@media screen and (min-width: 480px) {
+  .banner {
+    padding: 6rem var(--containerPadding) 0;
+  }
+
+  .bannerTitle {
+    font-size: 6rem;
+  }
+
+  .discount {
+    padding: 2.4rem 2rem 21.4rem;
+
+    &::after {
+      height: 21.4rem;
+    }
+  }
+
+  .discountTitle {
+    font-size: 4.8rem;
+  }
+
+  .sectionCards {
+    grid-template-columns: min-content 1fr min-content;
+  }
+
+  .sectionCardsDivider {
+    display: block;
+    translate: 0.8rem 0.5rem;
+  }
+
+  .sectionCardsLink {
+    translate: 0 0.5rem;
+  }
+
+  .sectionCardsContainer {
+    grid-column: 1/4;
+    order: 4;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.4rem 2rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .banner {
+    gap: 4rem;
+  }
+
+  .bannerTitle {
+    font-size: 6.7rem;
+  }
+
+  .discount {
+    margin-top: 6rem;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 3.2rem 2rem;
+    overflow: hidden;
+
+    &::after {
+      height: 30.8rem;
+      width: 60.2rem;
+      translate: -101.5%;
+    }
+
+    form {
+      grid-column: 2/3;
+    }
+  }
+
+  .discountTitle {
+    grid-column: 1/3;
+    font-size: 5.6rem;
+  }
+
+  .sectionCards {
+    margin-top: 6rem;
+    gap: 3.2rem 0.8rem;
+  }
+
+  .sectionCardsContainer {
+    gap: 2rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .banner {
+    height: 47.6rem;
+  }
+
+  .bannerTitle {
+    font-size: 8.9rem;
+  }
+
+  .discountTitle {
+    font-size: 6.4rem;
+  }
+
+  .sectionCardsContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .banner {
+    padding: 8rem var(--containerPadding) 0;
+    height: 60rem;
+  }
+
+  .bannerTitle {
+    font-size: 9.6rem;
+  }
+
+  .discount {
+    margin-top: 8rem;
+    grid-template-columns: 74.8rem 51.6rem;
+    gap: 5.6rem;
+    padding: 3.2rem;
+
+    &::after {
+      height: 36rem;
+      width: 74.8rem;
+      translate: -87%;
+    }
+
+    form {
+      grid-column: 2/3;
+    }
+  }
+
+  .sectionCards {
+    margin-top: 8rem;
+    gap: 4rem 0.8rem;
+  }
+
+  .sectionCardsContainer {
+    gap: 3.2rem
+  }
 }

@@ -6,12 +6,14 @@ function Button({
   type = "button",
   onClick,
   name,
+  variant = "green",
 }) {
+  const className = `${s.button} ${variant === "green" ? s.green : s.white}`;
 
   if (to) return (
     <Link
       to={to}
-      className={s.button}
+      className={className}
       name={name}
       title={name}
     >
@@ -22,7 +24,7 @@ function Button({
   return (
     <button
       onClick={onClick}
-      className={s.button}
+      className={`${s.button} ${variant === "green" ? s.green : s.white}`}
       type={type}
       name={name}
       title={name}
@@ -32,4 +34,4 @@ function Button({
   );
 }
 
-export default Button;
+export default Button; 

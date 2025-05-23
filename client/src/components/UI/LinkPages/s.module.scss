@@ -1,0 +1,38 @@
+@use '../../../assets/styles/var.scss' as var;
+
+.link {
+    @include var.flex;
+    max-width: min-content;
+    height: 4.2rem;
+    padding: 1rem 2rem;
+    border: 0.1rem solid var.$borderColor;
+    border-radius: var.$radiusSmall;
+    transition: var.$transitionTime;
+    color: var.$spanColor;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 126%;
+    letter-spacing: 0%;
+    text-align: center;
+    text-decoration: none;
+    text-wrap: nowrap;
+
+    &:hover {
+        background-color: var.$spanColor;
+        color: white;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .link {
+        height: 3.4rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .link {
+        height: 3.6rem;
+        font-size: 1.6rem;
+    }
+}
