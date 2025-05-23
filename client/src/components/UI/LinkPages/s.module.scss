@@ -1,10 +1,8 @@
 @use '../../../assets/styles/var.scss' as var;
 
 .link {
-    @include var.flex;
     max-width: min-content;
-    height: 4.2rem;
-    padding: 1rem 2rem;
+    padding: 1.1rem 2.35rem;
     border: 0.1rem solid var.$borderColor;
     border-radius: var.$radiusSmall;
     transition: var.$transitionTime;
@@ -12,27 +10,37 @@
     font-family: Montserrat;
     font-weight: 500;
     font-size: 1.4rem;
-    line-height: 126%;
-    letter-spacing: 0%;
     text-align: center;
+    align-self: center;
     text-decoration: none;
     text-wrap: nowrap;
+    max-width: 30rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &:hover {
         background-color: var.$spanColor;
-        color: white;
+        color: var.$secondTextColor;
+    }
+}
+
+.disabled {
+    color: var.$textColor;
+
+    &:hover {
+        background: none;
+        color: var.$textColor;
     }
 }
 
 @media screen and (min-width: 480px) {
     .link {
-        height: 3.4rem;
+        padding: 0.7rem 1.55rem;
     }
 }
 
 @media screen and (min-width: 768px) {
     .link {
-        height: 3.6rem;
         font-size: 1.6rem;
     }
 }

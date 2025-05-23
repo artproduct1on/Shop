@@ -9,7 +9,7 @@ function LinkPages({
   return (
     <Link
       to={to}
-      className={`${s.link} ${className}`}
+      className={`${s.link} ${className} ${!to && s.disabled}`}
     >
       {title}
     </Link>
