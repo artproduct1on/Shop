@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import s from "./s.module.scss";
 import Hamburger from "../UI/Hamburger";
 import Icon from "../UI/Icon";
+import useScrollLock from "../../hooks/useScrollLock";
 
 function Header() {
 
@@ -11,6 +12,9 @@ function Header() {
   const count = cartList.length;
 
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+
+  useScrollLock(isOpenMenu);
+
   const handleOpenMenu = () => {
     setIsOpenMenu(!isOpenMenu);
   };

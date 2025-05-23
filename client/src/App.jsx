@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Loader from "./components/UI/Loader";
 import useAppInitializer from "./hooks/useAppInitializer";
+import useScrollToTop from "./hooks/useScrollToTop";
 
 const Home = lazy(() => import("./pages/Home"),);
 const Products = lazy(() => import("./pages/Products"),);
@@ -21,6 +22,7 @@ const NotFound = lazy(() => import("./pages/NotFound"),);
 function App() {
 
   useAppInitializer();
+  useScrollToTop();
 
   return <>
     <Header />
@@ -35,7 +37,6 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-
     </Suspense>
 
     <Footer />

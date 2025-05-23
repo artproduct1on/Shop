@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
-import { getFromStorage, setToStorage } from "../../utils/localStorage";
 import Loader from "../../components/UI/Loader";
 import LinkPages from "../../components/UI/LinkPages";
 import s from "./s.module.scss";
@@ -8,42 +7,20 @@ import CardCategory from "../../components/CardCategory";
 import CardProduct from "../../components/CardProduct";
 import Button from "../../components/UI/Button";
 import Form from "../../components/Form";
+import discountService from "../../services/discountService";
 
 function Home() {
   const [formMessage, setFormMessage] = useState(null);
 
   const {
-    categories: { data: categories, status: categoryStatus, error: categoryError },
-    products: { data: products, status: productsStatus, error: productsError },
+    categories: { data: dataCategories, status: categoryStatus, error: categoryError },
+    products: { data: dataProducts, status: productsStatus, error: productsError },
   } = useSelector((state) => state.global);
 
-  const categoriesArray = categories?.slice(0, 4);
-  const productsArray = products?.filter((product) => product.discont_price !== null).slice(0, 4);
+  const categoriesArray = dataCategories?.slice(0, 4);
+  const productsArray = dataProducts?.filter((product) => product.discont_price !== null).slice(0, 4);
 
-  useEffect(() => {
-    setFormMessage(null);
-  }, []);
-
-  const onSubmit = (data) => {
-    const storedData = getFromStorage("discountData");
-
-    if (storedData &&
-      storedData.phone === data.phone &&
-      storedData.email === data.email) {
-      setFormMessage({ type: "error", text: "Wrong input. Try again" });
-      return;
-    };
-
-    setToStorage("discountData", {
-      phone: data.phone,
-      email: data.email,
-    });
-
-    setFormMessage({
-      type: "success",
-      text: "The discount has been successfully sent to your email.",
-    });
-  };
+  const onSubmit = async (data) => setFormMessage(await discountService(data));
 
   return (
     <>

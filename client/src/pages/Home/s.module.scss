@@ -6,7 +6,9 @@
   position: relative;
   width: 100%;
   height: calc(100vh - 6.9rem);
-  padding: 5rem var(--containerPadding) 0;
+  min-height: max-content;
+  max-height: 150vw;
+  padding: 5rem var(--containerPadding);
   background-image: url("../../assets/img/section1.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -89,7 +91,7 @@
 
 @media screen and (min-width: 480px) {
   .banner {
-    padding: 6rem var(--containerPadding) 0;
+    padding: 6rem var(--containerPadding);
   }
 
   .bannerTitle {
@@ -193,7 +195,7 @@
 
 @media screen and (min-width: 1440px) {
   .banner {
-    padding: 8rem var(--containerPadding) 0;
+    padding: 8rem var(--containerPadding);
     height: 60rem;
   }
 

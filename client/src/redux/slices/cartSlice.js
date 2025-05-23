@@ -61,7 +61,6 @@ const cartSlice = createSlice({
     builder
       .addCase(initializeCartFromLocalStorage.fulfilled, (state, action) => {
         state.status = "succeeded";
-        console.log("Cart Slice succeeded", action.payload);
         state.cartList = action.payload;
       })
       .addCase(initializeCartFromLocalStorage.pending, (state) => {
