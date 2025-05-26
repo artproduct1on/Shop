@@ -8,7 +8,13 @@ function Button({
   name,
   variant = "green",
 }) {
-  const className = `${s.button} ${variant === "green" ? s.green : s.white}`;
+  const className = `${s.button} ${
+    variant === "green"
+      ? s.green
+      : variant === "orange"
+        ? s.orange
+        : s.white
+  }`;
 
   if (to) return (
     <Link
@@ -24,7 +30,7 @@ function Button({
   return (
     <button
       onClick={onClick}
-      className={`${s.button} ${variant === "green" ? s.green : s.white}`}
+      className={`${s.button} ${variant === "green" ? s.green : variant === "orange" ? s.orange : s.white}`}
       type={type}
       name={name}
       title={name}

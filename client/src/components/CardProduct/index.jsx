@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import s from "./s.module.scss";
 import formatPrice from "../../utils/formatPrice";
+import Button from "../UI/Button";
 
 function CardProduct({ product }) {
   const { id, image, title, price, discont_price } = product;
@@ -15,6 +16,7 @@ function CardProduct({ product }) {
       <div className={s.imageWrapper}>
         {hasDiscount && <span className={s.badge}>-{discountPercent}%</span>}
         <img src={image} alt={title} className={s.saleImage} />
+        <Button name={"Add to cart"} variant="orange" className={s.overlayButton}></Button>
       </div>
       <div className={s.productInfo}>
         <p className={s.productTitle}>{title}</p>

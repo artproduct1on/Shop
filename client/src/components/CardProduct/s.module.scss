@@ -10,19 +10,41 @@
   border: 0.1rem solid var.$borderColor;
   overflow: hidden;
   width: 100%;
+  position: relative;
 }
 
 .imageWrapper {
-  position: relative;
-  height: 22rem;
+  
 
   img {
     width: 100%;
-    height: 100%;
+    height: 22rem;
     object-fit: cover;
     border-bottom: 0.1rem solid var.$borderColor;
   }
+
+  .overlayButton {
+    position: absolute;
+    top: 21rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 2rem;
+    width: --containerPadding; // отступы по 1.6rem с каждой стороны
+    border-radius: var.$radiusSmall;
+    font-size: 1.6rem;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    transition: var.$transitionTime;
+    z-index: 1;
+
+    &:hover {
+      background-color: darken(var.$saleProcent, 10%);
+    }
+  }
+
 }
+
 
 .badge {
   position: absolute;
@@ -39,7 +61,6 @@
   background-color: var.$saleProcent;
   border-radius: var.$radiusSmall;
   @include var.flex
-  
 }
 
 .productInfo {
@@ -63,7 +84,7 @@
 }
 
 .priceBlock {
-  @include var.flex(start,start, row, wrap);
+  @include var.flex(start, start, row, wrap);
   gap: 1.2rem;
   width: 100%;
 
@@ -91,23 +112,24 @@
 }
 
 @media screen and (min-width: 480px) {
-  .badge{
+  .badge {
     width: 5.8rem;
   }
-} 
- 
+}
+
 @media screen and (min-width: 768px) {
-  .imageWrapper{
+  .imageWrapper {
     height: 25rem;
   }
-  .badge{
+
+  .badge {
     width: 6.3rem;
     height: 3.4rem;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .imageWrapper{
+  .imageWrapper {
     height: 28.4rem;
   }
 }

@@ -23,6 +23,11 @@
   color: var.$textColor;
 }
 
+.orange {
+  background: var.$saleProcent;
+  color: var.$secondTextColor;
+}
+
 @media screen and (min-width: 768px) {
   .button {
     font-size: 2rem;
