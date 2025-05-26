@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import s from "./s.module.scss";
 import formatPrice from "../../utils/formatPrice";
@@ -11,13 +10,25 @@ function CardProduct({ product }) {
     ? Math.round(100 - (discont_price / price) * 100)
     : null;
 
+  function clickHeandler(e) {
+    e.preventDefault();
+    console.log("Hier youre actions!");
+  };
+
   return (
-    <Link to={`/products/${id}`} className={s.saleCard}>
-      <div className={s.imageWrapper}>
-        {hasDiscount && <span className={s.badge}>-{discountPercent}%</span>}
-        <img src={image} alt={title} className={s.saleImage} />
-        <Button name={"Add to cart"} variant="orange" className={s.overlayButton}></Button>
-      </div>
+    <Link to={`/products/${id}`} className={s.card}>
+
+      {hasDiscount && <span className={s.badge}>-{discountPercent}%</span>}
+
+      <img className={s.img} src={image} alt={title} />
+
+      <Button
+        className={s.overlayButton}
+        name="Add to cart"
+        variant="orange"
+        onClick={clickHeandler}
+      />
+
       <div className={s.productInfo}>
         <p className={s.productTitle}>{title}</p>
         <div className={s.priceBlock}>

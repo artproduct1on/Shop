@@ -1,6 +1,6 @@
 @use '../../assets/styles/var.scss' as var;
 
-.saleCard {
+.card {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -13,38 +13,16 @@
   position: relative;
 }
 
-.imageWrapper {
-  
-
-  img {
-    width: 100%;
-    height: 22rem;
-    object-fit: cover;
-    border-bottom: 0.1rem solid var.$borderColor;
-  }
-
-  .overlayButton {
-    position: absolute;
-    top: 21rem;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 1rem 2rem;
-    width: --containerPadding; // отступы по 1.6rem с каждой стороны
-    border-radius: var.$radiusSmall;
-    font-size: 1.6rem;
-    text-align: center;
-    cursor: pointer;
-    border: none;
-    transition: var.$transitionTime;
-    z-index: 1;
-
-    &:hover {
-      background-color: darken(var.$saleProcent, 10%);
-    }
-  }
-
+.img {
+  width: 100%;
+  height: 22rem;
+  object-fit: cover;
+  border-bottom: 0.1rem solid var.$borderColor;
 }
 
+.overlayButton {
+  display: none;
+}
 
 .badge {
   position: absolute;
@@ -88,27 +66,28 @@
   gap: 1.2rem;
   width: 100%;
 
-  .newPrice {
-    height: 4rem;
-    font-weight: 600;
-    font-size: 3.6rem;
-    color: var.$textColor;
-    white-space: nowrap;
-    line-height: 110%;
-    letter-spacing: 0%;
-  }
+}
 
-  .oldPrice {
-    align-self: flex-end;
-    height: 2.3rem;
-    font-weight: 500;
-    font-size: 1.8rem;
-    text-decoration: line-through;
-    color: var.$spanColor;
-    white-space: nowrap;
-    letter-spacing: 0%;
-    line-height: 130%;
-  }
+.newPrice {
+  height: 4rem;
+  font-weight: 600;
+  font-size: 3.6rem;
+  color: var.$textColor;
+  white-space: nowrap;
+  line-height: 110%;
+  letter-spacing: 0%;
+}
+
+.oldPrice {
+  align-self: flex-end;
+  height: 2.3rem;
+  font-weight: 500;
+  font-size: 1.8rem;
+  text-decoration: line-through;
+  color: var.$spanColor;
+  white-space: nowrap;
+  letter-spacing: 0%;
+  line-height: 130%;
 }
 
 @media screen and (min-width: 480px) {
@@ -118,7 +97,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .imageWrapper {
+  .img {
     height: 25rem;
   }
 
@@ -128,8 +107,29 @@
   }
 }
 
+
+
+@media screen and (min-width: 1000px) {
+  .card {
+    &:hover {
+      button {
+        display: block;
+      }
+    }
+  }
+
+  .overlayButton {
+    position: absolute;
+    z-index: 1;
+    width: 85%;
+    top: 21rem;
+    left: 50%;
+    translate: -50%;
+  }
+}
+
 @media screen and (min-width: 1440px) {
-  .imageWrapper {
+  .img {
     height: 28.4rem;
   }
 }

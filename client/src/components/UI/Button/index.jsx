@@ -7,19 +7,17 @@ function Button({
   onClick,
   name,
   variant = "green",
+  className
 }) {
-  const className = `${s.button} ${
-    variant === "green"
-      ? s.green
-      : variant === "orange"
-        ? s.orange
-        : s.white
-  }`;
+  const variantClass =
+    `${s.button} ${variant === "green"
+      ? s.green : variant === "orange"
+        ? s.orange : s.white} ${className}`;
 
   if (to) return (
     <Link
       to={to}
-      className={className}
+      className={variantClass}
       name={name}
       title={name}
     >
@@ -30,7 +28,7 @@ function Button({
   return (
     <button
       onClick={onClick}
-      className={`${s.button} ${variant === "green" ? s.green : variant === "orange" ? s.orange : s.white}`}
+      className={variantClass}
       type={type}
       name={name}
       title={name}
