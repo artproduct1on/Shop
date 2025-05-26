@@ -1,0 +1,58 @@
+@use '../../assets/styles/var.scss' as var;
+
+.filter {
+  display: grid;
+  min-width: 100%;
+  height: 100%;
+  border-radius: var.$radiusSmall;
+  padding: 2.4rem var(--containerPadding) 0;
+  gap: 1.6rem;
+  font-weight: 600;
+  font-size: 1.8rem;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.filterContainer {
+  @include var.flex(center, flex-start);
+  gap: 1.2rem;
+}
+
+.filterInput {
+  width: 11.2rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: var.$radiusSmall;
+  border: 1px solid var.$borderColor;
+  color: var.$spanColor;
+}
+
+
+input {
+  padding: 1.3rem 1.7rem;
+  cursor: pointer;
+  border: 1px solid #DDDDDD;
+  background-color: #DDDDDD;
+
+  &:checked {
+    background-color: #6a9f3a;
+    border-color: #6a9f3a;
+  }
+}
+
+.sort {
+  height: 3.6rem;
+  padding: 0.8rem 0.8rem;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  border: 1px solid #DDDDDD;
+}
+
+
+
+// @media (max-width: 768px) {
+//   .filterPanel {
+//     flex-direction: column;
+//     align-items: flex-start;
+//     gap: 1rem;
+//   }
