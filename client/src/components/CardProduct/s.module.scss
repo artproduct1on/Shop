@@ -10,6 +10,7 @@
   border: 0.1rem solid var.$borderColor;
   overflow: hidden;
   width: 100%;
+  height: 100%;
 }
 
 .imageWrapper {
@@ -39,7 +40,6 @@
   background-color: var.$saleProcent;
   border-radius: var.$radiusSmall;
   @include var.flex
-  
 }
 
 .productInfo {
@@ -63,7 +63,7 @@
 }
 
 .priceBlock {
-  @include var.flex(start,start, row, wrap);
+  @include var.flex(start, start, row, wrap);
   gap: 1.2rem;
   width: 100%;
 
@@ -91,23 +91,24 @@
 }
 
 @media screen and (min-width: 480px) {
-  .badge{
+  .badge {
     width: 5.8rem;
   }
-} 
- 
+}
+
 @media screen and (min-width: 768px) {
-  .imageWrapper{
+  .imageWrapper {
     height: 25rem;
   }
-  .badge{
+
+  .badge {
     width: 6.3rem;
     height: 3.4rem;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .imageWrapper{
+  .imageWrapper {
     height: 28.4rem;
   }
 }

@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import s from "./s.module.scss";
 
 const FilterPrice = ({ onFilterChange }) => {
   const location = useLocation();
 
-  const [priceFrom, setPriceFrom] = useState('');
-  const [priceTo, setPriceTo] = useState('');
+  const [priceFrom, setPriceFrom] = useState("");
+  const [priceTo, setPriceTo] = useState("");
   const [discounted, setDiscounted] = useState(false);
-  const [sort, setSort] = useState('default');
+  const [sort, setSort] = useState("default");
 
   useEffect(() => {
     onFilterChange({
@@ -19,44 +19,49 @@ const FilterPrice = ({ onFilterChange }) => {
     });
   }, [priceFrom, priceTo, discounted, sort]);
 
+  const priceFromHeandler = (e) => {
+    const value = Number(e.target.value);
+    if (value >= 0 || e.target.value === "") {
+      setPriceFrom(e.target.value);
+    }
+  };
+
+  const PriceToHeandler = (e) => {
+    const value = Number(e.target.value);
+    if (value >= 0 || e.target.value === "") {
+      setPriceTo(e.target.value);
+    }
+  };
+
   return (
     <fieldset className={s.filter}>
       <div className={s.filterContainer}>
-        <label>Price</label>
+        <label className={s.label}>Price</label>
         <input
           className={s.filterInput}
           type="number"
           placeholder="from"
           min="0"
           value={priceFrom}
-          onChange={(e) => {
-          const value = Number(e.target.value);
-            if (value >= 0 || e.target.value === "") {
-              setPriceFrom(e.target.value);
-            }
-          }}
+          onChange={priceFromHeandler}
         />
 
         <input
           className={s.filterInput}
           type="number"
           placeholder="to"
-          min="0"
+          min={priceFrom}
           value={priceTo}
-          onChange={(e) => {
-          const value = Number(e.target.value);
-            if (value >= 0 || e.target.value === '') {
-              setPriceTo(e.target.value);
-            }
-          }}
+          onChange={PriceToHeandler}
         />
       </div>
 
       {location.pathname !== "/sales" && (
         <div className={s.filterContainer}>
-          <label for="checkboxDiscount">Discounted items</label>
+          <label className={s.label} htmlFor="checkboxDiscount">Discounted items</label>
           <input
-            id= "checkbox"
+            className={s.checkbox}
+            id="checkbox"
             type="checkbox"
             checked={discounted}
             onChange={(e) => setDiscounted(e.target.checked)}
@@ -65,12 +70,12 @@ const FilterPrice = ({ onFilterChange }) => {
       )}
 
       <div className={s.filterContainer}>
-        <label for="sort">Sorted</label>
+        <label className={s.label} htmlFor="sort">Sorted</label>
         <select
+          className={s.select}
           id="sort"
           value={sort}
           onChange={(e) => setSort(e.target.value)}
-          className={s.sort}
         >
           <option value="default">by default</option>
           <option value="newest">newest</option>
