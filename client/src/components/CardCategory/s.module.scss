@@ -1,25 +1,24 @@
 @use "../../assets/styles/var.scss" as var;
 
 .card {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    text-decoration: none;
-    color: inherit;
-  
-    width: 100%;        // растягивается на всю доступную ширину ячейки
-    height: auto;
-    transition: var.$transitionTime;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: auto;
+  transition: var.$transitionTime;
+}
 
-  .img {
-    height: 22rem;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    border-radius: var.$radiusBig;
-    object-fit: cover;
-  }
+
+.img {
+  height: 22rem;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var.$radiusBig;
+  object-fit: cover;
+}
 
 .title {
   font-family: Montserrat, sans-serif;
@@ -32,17 +31,19 @@
 }
 
 @media screen and (min-width: 480px) {
-  .img{
+  .img {
     height: 26rem;
   }
 }
+
 @media screen and (min-width: 768px) {
-  .img{
+  .img {
     height: 25rem;
   }
 }
+
 @media screen and (min-width: 1440px) {
-  .img{
+  .img {
     height: 35rem;
   }
 }

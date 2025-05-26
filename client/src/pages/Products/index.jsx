@@ -7,24 +7,25 @@ import CartProduct from "../../components/CardProduct";
 import RouteTracker from "../../components/RouteTracker";
 import productsPageSwitcher from "../../utils/productsPageSwitcher";
 import FilterPrice from "../../components/Filter";
+import { pageSwitcher } from "./utils.js";
 
 function Products() {
   const { pathname } = useLocation();
   const params = useParams();
 
   const {
-    categories: { data: dataCategories },
-    products: { data: dataProducts }
+    categories: { data: dataCategories, status: categoryStatus, error: categoryError },
+    products: { data: dataProducts, status: productsStatus, error: productsError }
   } = useSelector((state) => state.global);
 
   const targetCategory = params.id && searchItemHelper(dataCategories, params.id);
-  const { pathArray, sectionTitle } = productsPageSwitcher(pathname, targetCategory);
+  const { pathArray, sectionTitle } = pageSwitcher(pathname, targetCategory);
 
   const [filter, setFilter] = useState({
-    from: '',
-    to: '',
+    from: "",
+    to: "",
     discounted: false,
-    sort: 'default'
+    sort: "default"
   });
 
   const applyPriceRangeFilter = (products) => {
@@ -80,24 +81,38 @@ function Products() {
   );
 
   return (
-    <>
-      <RouteTracker pathArray={pathArray} />
-      <section className={s.section}>
-        <h1 className="section-title">{sectionTitle}</h1>
-      </section>
+   <>
+    <RouteTracker pathArray={pathArray} />
 
-      <div className={s.filterContainer}>
-        <FilterPrice onFilterChange={setFilter} />
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map(product => (
-            <CartProduct key={product.id} product={product} />
-          ))
-        ) : (
-          <p className={s.noProducts}>No products found</p>
-        )}
-      </div>
-    </>
+    <section className={s.section}>
+      <h1 className="section-title">{sectionTitle}</h1>
+      <FilterPrice onFilterChange={setFilter} />
+
+      {filteredProducts.length > 0 ?
+        <ul className={s.productsList}>
+          <FilterPrice onFilterChange={setFilter} />
+          {filteredProducts.map(product =>
+            <li key={product.id} className={s.productsListItem}>
+              <CartProduct product={product} />
+            </li>
+          )}
+        </ul>
+        : <h3 className={s.noProducts}>No products found</h3>
+      }
+    </section >
+  </>
   );
 }
 
 export default Products;
+
+// function rangeHeandler(products) {
+//   products.filter(product => {
+//     const price = product.discount ? product.price * (1 - product.discount / 100) : product.price;
+//     if (price >= filter.from && price <= filter.to) return product;
+//   });
+// }
+
+// function discountFilter(products) {
+//   products = products.filter(product => product.discount > 0);
+// }

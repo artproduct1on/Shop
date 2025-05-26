@@ -1,4 +1,4 @@
-export default function productsPageSwitcher(pathname, targetCategory) {
+export function pageSwitcher(pathname, targetCategory) {
   switch (pathname) {
     case "/products":
       return {
