@@ -10,7 +10,7 @@
   border: 0.1rem solid var.$borderColor;
   overflow: hidden;
   width: 100%;
-  position: relative;
+  height: 100%;
 }
 
 .img {
@@ -68,14 +68,6 @@
 
 }
 
-@media screen and (min-width: 768px) {
-  .img {
-    height: 25rem;
-  }
-}
-
-
-
 @media screen and (min-width: 1000px) {
   .card {
     transition: transform var.$transitionTime;
@@ -83,10 +75,10 @@
       .overlayButton {
         display: block;
       }
-
       transform: scale(1.1);
     }
   }
+}
 
   .overlayButton {
     position: absolute;
@@ -99,6 +91,21 @@
     &:hover {
       background-color: var.$textColor;
     }
+  }
+@media screen and (min-width: 480px) {
+  .badge {
+    width: 5.8rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .imageWrapper {
+    height: 25rem;
+  }
+
+  .badge {
+    width: 6.3rem;
+    height: 3.4rem;
   }
 }
 

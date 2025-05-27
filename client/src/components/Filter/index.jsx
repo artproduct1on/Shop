@@ -1,14 +1,22 @@
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import DiscountCheckbox from "../UI/Checkbox/index";
 import s from "./s.module.scss";
 
 const FilterPrice = ({ onFilterChange }) => {
   const location = useLocation();
 
-  const [priceFrom, setPriceFrom] = useState('');
-  const [priceTo, setPriceTo] = useState('');
+  const [priceFrom, setPriceFrom] = useState("");
+  const [priceTo, setPriceTo] = useState("");
   const [discounted, setDiscounted] = useState(false);
-  const [sort, setSort] = useState('default');
+  const [sort, setSort] = useState("default");
+
+  useEffect(() => {
+    setPriceFrom("");
+    setPriceTo("");
+    setDiscounted(false);
+    setSort("default");
+  }, [location.pathname]);
 
   useEffect(() => {
     onFilterChange({
@@ -19,58 +27,64 @@ const FilterPrice = ({ onFilterChange }) => {
     });
   }, [priceFrom, priceTo, discounted, sort]);
 
+  const priceFromHandler = (e) => {
+    const value = Number(e.target.value);
+    if (value >= 0 || e.target.value === "") {
+      setPriceFrom(e.target.value);
+    }
+  };
+
+  const priceToHandler = (e) => {
+    const value = Number(e.target.value);
+    if (value >= 0 || e.target.value === "") {
+      setPriceTo(e.target.value);
+    }
+  };
+
+  const resetFilter = (checked) => {
+    setPriceFrom("");
+    setPriceTo("");
+    setSort("default");
+    setDiscounted(checked);
+  };
+
   return (
     <fieldset className={s.filter}>
       <div className={s.filterContainer}>
-        <label>Price</label>
+        <label className={s.label}>Price</label>
         <input
           className={s.filterInput}
           type="number"
           placeholder="from"
           min="0"
           value={priceFrom}
-          onChange={(e) => {
-          const value = Number(e.target.value);
-            if (value >= 0 || e.target.value === "") {
-              setPriceFrom(e.target.value);
-            }
-          }}
+          onChange={priceFromHandler}
         />
 
         <input
           className={s.filterInput}
           type="number"
           placeholder="to"
-          min="0"
+          min={priceFrom || "0"}
           value={priceTo}
-          onChange={(e) => {
-          const value = Number(e.target.value);
-            if (value >= 0 || e.target.value === '') {
-              setPriceTo(e.target.value);
-            }
-          }}
+          onChange={priceToHandler}
         />
       </div>
 
       {location.pathname !== "/sales" && (
-        <div className={s.filterContainer}>
-          <label for="checkboxDiscount">Discounted items</label>
-          <input
-            id= "checkbox"
-            type="checkbox"
-            checked={discounted}
-            onChange={(e) => setDiscounted(e.target.checked)}
-          />
-        </div>
+        <DiscountCheckbox
+          discounted={discounted}
+          onChangeReset={resetFilter}
+        />
       )}
-      
+
       <div className={s.filterContainer}>
-        <label for="sort">Sorted</label>
+        <label className={s.label} htmlFor="sort">Sorted</label>
         <select
+          className={s.select}
           id="sort"
           value={sort}
           onChange={(e) => setSort(e.target.value)}
-          className={s.sort}
         >
           <option value="default">by default</option>
           <option value="newest">newest</option>
