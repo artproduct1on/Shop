@@ -1,9 +1,11 @@
+import Button from "../../components/UI/Button";
 import s from "./s.module.scss";
 import { useParams } from "react-router-dom";
 import { API_GET } from "../../utils/constants";
 import Loader from "../../components/UI/Loader";
 import RouteTracker from "../../components/RouteTracker";
 import { useFetchData } from "../../hooks/useFetchData";
+import QuantityInput from "../../components/UI/QuantityInput";
 
 function Product() {
   const { productId } = useParams();
@@ -42,7 +44,12 @@ function Product() {
         src={product.image}
         alt="Image of Product"
       />
-      <p>{product.description}</p>
+      <QuantityInput className={s.quantity} />
+      <Button name={"lol"} onClick={{}} />
+      <h2 className={s.descriptionTitle}>{product.title}</h2>
+      <p className={s.descriptionText}>{product.description}</p>
+      <button>Read more</button>
+
     </section>
   </>;
 
