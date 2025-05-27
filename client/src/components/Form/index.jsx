@@ -12,21 +12,21 @@ function Form({ onSubmit, formMessage }) {
 
   const validateField = (name, value) => {
     switch (name) {
-    case "name":
-      if (!value) return "Name is required";
-      if (value.length < 2) return "Name must be at least 2 characters";
-      if (value.length > 50) return "Name must be under 50 characters";
-      return true;
-    case "phone":
-      if (!value) return "Phone number is required";
-      if (!/^\+?[0-9\s\-()]{7,20}$/.test(value)) return "Invalid phone number";
-      return true;
-    case "email":
-      if (!value) return "Email is required";
-      if (!/^\S+@\S+\.\S+$/.test(value)) return "Invalid email format";
-      return true;
-    default:
-      return true;
+      case "name":
+        if (!value) return "Name is required";
+        if (value.length < 2) return "Name must be at least 2 characters";
+        if (value.length > 50) return "Name must be under 50 characters";
+        return true;
+      case "phone":
+        if (!value) return "Phone number is required";
+        if (!/^\+?[0-9\s\-()]{7,20}$/.test(value)) return "Invalid phone number";
+        return true;
+      case "email":
+        if (!value) return "Email is required";
+        if (!/^\S+@\S+\.\S+$/.test(value)) return "Invalid email format";
+        return true;
+      default:
+        return true;
     }
   };
 

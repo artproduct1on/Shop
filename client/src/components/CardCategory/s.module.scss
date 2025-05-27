@@ -9,7 +9,7 @@
   
     width: 100%;        // растягивается на всю доступную ширину ячейки
     height: auto;
-    transition: var.$transitionTime;
+    transition: transform var.$transitionTime;
   }
   
 
@@ -39,6 +39,13 @@
 @media screen and (min-width: 768px) {
   .img{
     height: 25rem;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .card {
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }
 @media screen and (min-width: 1440px) {

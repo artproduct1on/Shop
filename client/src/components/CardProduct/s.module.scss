@@ -1,6 +1,6 @@
 @use '../../assets/styles/var.scss' as var;
 
-.saleCard {
+.card {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -10,18 +10,18 @@
   border: 0.1rem solid var.$borderColor;
   overflow: hidden;
   width: 100%;
+  position: relative;
 }
 
-.imageWrapper {
-  position: relative;
+.img {
+  width: 100%;
   height: 22rem;
+  object-fit: cover;
+  border-bottom: 0.1rem solid var.$borderColor;
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-bottom: 0.1rem solid var.$borderColor;
-  }
+.overlayButton {
+  display: none;
 }
 
 .badge {
@@ -39,7 +39,6 @@
   background-color: var.$saleProcent;
   border-radius: var.$radiusSmall;
   @include var.flex
-  
 }
 
 .productInfo {
@@ -63,51 +62,48 @@
 }
 
 .priceBlock {
-  @include var.flex(start,start, row, wrap);
+  @include var.flex(start, start, row, wrap);
   gap: 1.2rem;
   width: 100%;
 
-  .newPrice {
-    height: 4rem;
-    font-weight: 600;
-    font-size: 3.6rem;
-    color: var.$textColor;
-    white-space: nowrap;
-    line-height: 110%;
-    letter-spacing: 0%;
-  }
+}
 
-  .oldPrice {
-    align-self: flex-end;
-    height: 2.3rem;
-    font-weight: 500;
-    font-size: 1.8rem;
-    text-decoration: line-through;
-    color: var.$spanColor;
-    white-space: nowrap;
-    letter-spacing: 0%;
-    line-height: 130%;
+@media screen and (min-width: 768px) {
+  .img {
+    height: 25rem;
   }
 }
 
-@media screen and (min-width: 480px) {
-  .badge{
-    width: 5.8rem;
+
+
+@media screen and (min-width: 1000px) {
+  .card {
+    transition: transform var.$transitionTime;
+    &:hover {
+      .overlayButton {
+        display: block;
+      }
+
+      transform: scale(1.1);
+    }
   }
-} 
- 
-@media screen and (min-width: 768px) {
-  .imageWrapper{
-    height: 25rem;
-  }
-  .badge{
-    width: 6.3rem;
-    height: 3.4rem;
+
+  .overlayButton {
+    position: absolute;
+    z-index: 1;
+    width: 85%;
+    top: 21rem;
+    left: 50%;
+    translate: -50%;
+    transition: background-color var.$transitionTime;
+    &:hover {
+      background-color: var.$textColor;
+    }
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .imageWrapper{
+  .img {
     height: 28.4rem;
   }
 }
