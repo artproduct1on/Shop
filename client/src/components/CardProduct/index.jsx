@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import s from "./s.module.scss";
 import formatPrice from "../../utils/formatPrice";
 import Button from "../UI/Button";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/slices/cartSlice";
 
 function CardProduct({ product }) {
   const { id, image, title, price, discont_price } = product;
@@ -9,10 +11,11 @@ function CardProduct({ product }) {
   const discountPercent = hasDiscount
     ? Math.round(100 - (discont_price / price) * 100)
     : null;
+  const dispatch = useDispatch();
 
   function clickHeandler(e) {
     e.preventDefault();
-    console.log("Hier youre actions!");
+    dispatch(addToCart(product));
   };
 
   return (

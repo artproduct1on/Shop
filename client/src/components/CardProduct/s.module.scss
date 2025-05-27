@@ -111,10 +111,13 @@
 
 @media screen and (min-width: 1000px) {
   .card {
+    transition: transform var.$transitionTime;
     &:hover {
-      button {
+      .overlayButton {
         display: block;
       }
+
+      transform: scale(1.1);
     }
   }
 
@@ -125,6 +128,10 @@
     top: 21rem;
     left: 50%;
     translate: -50%;
+    transition: background-color var.$transitionTime;
+    &:hover {
+      background-color: var.$textColor;
+    }
   }
 }
 
