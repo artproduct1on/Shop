@@ -1,0 +1,22 @@
+@use "../../../assets/styles/var.scss";
+.newPrice {
+  height: 4rem;
+  font-weight: 600;
+  font-size: 3.6rem;
+  color: var.$textColor;
+  white-space: nowrap;
+  line-height: 110%;
+  letter-spacing: 0%;
+}
+
+.oldPrice {
+  align-self: flex-end;
+  height: 2.3rem;
+  font-weight: 500;
+  font-size: 1.8rem;
+  text-decoration: line-through;
+  color: var.$spanColor;
+  white-space: nowrap;
+  letter-spacing: 0%;
+  line-height: 130%;
+}

@@ -6,10 +6,11 @@
   font-size: 1.8rem;
   line-height: 130%;
   text-align: center;
+  text-decoration: none;
+  text-wrap: nowrap;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
   border: none;
-  text-decoration: none;
   cursor: pointer;
 }
 
@@ -21,6 +22,11 @@
 .white {
   background: var.$bgColor;
   color: var.$textColor;
+}
+
+.orange {
+  background: var.$saleProcent;
+  color: var.$secondTextColor;
 }
 
 @media screen and (min-width: 768px) {

@@ -9,7 +9,7 @@ import useScrollLock from "../../hooks/useScrollLock";
 function Header() {
 
   const { cartList } = useSelector((state) => state.cart);
-  const count = cartList.length;
+  const count = cartList.length > 0 ? cartList.reduce((acc, i) => acc + i.quantity, 0) : 0;
 
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 

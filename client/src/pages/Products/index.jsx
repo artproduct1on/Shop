@@ -12,16 +12,14 @@ function Products() {
   const {
     categories: { data: dataCategories, status: categoryStatus, error: categoryError },
   } = useSelector((state) => state.global);
-  const targetCategory = params.id && searchItemHelper(dataCategories, params.id);
+  const targetCategory = params.categoryId && searchItemHelper(dataCategories, params.categoryId);
 
-  // Function for switching between "All sales", "All products" and "Products of Category"
   const { pathArray, sectionTitle } = productsPageSwitcher(pathname, targetCategory);
 
   return <>
     <RouteTracker pathArray={pathArray} />
     <section className={s.section}>
       <h1 className="section-title">{sectionTitle}</h1>
-
     </section>
   </>;
 }

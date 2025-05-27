@@ -73,7 +73,7 @@ function Home() {
           }
         </div>
         <LinkPages
-          to="/categories"
+          to="/sales"
           title="All sales"
           className={s.sectionCardsLink}
         />

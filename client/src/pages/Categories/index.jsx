@@ -2,7 +2,7 @@ import RouteTracker from "../../components/RouteTracker";
 import { useSelector } from "react-redux";
 import CardCategory from "../../components/CardCategory";
 import Loader from "../../components/UI/Loader";
-import s from "./s.module.scss"; 
+import s from "./s.module.scss";
 
 function Categories() {
 
@@ -23,7 +23,7 @@ function Categories() {
       <h2 className={`section-title ${s.categoriesTitle}`}>Categories</h2>
       {
         categoryStatus === "idle" ||
-              categoryStatus === "loading" ?
+          categoryStatus === "loading" ?
           <Loader />
           : categoryStatus === "failed" ?
             <h3>Error: {categoryError}</h3>
