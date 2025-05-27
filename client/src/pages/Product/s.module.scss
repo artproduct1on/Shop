@@ -1,0 +1,15 @@
+@use '../../assets/styles/var.scss' as var;
+
+.section {
+  width: 100%;
+  padding: 0 var(--containerPadding);
+}
+
+
+@media screen and (min-width: 480px) {}
+
+@media screen and (min-width: 768px) {}
+
+@media screen and (min-width: 1000px) {}
+
+@media screen and (min-width: 1440px) {}

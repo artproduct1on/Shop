@@ -32,12 +32,10 @@ function App() {
       <Routes>
         <Route path="/" index element={<Home />} />
         <Route path="/categories" element={<Categories />} />
-
-        <Route path="/categories/:id/" element={<Products />} />
+        <Route path="/categories/:categoryId" element={<Products />} />
+        <Route path="/categories/:categoryId/:productId" element={<Product />} />
         <Route path="/products" element={<Products />} />
         <Route path="/sales" element={<Products />} />
-
-        <Route path="/products/:id" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

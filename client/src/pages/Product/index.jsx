@@ -1,18 +1,20 @@
+import s from "./s.module.scss";
 import { useParams } from "react-router-dom";
+import { API_GET } from "../../utils/constants";
+import Loader from "../../components/UI/Loader";
 import RouteTracker from "../../components/RouteTracker";
-import { useSelector } from "react-redux";
-import { searchItemHelper } from "../../utils/helpers";
+import { useFetchData } from "../../hooks/useFetchData";
 
 function Product() {
-  const {
-    categories: { data: dataCategories, status: categoryStatus, error: categoryError },
-    products: { data: dataProducts, status: productsStatus, error: productsError },
-  } = useSelector((state) => state.global);
+  const { productId } = useParams();
 
-  const params = useParams();
+  const { data: {
+    product,
+    category
+  }, loading, error } = useFetchData(API_GET.PRODUCTS + productId);
 
-  const targetProduct = searchItemHelper(dataProducts, params.id);
-  const targetCategory = searchItemHelper(dataCategories, targetProduct.categoryId);
+  if (loading) return <Loader />;
+  if (!product) return <h2>Have not a product!</h2>;
 
   const pathArray = [
     {
@@ -20,19 +22,31 @@ function Product() {
       title: "Categories",
     },
     {
-      link: "/categories/" + params.id,
-      title: targetCategory.title,
+      link: "/categories/" + product.categoryId,
+      title: category.title,
     },
     {
       link: "",
-      title: targetProduct.title,
+      title: product.title,
     },
   ];
 
+  console.log(product);
+
   return <>
     <RouteTracker pathArray={pathArray} />
-    <h1>Product</h1>
+
+    <section className={s.section}>
+      <h1 className={`section-title ${s.titel}`}>{product.title}</h1>
+      <img
+        src={product.image}
+        alt="Image of Product"
+      />
+      <p>{product.description}</p>
+    </section>
   </>;
+
 }
 
 export default Product;
+
