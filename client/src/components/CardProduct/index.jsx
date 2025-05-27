@@ -4,13 +4,11 @@ import formatPrice from "../../utils/formatPrice";
 import Button from "../UI/Button";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/slices/cartSlice";
+import Badge from "../UI/Baige";
+import Price from "../UI/Price";
 
 function CardProduct({ product }) {
   const { id, image, title, price, discont_price } = product;
-  const hasDiscount = discont_price && discont_price < price;
-  const discountPercent = hasDiscount
-    ? Math.round(100 - (discont_price / price) * 100)
-    : null;
   const dispatch = useDispatch();
 
   function clickHeandler(e) {
@@ -21,7 +19,7 @@ function CardProduct({ product }) {
   return (
     <Link to={`/products/${id}`} className={s.card}>
 
-      {hasDiscount && <span className={s.badge}>-{discountPercent}%</span>}
+      <Badge price={price} discont_price={discont_price} />
 
       <img className={s.img} src={image} alt={title} />
 
@@ -35,14 +33,9 @@ function CardProduct({ product }) {
       <div className={s.productInfo}>
         <p className={s.productTitle}>{title}</p>
         <div className={s.priceBlock}>
-          {hasDiscount ? (
-            <>
-              <span className={s.newPrice}>${formatPrice(discont_price)}</span>
-              <span className={s.oldPrice}>${formatPrice(price)}</span>
-            </>
-          ) : (
-            <span className={s.newPrice}>${price.toFixed(2)}</span>
-          )}
+          <Price
+            price={price}
+            discont_price={discont_price} />
         </div>
       </div>
     </Link>

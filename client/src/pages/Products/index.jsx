@@ -21,7 +21,6 @@ function Products() {
     <RouteTracker pathArray={pathArray} />
     <section className={s.section}>
       <h1 className="section-title">{sectionTitle}</h1>
-
     </section>
   </>;
 }
