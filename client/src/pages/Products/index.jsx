@@ -5,7 +5,6 @@ import { useParams, useLocation } from "react-router-dom";
 import { searchItemHelper } from "../../utils/helpers";
 import CartProduct from "../../components/CardProduct";
 import RouteTracker from "../../components/RouteTracker";
-import productsPageSwitcher from "../../utils/productsPageSwitcher";
 import FilterPrice from "../../components/Filter";
 import { pageSwitcher } from "./utils.js";
 
@@ -14,19 +13,23 @@ function Products() {
   const params = useParams();
 
   const {
-    categories: { data: dataCategories, status: categoryStatus, error: categoryError },
-    products: { data: dataProducts, status: productsStatus, error: productsError }
+    categories: { data: dataCategories },
+    products: { data: allProducts = [] }
   } = useSelector((state) => state.global);
 
   const targetCategory = params.id && searchItemHelper(dataCategories, params.id);
   const { pathArray, sectionTitle } = pageSwitcher(pathname, targetCategory);
 
   const [filter, setFilter] = useState({
-    from: "",
-    to: "",
+    from: '',
+    to: '',
     discounted: false,
-    sort: "default"
+    sort: 'default'
   });
+
+  const categoryProducts = params.id
+    ? allProducts.filter(product => String(product.categoryId) === params.id)
+    : allProducts;
 
   const applyPriceRangeFilter = (products) => {
     const from = Number(filter.from);
@@ -76,9 +79,10 @@ function Products() {
 
   const filteredProducts = applySort(
     applyDiscountFilter(
-      applyPriceRangeFilter(dataProducts)
+      applyPriceRangeFilter(categoryProducts)
     )
   );
+
 
   return (
    <>
@@ -90,7 +94,6 @@ function Products() {
 
       {filteredProducts.length > 0 ?
         <ul className={s.productsList}>
-          <FilterPrice onFilterChange={setFilter} />
           {filteredProducts.map(product =>
             <li key={product.id} className={s.productsListItem}>
               <CartProduct product={product} />
@@ -105,14 +108,3 @@ function Products() {
 }
 
 export default Products;
-
-// function rangeHeandler(products) {
-//   products.filter(product => {
-//     const price = product.discount ? product.price * (1 - product.discount / 100) : product.price;
-//     if (price >= filter.from && price <= filter.to) return product;
-//   });
-// }
-
-// function discountFilter(products) {
-//   products = products.filter(product => product.discount > 0);
-// }

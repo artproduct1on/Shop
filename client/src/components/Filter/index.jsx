@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import DiscountCheckbox from "../UI/Checkbox/index";
 import s from "./s.module.scss";
 
 const FilterPrice = ({ onFilterChange }) => {
@@ -11,6 +12,13 @@ const FilterPrice = ({ onFilterChange }) => {
   const [sort, setSort] = useState("default");
 
   useEffect(() => {
+    setPriceFrom("");
+    setPriceTo("");
+    setDiscounted(false);
+    setSort("default");
+  }, [location.pathname]);
+
+  useEffect(() => {
     onFilterChange({
       from: priceFrom,
       to: priceTo,
@@ -19,18 +27,25 @@ const FilterPrice = ({ onFilterChange }) => {
     });
   }, [priceFrom, priceTo, discounted, sort]);
 
-  const priceFromHeandler = (e) => {
+  const priceFromHandler = (e) => {
     const value = Number(e.target.value);
     if (value >= 0 || e.target.value === "") {
       setPriceFrom(e.target.value);
     }
   };
 
-  const PriceToHeandler = (e) => {
+  const priceToHandler = (e) => {
     const value = Number(e.target.value);
     if (value >= 0 || e.target.value === "") {
       setPriceTo(e.target.value);
     }
+  };
+
+  const resetFilter = (checked) => {
+    setPriceFrom("");
+    setPriceTo("");
+    setSort("default");
+    setDiscounted(checked);
   };
 
   return (
@@ -43,30 +58,24 @@ const FilterPrice = ({ onFilterChange }) => {
           placeholder="from"
           min="0"
           value={priceFrom}
-          onChange={priceFromHeandler}
+          onChange={priceFromHandler}
         />
 
         <input
           className={s.filterInput}
           type="number"
           placeholder="to"
-          min={priceFrom}
+          min={priceFrom || "0"}
           value={priceTo}
-          onChange={PriceToHeandler}
+          onChange={priceToHandler}
         />
       </div>
 
       {location.pathname !== "/sales" && (
-        <div className={s.filterContainer}>
-          <label className={s.label} htmlFor="checkboxDiscount">Discounted items</label>
-          <input
-            className={s.checkbox}
-            id="checkbox"
-            type="checkbox"
-            checked={discounted}
-            onChange={(e) => setDiscounted(e.target.checked)}
-          />
-        </div>
+        <DiscountCheckbox
+          discounted={discounted}
+          onChangeReset={resetFilter}
+        />
       )}
 
       <div className={s.filterContainer}>
