@@ -64,6 +64,10 @@
     width: 3.8rem;
     height: 3.8rem;
   }
+
+  &:hover {
+    fill: var.$primaryColor;
+  }
 }
 
 .map {

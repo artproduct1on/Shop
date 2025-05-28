@@ -1,4 +1,4 @@
-export default function productsPageSwitcher(pathname, targetCategory) {
+export function pageSwitcher(pathname, data) {
   switch (pathname) {
     case "/products":
       return {
@@ -9,6 +9,7 @@ export default function productsPageSwitcher(pathname, targetCategory) {
           },
         ],
         sectionTitle: "All products",
+        productsList: data,
       };
     case "/sales":
       return {
@@ -19,8 +20,10 @@ export default function productsPageSwitcher(pathname, targetCategory) {
           },
         ],
         sectionTitle: "Discounted items",
+        productsList: Array.isArray(data) && data.filter(product => product.discont_price && product.discont_price < product.price),
       };
     default:
+
       return {
         pathArray: [
           {
@@ -29,10 +32,11 @@ export default function productsPageSwitcher(pathname, targetCategory) {
           },
           {
             link: "",
-            title: targetCategory.title,
+            title: data.category.title,
           },
         ],
-        sectionTitle: targetCategory.title,
+        sectionTitle: data.category.title,
+        productsList: data.productsList,
       };
   }
 };

@@ -1,6 +1,7 @@
 @use '../../assets/styles/var.scss' as var;
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -10,7 +11,16 @@
   border: 0.1rem solid var.$borderColor;
   overflow: hidden;
   width: 100%;
-  position: relative;
+  height: 100%;
+  transition: transform var.$transitionTime;
+
+  &:hover {
+    .overlayButton {
+      display: block;
+    }
+
+    transform: scale(1.02);
+  }
 }
 
 .img {
@@ -68,37 +78,41 @@
 
 }
 
-@media screen and (min-width: 768px) {
-  .img {
-    height: 25rem;
+
+.overlayButton {
+  top: 15rem;
+  position: absolute;
+  z-index: 1;
+  width: 85%;
+  left: 50%;
+  translate: -50%;
+  transition: background-color var.$transitionTime;
+
+  &:hover {
+    background-color: var.$textColor;
   }
 }
 
+@media screen and (min-width: 480px) {
+  .badge {
+    width: 5.8rem;
+  }
+}
 
-
-@media screen and (min-width: 1000px) {
-  .card {
-    transition: transform var.$transitionTime;
-    &:hover {
-      .overlayButton {
-        display: block;
-      }
-
-      transform: scale(1.1);
-    }
+@media screen and (min-width: 768px) {
+  .imageWrapper {
+    height: 25rem;
   }
 
+  .badge {
+    width: 6.3rem;
+    height: 3.4rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
   .overlayButton {
-    position: absolute;
-    z-index: 1;
-    width: 85%;
     top: 21rem;
-    left: 50%;
-    translate: -50%;
-    transition: background-color var.$transitionTime;
-    &:hover {
-      background-color: var.$textColor;
-    }
   }
 }
 

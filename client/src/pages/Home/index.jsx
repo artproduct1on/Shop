@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import Loader from "../../components/UI/Loader";
 import LinkPages from "../../components/UI/LinkPages";
 import s from "./s.module.scss";
@@ -8,17 +7,19 @@ import CardProduct from "../../components/CardProduct";
 import Button from "../../components/UI/Button";
 import Form from "../../components/Form";
 import discountService from "../../services/discountService";
+import { useFetchData } from "../../hooks/useFetchData";
+import { API_GET } from "../../utils/constants";
 
 function Home() {
   const [formMessage, setFormMessage] = useState(null);
 
-  const {
-    categories: { data: dataCategories, status: categoryStatus, error: categoryError },
-    products: { data: dataProducts, status: productsStatus, error: productsError },
-  } = useSelector((state) => state.global);
+  const categories = useFetchData(API_GET.CATEGORIES + "all");
+  const products = useFetchData(API_GET.PRODUCTS + "all");
 
-  const categoriesArray = dataCategories?.slice(0, 4);
-  const productsArray = dataProducts?.filter((product) => product.discont_price !== null).slice(0, 4);
+  console.log(categories);
+
+  const categoriesArray = categories.data?.slice(0, 4);
+  const productsArray = products.data?.filter((product) => product.discont_price !== null).slice(0, 4);
 
   const onSubmit = async (data) => setFormMessage(await discountService(data));
 
@@ -37,11 +38,10 @@ function Home() {
         <hr className={s.sectionCardsDivider} />
         <div className={s.sectionCardsContainer}>
           {
-            categoryStatus === "idle" ||
-              categoryStatus === "loading" ?
+            categories.loading ?
               <Loader />
-              : categoryStatus === "failed" ?
-                <h3>Error: {categoryError}</h3>
+              : categories.error ?
+                <h3>Error: {categories.error}</h3>
                 : categoriesArray.map((card) => <CardCategory key={card.id} category={card} />)
           }
         </div>
@@ -62,11 +62,10 @@ function Home() {
         <hr className={s.sectionCardsDivider} />
         <div className={s.sectionCardsContainer}>
           {
-            productsStatus === "idle" ||
-              productsStatus === "loading" ?
+            products.loading ?
               <Loader />
-              : productsStatus === "failed" ?
-                <h3>Error: {productsError}</h3>
+              : products.error ?
+                <h3>Error: {products.error}</h3>
                 : productsArray.length === 0 ?
                   <h3>No sale products available</h3>
                   : productsArray.map((product) => <CardProduct key={product.id} product={product} />)

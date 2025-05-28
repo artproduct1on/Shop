@@ -7,15 +7,15 @@ function Form({ onSubmit, formMessage }) {
     register,
     handleSubmit,
     formState: { errors },
-    reset
-  } = useForm({ mode: "onSubmit" });
+    reset,
+  } = useForm({ mode: "onChange" });
 
   const validateField = (name, value) => {
     switch (name) {
       case "name":
         if (!value) return "Name is required";
-        if (value.length < 2) return "Name must be at least 2 characters";
-        if (value.length > 50) return "Name must be under 50 characters";
+        if (value.length < 2) return "Enter at least 2 letters";
+        if (value.length > 50) return "Enter no more than 50 letters";
         return true;
       case "phone":
         if (!value) return "Phone number is required";
@@ -30,48 +30,52 @@ function Form({ onSubmit, formMessage }) {
     }
   };
 
-  function submitHandle() {
-    onSubmit();
+  function submitHandle(data) {
+    onSubmit(data);
     reset();
   }
+
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(submitHandle)}
       className={s.form}
       noValidate
     >
-      <input
-        className={s.input}
-        type="text"
-        placeholder="Name"
-        {...register("name", {
-          validate: (value) => validateField("name", value),
-        })}
-      />
+      <div className={s.inputWrapper}>
+        <input
+          className={s.input}
+          type="text"
+          placeholder="Name"
+          {...register("name", {
+            validate: (value) => validateField("name", value),
+          })}
+        />
+        {errors.name && <p className={s.error}>{errors.name.message}</p>}
+      </div>
 
-      <input
-        className={s.input}
-        type="tel"
-        placeholder="Phone Number"
-        {...register("phone", {
-          validate: (value) => validateField("phone", value),
-        })}
-      />
+      <div className={s.inputWrapper}>
+        <input
+          className={s.input}
+          type="tel"
+          placeholder="Phone Number"
+          {...register("phone", {
+            validate: (value) => validateField("phone", value),
+          })}
+        />
+        {errors.phone && <p className={s.error}>{errors.phone.message}</p>}
+      </div>
 
-      <input
-        className={s.input}
-        type="email"
-        placeholder="Email"
-        {...register("email", {
-          validate: (value) => validateField("email", value),
-        })}
-      />
-
-      {Object.keys(errors).length > 0 && (
-        <p className={s.error}>
-          {errors.name?.message || errors.phone?.message || errors.email?.message}
-        </p>
-      )}
+      <div className={s.inputWrapper}>
+        <input
+          className={s.input}
+          type="email"
+          placeholder="Email"
+          {...register("email", {
+            validate: (value) => validateField("email", value),
+          })}
+        />
+        {errors.email && <p className={s.error}>{errors.email.message}</p>}
+      </div>
 
       {formMessage && (
         <p className={formMessage.type === "success" ? s.success : s.error}>

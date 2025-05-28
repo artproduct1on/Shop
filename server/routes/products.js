@@ -20,10 +20,16 @@ router.get('/:id', async (req, res) => {
         return
     }
     const product = await Product.findOne({ where: { id: +id } });
-    const category = await Category.findOne({ where: { id: +product.categoryId } });
 
     if (!product) {
         res.json({ status: 'ERR', message: 'product not found' });
+        return
+    }
+
+    const category = await Category.findOne({ where: { id: +product.categoryId } });
+
+    if (!category) {
+        res.json({ status: 'ERR', message: 'category not found' });
         return
     }
 

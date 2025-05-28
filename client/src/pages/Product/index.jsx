@@ -1,6 +1,6 @@
 import Button from "../../components/UI/Button";
 import s from "./s.module.scss";
-import { useParams } from "react-router-dom";
+import { redirect, useParams } from "react-router-dom";
 import { API_GET } from "../../utils/constants";
 import Loader from "../../components/UI/Loader";
 import RouteTracker from "../../components/RouteTracker";
@@ -10,13 +10,12 @@ import QuantityInput from "../../components/UI/QuantityInput";
 function Product() {
   const { productId } = useParams();
 
-  const { data: {
-    product,
-    category
-  }, loading, error } = useFetchData(API_GET.PRODUCTS + productId);
+  const { data, loading, error } = useFetchData(API_GET.PRODUCTS + productId, true);
 
   if (loading) return <Loader />;
-  if (!product) return <h2>Have not a product!</h2>;
+  if (!data.product) return <h2>Have not a product!</h2>;
+
+  const { product } = data;
 
   const pathArray = [
     {
@@ -25,15 +24,13 @@ function Product() {
     },
     {
       link: "/categories/" + product.categoryId,
-      title: category.title,
+      title: data.category.title,
     },
     {
       link: "",
       title: product.title,
     },
   ];
-
-  console.log(product);
 
   return <>
     <RouteTracker pathArray={pathArray} />
