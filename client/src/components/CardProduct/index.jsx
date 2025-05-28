@@ -19,7 +19,7 @@ function CardProduct({ product }) {
   return (
     <Link to={`/categories/${categoryId}/${id}`} className={s.card}>
 
-      <Badge price={price} discont_price={discont_price} />
+      <Badge price={price} discont={discont_price} />
 
       <img className={s.img} src={image} alt={title} />
 
@@ -32,11 +32,10 @@ function CardProduct({ product }) {
 
       <div className={s.productInfo}>
         <p className={s.productTitle}>{title}</p>
-        <div className={s.priceBlock}>
-          <Price
-            price={price}
-            discont_price={discont_price} />
-        </div>
+        <Price
+          price={price}
+          discont={discont_price}
+        />
       </div>
     </Link>
   );

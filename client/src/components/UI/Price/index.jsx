@@ -1,18 +1,28 @@
-import s from "./s.module.scss"; 
+import s from "./s.module.scss";
 import formatPrice from "../../../utils/formatPrice";
-function Price({ discont_price, price, newPriceClass = "", oldPriceClass = "" }) {
-  const hasDiscount = discont_price && discont_price < price;
-  return (<>
-    {hasDiscount ? (
-      <>
-        <span className={`${s.newPrice} ${newPriceClass}`}>${formatPrice(discont_price)}</span>
-        <span className={`${s.oldPrice} ${oldPriceClass}`}>${formatPrice(price)}</span>
-      </>
-    ) : (
-      <span className={`${s.newPrice} ${newPriceClass}`}>${price.toFixed(2)}</span>
-    )}
-  </>
+
+function Price({
+  price,
+  discont,
+  className = "",
+  variant = "small"
+}) {
+
+  if (!price) return <p>No Price</p>;
+
+  return discont && discont < price ? (
+    <span data-variant={variant} className={`${s.newPrice} ${className}`}>
+      ${formatPrice(discont)}
+      <span data-variant={variant} className={s.oldPrice}>
+        ${formatPrice(price)}
+      </span>
+    </span>
+  ) : (
+    <p data-variant={variant} className={`${s.newPrice} ${className}`}>
+      ${price.toFixed(2)}
+    </p>
   );
+
 }
 
 export default Price;

@@ -1,8 +1,7 @@
 @use "../../../assets/styles/var.scss";
+
 .newPrice {
-  height: 4rem;
-  font-weight: 600;
-  font-size: 3.6rem;
+  @include var.flex(start, start, row, wrap);
   color: var.$textColor;
   white-space: nowrap;
   line-height: 110%;
@@ -11,12 +10,78 @@
 
 .oldPrice {
   align-self: flex-end;
-  height: 2.3rem;
-  font-weight: 500;
-  font-size: 1.8rem;
   text-decoration: line-through;
   color: var.$spanColor;
   white-space: nowrap;
   letter-spacing: 0%;
   line-height: 130%;
+}
+
+.newPrice[data-variant="small"] {
+  gap: 1.2rem;
+  font-size: 3.6rem;
+  font-weight: 600;
+
+  span {
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+}
+
+.newPrice[data-variant="medium"] {
+  gap: 1.2rem;
+  font-size: 4rem;
+  font-weight: 700;
+
+  span {
+    font-size: 2.8rem;
+    font-weight: 500;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .newPrice[data-variant="medium"] {
+    font-size: 4.8rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .newPrice[data-variant="small"] {
+    font-size: 4rem;
+
+    span {
+      font-size: 2rem;
+    }
+  }
+
+  .newPrice[data-variant="medium"] {
+    font-size: 5.6rem;
+    gap: 2rem;
+
+    span {
+      font-size: 3.2rem;
+
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .newPrice[data-variant="medium"] {
+    gap: 6.4rem;
+
+    span {
+      font-size: 4rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .newPrice[data-variant="small"] {
+    gap: 1.6rem;
+
+  }
+
+  .newPrice[data-variant="medium"] {
+    gap: 3.2rem;
+  }
 }

@@ -6,6 +6,7 @@ import Loader from "../../components/UI/Loader";
 import RouteTracker from "../../components/RouteTracker";
 import { useFetchData } from "../../hooks/useFetchData";
 import QuantityInput from "../../components/UI/QuantityInput";
+import Price from "../../components/UI/Price";
 
 function Product() {
   const { productId } = useParams();
@@ -32,20 +33,34 @@ function Product() {
     },
   ];
 
+  console.log(product);
+
   return <>
     <RouteTracker pathArray={pathArray} />
 
     <section className={s.section}>
-      <h1 className={`section-title ${s.titel}`}>{product.title}</h1>
+      <h1 className={s.title}>{product.title}</h1>
       <img
+        className={s.img}
         src={product.image}
         alt="Image of Product"
       />
-      <QuantityInput className={s.quantity} />
-      <Button name={"lol"} onClick={{}} />
-      <h2 className={s.descriptionTitle}>{product.title}</h2>
-      <p className={s.descriptionText}>{product.description}</p>
-      <button>Read more</button>
+
+      <div>
+        <Price
+          price={product.price}
+          discont={product.discont_price}
+          variant="medium"
+        />
+        <QuantityInput className={s.quantity} />
+        <Button name={"lol"} onClick={() => { }} />
+      </div>
+
+      <div className={s.discription}>
+        <h2 className={s.descriptionTitle}>{product.title}</h2>
+        <p className={s.descriptionText}>{product.description}</p>
+        <button>Read more</button>
+      </div>
 
     </section>
   </>;
