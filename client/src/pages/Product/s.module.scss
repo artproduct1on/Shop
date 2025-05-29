@@ -1,8 +1,8 @@
 @use '../../assets/styles/var.scss' as var;
 
 .section {
+  display: grid;
   margin-top: 3.2rem;
-  @include var.flex(center, flex-start, column);
   gap: 2rem;
   width: 100%;
   max-width: 100%;
@@ -14,19 +14,111 @@
   font-size: 2.8rem;
   font-family: Montserrat;
   font-weight: 700;
-  line-height: 110%;
-  letter-spacing: 3%;
+  height: min-content;
 }
 
 .img {
   border-radius: var.$radiusBig;
+  height: 22rem;
+  width: 100%;
+  object-fit: cover;
+}
+
+.actions {
+  @include var.flex(center, center, column);
+  gap: 1.2rem;
+  width: 100%;
+  position: relative;
+}
+
+.actionsBadge {
+  position: absolute;
+  top: -23rem;
+  right: 1rem;
+  z-index: 10;
+}
+
+.actionsButton {
   width: 100%;
 }
 
-@media screen and (min-width: 480px) {}
+.discription {
+  display: grid;
+  gap: 1.2rem;
+}
 
-@media screen and (min-width: 768px) {}
+@media screen and (min-width: 480px) {
+  .section {
+    grid-template-columns: 1fr 1fr;
+  }
 
-@media screen and (min-width: 1000px) {}
+  .title {
+    grid-column: 1/3;
+  }
+
+  .actions {
+    align-items: flex-start;
+  }
+
+  .actionsBadge {
+    top: 1rem;
+    right: 50vw;
+  }
+
+  .img {
+    height: 17.9rem;
+  }
+
+  .discription {
+    grid-column: 1/3;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    grid-column: 2/3;
+    font-size: 3.2rem;
+  }
+
+  .img {
+    grid-row: 1/3;
+    height: 27.3rem;
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    justify-content: flex-start;
+  }
+
+  .actionsBadge {
+    position: static;
+    top: 0;
+    right: 0;
+  }
+
+  .actionsQuantity {
+    grid-row: 2;
+  }
+
+  .actionsButton {
+    grid-column: 1/3;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .section {
+    grid-template-rows: min-content min-content 1fr;
+  }
+
+  .img {
+    grid-row: 1/4;
+    height: 100%;
+  }
+
+  .discription {
+    grid-column: 2/3;
+  }
+}
 
 @media screen and (min-width: 1440px) {}

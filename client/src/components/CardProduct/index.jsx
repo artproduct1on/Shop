@@ -1,14 +1,22 @@
-import { Link } from "react-router-dom";
-import s from "./s.module.scss";
-import formatPrice from "../../utils/formatPrice";
-import Button from "../UI/Button";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { addToCart } from "../../redux/slices/cartSlice";
-import Badge from "../UI/Baige";
+import s from "./s.module.scss";
+import Button from "../UI/Button";
+import Badge from "../UI/Badge";
 import Price from "../UI/Price";
 
 function CardProduct({ product }) {
-  const { id, image, title, price, discont_price, categoryId } = product;
+
+  const {
+    id,
+    image,
+    title,
+    price,
+    discont_price,
+    categoryId,
+  } = product;
+
   const dispatch = useDispatch();
 
   function clickHeandler(e) {
@@ -17,11 +25,22 @@ function CardProduct({ product }) {
   };
 
   return (
-    <Link to={`/categories/${categoryId}/${id}`} className={s.card}>
+    <Link
+      to={`/categories/${categoryId}/${id}`}
+      className={s.card}
+    >
 
-      <Badge price={price} discont={discont_price} />
+      <Badge
+        price={price}
+        discont={discont_price}
+        className={s.badge}
+      />
 
-      <img className={s.img} src={image} alt={title} />
+      <img
+        className={s.img}
+        src={image}
+        alt={title}
+      />
 
       <Button
         className={s.overlayButton}

@@ -1,3 +1,4 @@
+import Icon from "../Icon";
 import s from "./s.module.scss";
 function QuantityInput({
   min = 1,
@@ -13,7 +14,7 @@ function QuantityInput({
         disabled={value <= min}
         className={s.button}
       >
-        -
+        <Icon id="minus" />
       </button>
       <span className={s.value}>{value}</span>
       <button
@@ -21,7 +22,7 @@ function QuantityInput({
         disabled={value >= max}
         className={s.button}
       >
-        +
+        <Icon id="plus" />
       </button>
     </div>
   );

@@ -1,11 +1,12 @@
 import Button from "../../components/UI/Button";
 import s from "./s.module.scss";
-import { redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { API_GET } from "../../utils/constants";
 import Loader from "../../components/UI/Loader";
 import RouteTracker from "../../components/RouteTracker";
 import { useFetchData } from "../../hooks/useFetchData";
 import QuantityInput from "../../components/UI/QuantityInput";
+import Badge from "../../components/UI/Badge";
 import Price from "../../components/UI/Price";
 
 function Product() {
@@ -33,8 +34,6 @@ function Product() {
     },
   ];
 
-  console.log(product);
-
   return <>
     <RouteTracker pathArray={pathArray} />
 
@@ -46,14 +45,23 @@ function Product() {
         alt="Image of Product"
       />
 
-      <div>
+      <div className={s.actions}>
         <Price
           price={product.price}
           discont={product.discont_price}
           variant="medium"
         />
-        <QuantityInput className={s.quantity} />
-        <Button name={"lol"} onClick={() => { }} />
+        <Badge
+          className={s.actionsBadge}
+          price={product.price}
+          discont={product.discont_price}
+        />
+        <QuantityInput className={s.actionsQuantity} />
+        <Button
+          className={s.actionsButton}
+          name="Add to cart"
+          onClick={() => { }}
+        />
       </div>
 
       <div className={s.discription}>

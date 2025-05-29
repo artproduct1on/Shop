@@ -1,32 +1,34 @@
+@use "../../../assets/styles/var.scss";
+
+.quantityInput,
+.button {
+  border: 0.1rem solid var.$borderColor;
+  border-radius: var.$radiusSmall;
+}
+
 .quantityInput {
-  display: flex;
+  display: grid;
+  grid-template-columns: 4.7rem minmax(7rem, 1fr) 4.7rem;
+  grid-template-rows: 4.7rem;
   align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  overflow: hidden;
-  /* Щоб рамка була круглою, якщо кнопки круглі */
+  border-left: none;
+  border-right: none;
   width: fit-content;
-  /* Щоб компонент не розтягувався на всю ширину */
 }
 
 .button {
-  background-color: #f0f0f0;
-  border: none;
-  padding: 8px 15px;
-  font-size: 1.2em;
+  @include var.flex;
+  color: var.$spanColor;
+  font-size: 3rem;
+  font-weight: 100;
+  height: 100%;
   cursor: pointer;
-  outline: none;
-  transition: background-color 0.2s ease;
-  min-width: 40px;
-  /* Забезпечення мінімальної ширини кнопок */
-}
 
-.button:hover:not(:disabled) {
-  background-color: #e0e0e0;
-}
-
-.button:active:not(:disabled) {
-  background-color: #d0d0d0;
+  svg {
+    width: 2.4rem;
+    height: 2.4rem;
+    stroke: var.$spanColor;
+  }
 }
 
 .button:disabled {
@@ -35,11 +37,31 @@
 }
 
 .value {
-  padding: 8px 15px;
-  font-size: 1.2em;
-  font-weight: bold;
+  color: var.$textColor;
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 1.8rem;
+  line-height: 130%;
+  letter-spacing: 0%;
   text-align: center;
-  min-width: 30px;
-  /* Для вирівнювання цифр */
-  background-color: #fff;
+  vertical-align: middle;
 }
+
+
+
+@media screen and (min-width: 768px) {
+
+  .quantityInput {
+    display: grid;
+    grid-template-columns: 5.8rem minmax(8.4rem, 1fr) 5.8rem;
+    grid-template-rows: 5.8rem;
+  }
+
+  .value {
+    font-size: 2rem;
+  }
+}
+
+
+
+@media screen and (min-width: 1440px) {}

@@ -2,8 +2,7 @@
 
 .card {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  @include var.flex(center, center, column);
   gap: 2rem;
   text-decoration: none;
   color: inherit;
@@ -12,6 +11,7 @@
   overflow: hidden;
   width: 100%;
   height: 100%;
+  max-width: 40rem;
   transition: transform var.$transitionTime;
 
   &:hover {
@@ -36,19 +36,8 @@
 
 .badge {
   position: absolute;
-  width: 6.3rem;
-  height: 3.1rem;
   top: 1.6rem;
   right: 1.6rem;
-  font-weight: 600;
-  line-height: 130%;
-  letter-spacing: 3%;
-  color: var.$secondTextColor;
-  padding: 0.4rem 0.8rem;
-  font-size: 1.8rem;
-  background-color: var.$saleProcent;
-  border-radius: var.$radiusSmall;
-  @include var.flex
 }
 
 .productInfo {
@@ -85,30 +74,19 @@
   }
 }
 
-@media screen and (min-width: 480px) {
-  .badge {
-    width: 5.8rem;
-  }
-}
 
 @media screen and (min-width: 768px) {
   .imageWrapper {
     height: 25rem;
   }
-
-  .badge {
-    width: 6.3rem;
-    height: 3.4rem;
-  }
 }
 
-@media screen and (min-width: 1000px) {
+
+@media screen and (min-width: 1440px) {
   .overlayButton {
     top: 21rem;
   }
-}
 
-@media screen and (min-width: 1440px) {
   .img {
     height: 28.4rem;
   }
