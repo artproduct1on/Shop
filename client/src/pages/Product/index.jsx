@@ -8,14 +8,19 @@ import { useFetchData } from "../../hooks/useFetchData";
 import QuantityInput from "../../components/UI/QuantityInput";
 import Badge from "../../components/UI/Badge";
 import Price from "../../components/UI/Price";
+import ExpandableText from "../../components/ExpandableText";
+import { addToCart } from "../../redux/slices/cartSlice";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 function Product() {
-  const { productId } = useParams();
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
+  const { productId } = useParams();
   const { data, loading, error } = useFetchData(API_GET.PRODUCTS + productId, true);
 
-  if (loading) return <Loader />;
-  if (!data.product) return <h2>Have not a product!</h2>;
+  if (loading || !data.product) return <Loader />;
 
   const { product } = data;
 
@@ -34,6 +39,15 @@ function Product() {
     },
   ];
 
+  function onQuantityChange(num) {
+    setQuantity(prev => prev + num);
+  };
+
+  function onAddToCart() {
+    dispatch(addToCart({ ...product, quantity: quantity }));
+    setQuantity(1);
+  };
+
   return <>
     <RouteTracker pathArray={pathArray} />
 
@@ -46,29 +60,36 @@ function Product() {
       />
 
       <div className={s.actions}>
-        <Price
-          price={product.price}
-          discont={product.discont_price}
-          variant="medium"
+        <div className={s.actionsInfo}>
+          <Price
+            className={s.actionsPrice}
+            price={product.price * quantity}
+            discont={product.discont_price * quantity}
+            variant="medium"
+          />
+          <Badge
+            className={s.actionsBadge}
+            price={product.price}
+            discont={product.discont_price}
+          />
+        </div>
+        <QuantityInput
+          className={s.actionsQuantity}
+          value={quantity}
+          onQuantityChange={onQuantityChange}
         />
-        <Badge
-          className={s.actionsBadge}
-          price={product.price}
-          discont={product.discont_price}
-        />
-        <QuantityInput className={s.actionsQuantity} />
         <Button
           className={s.actionsButton}
           name="Add to cart"
-          onClick={() => { }}
+          onClick={onAddToCart}
         />
       </div>
-
-      <div className={s.discription}>
-        <h2 className={s.descriptionTitle}>{product.title}</h2>
-        <p className={s.descriptionText}>{product.description}</p>
-        <button>Read more</button>
-      </div>
+      <ExpandableText
+        title="Description"
+        text={product.description}
+        maxLength={400}
+        className={s.discription}
+      />
 
     </section>
   </>;

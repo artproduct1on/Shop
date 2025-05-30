@@ -1,0 +1,58 @@
+@use '../../assets/styles/var.scss' as var;
+
+.discription {
+  @include var.flex(flex-start, flex-start, column);
+  gap: 1.2rem;
+}
+
+.descriptionTitle {
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 1.8rem;
+  line-height: 130%;
+  letter-spacing: 0%;
+  color: var.$textColor;
+}
+
+.descriptionText {
+  font-family: Montserrat;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 130%;
+  letter-spacing: 0%;
+  color: var.$textColor;
+}
+
+.descriptionBtn {
+  width: min-content;
+  border: none;
+  background: none;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 130%;
+  letter-spacing: 0%;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-wrap: nowrap;
+  color: var.$textColor;
+  cursor: pointer;
+
+  &:hover {
+    color: var.$primaryColor;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .descriptionTitle {
+    font-size: 2rem;
+  }
+
+  .descriptionText {
+    font-size: 1.6rem;
+  }
+
+  .descriptionBtn {
+    font-size: 1.6rem;
+  }
+}

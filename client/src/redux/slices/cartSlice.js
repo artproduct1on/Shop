@@ -23,9 +23,9 @@ const cartSlice = createSlice({
       const item = state.cartList.find((item) => item.id === payload.id);
 
       if (item) {
-        item.quantity += 1;
+        item.quantity += payload.quantity || 1;
       } else {
-        state.cartList.push({ ...payload, quantity: 1 });
+        state.cartList.push({ ...payload, quantity: payload.quantity || 1 });
       };
       setToStorage(LOCAL_STORAGE_KEYS.CART, state.cartList);
     },

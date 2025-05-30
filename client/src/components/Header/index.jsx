@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import s from "./s.module.scss";
@@ -8,17 +8,44 @@ import useScrollLock from "../../hooks/useScrollLock";
 
 function Header() {
 
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [animation, setAnimation] = useState(false);
+
   const { cartList } = useSelector((state) => state.cart);
   const count = cartList.length > 0 ? cartList.reduce((acc, i) => acc + i.quantity, 0) : 0;
 
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const animationTimeoutRef = useRef(null);
+  useEffect(() => {
+    if (cartList.length > 0) {
+      setAnimation(true);
+
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current);
+      }
+      animationTimeoutRef.current = setTimeout(() => {
+        setAnimation(false);
+      }, 500);
+    } else {
+      setAnimation(false);
+
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current);
+        animationTimeoutRef.current = null;
+      }
+    }
+    return () => {
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current);
+      }
+    };
+  }, [cartList]);
 
   useScrollLock(isOpenMenu);
 
-  const handleOpenMenu = () => {
+  function handleOpenMenu() {
     setIsOpenMenu(!isOpenMenu);
   };
-  const handleClickMenu = (e) => {
+  function handleClickMenu(e) {
     const classTarget = e.target.className;
     if (classTarget === s.nav || classTarget === s.navLink) {
       setIsOpenMenu(false);
@@ -86,7 +113,7 @@ function Header() {
       >
         {
           count > 0 &&
-          <span className={s.count}>
+          <span className={s.count} data-animation={animation}>
             {count}
           </span>
         }

@@ -1,5 +1,5 @@
 import s from "./s.module.scss";
-import formatPrice from "../../../utils/formatPrice";
+import { formatPrice } from "../../../utils/helpers";
 
 function Price({
   price,
@@ -11,15 +11,15 @@ function Price({
   if (!price) return <p>No Price</p>;
 
   return discont && discont < price ? (
-    <span data-variant={variant} className={`${s.newPrice} ${className}`}>
+    <p data-variant={variant} className={`${s.newPrice} ${className}`}>
       ${formatPrice(discont)}
       <span data-variant={variant} className={s.oldPrice}>
         ${formatPrice(price)}
       </span>
-    </span>
+    </p>
   ) : (
     <p data-variant={variant} className={`${s.newPrice} ${className}`}>
-      ${price.toFixed(2)}
+      ${formatPrice(price)}
     </p>
   );
 

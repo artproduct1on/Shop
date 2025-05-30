@@ -2,24 +2,28 @@ import Icon from "../Icon";
 import s from "./s.module.scss";
 function QuantityInput({
   min = 1,
-  max = 100,
+  max = 50,
   value = 1,
   onQuantityChange,
   className
 }) {
+
+  const checkMin = value <= min;
+  const checkMax = value >= max;
+
   return (
     <div className={`${s.quantityInput} ${className}`}>
       <button
-        onClick={() => onQuantityChange(1)}
-        disabled={value <= min}
+        onClick={() => !checkMin && onQuantityChange(-1)}
+        disabled={checkMin}
         className={s.button}
       >
         <Icon id="minus" />
       </button>
       <span className={s.value}>{value}</span>
       <button
-        onClick={() => onQuantityChange(-1)}
-        disabled={value >= max}
+        onClick={() => !checkMax && onQuantityChange(1)}
+        disabled={checkMax}
         className={s.button}
       >
         <Icon id="plus" />

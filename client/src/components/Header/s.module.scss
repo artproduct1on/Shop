@@ -110,14 +110,19 @@
   top: 15%;
   left: 0;
   min-width: 1.7rem;
-  height: 1.7rem;
-  padding: 0.1rem;
+  min-height: 1.7rem;
+  padding: 0.2rem;
   border-radius: 50%;
   background: var.$primaryColor;
   color: var.$bgColor;
   font-weight: 600;
   font-size: 0.8rem;
-  line-height: 90%;
+  transition: var.$transitionTime;
+}
+
+.count[data-animation="true"] {
+  scale: 1.2;
+  background: var.$saleProcent;
 }
 
 // Media
@@ -196,7 +201,7 @@
 
   .count {
     min-width: 2.6rem;
-    height: 2.6rem;
+    min-height: 2.6rem;
     font-size: 1.2rem;
   }
 }
