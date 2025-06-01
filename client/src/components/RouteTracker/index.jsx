@@ -14,10 +14,11 @@ function RouteTracker({ pathArray = [] }) {
         pathArray.length > 0 &&
         pathArray.map(i => (
           <Fragment key={i.link}>
-            <hr className={s.hr} />
             <LinkPages
               to={i.link !== "" && i.link}
+              className={s.link}
               title={i.title}
+              devider={true}
             />
           </Fragment>
         ))

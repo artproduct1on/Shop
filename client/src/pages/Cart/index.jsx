@@ -12,6 +12,7 @@ import formatPrice from "../../utils/formatPrice";
 import Price from "../../components/UI/Price";
 import Icon from "../../components/UI/Icon";
 import QuantityInput from "../../components/UI/QuantityInput";
+import SectionHeader from "../../components/SectionHeader";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -48,8 +49,12 @@ function Cart() {
   return (
     <>
       <section className={s.sectionCart}>
-        <h2 className={`section-title ${s.cartTitle}`}>Shopping cart</h2>
-        <hr className={s.sectionCartDivider} />
+
+        <SectionHeader
+          title="Shopping cart"
+          LinkPagesTitle="Back to the store"
+          LinkPagesTo="/"
+        />
 
         <ul className={s.cartList}>
           {cartList.map((item) => (
@@ -84,14 +89,9 @@ function Cart() {
             </li>
           ))}
         </ul>
-        <LinkPages title="Back to the store" to="/" className={s.cartLink} />
       </section>
     </>
   );
 }
 
 export default Cart;
-
-{
-  /* <p className={s.total}>Total: ${formatPrice(total)}</p> */
-}

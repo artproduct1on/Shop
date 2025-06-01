@@ -1,7 +1,10 @@
 @use '../../../assets/styles/var.scss' as var;
 
+.container {
+    @include var.flex(center, space-between);
+}
+
 .link {
-    max-width: min-content;
     padding: 1.1rem 2.35rem;
     border: 0.1rem solid var.$borderColor;
     border-radius: var.$radiusSmall;
@@ -11,10 +14,10 @@
     font-weight: 500;
     font-size: 1.4rem;
     text-align: center;
-    align-self: center;
     text-decoration: none;
     text-wrap: nowrap;
     max-width: 30rem;
+    height: fit-content;
     overflow: hidden;
     text-overflow: ellipsis;
 
@@ -33,9 +36,21 @@
     }
 }
 
+.sectionCardsDivider {
+    flex: 1;
+    display: none;
+    border: none;
+    height: 0.1rem;
+    background-color: var.$borderColor;
+}
+
 @media screen and (min-width: 480px) {
     .link {
         padding: 0.7rem 1.55rem;
+    }
+
+    .sectionCardsDivider {
+        display: block;
     }
 }
 
