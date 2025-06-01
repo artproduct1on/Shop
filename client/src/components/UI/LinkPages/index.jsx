@@ -5,14 +5,27 @@ function LinkPages({
   to,
   title = "",
   className = "",
-}) {
-  return (
+  h,
+  headingType,
+  ...restProps
+  
+})
+
+ {
+if(headingType){
+  const HeadingTag = headingType;
+  return <HeadingTag>
+}
+  return <>
+     <h 
+    
+    <hr className={s.sectionCartDivider} />
     <Link
       to={to}
       className={`${s.link} ${className} ${!to && s.disabled}`}
     >
       {title}
     </Link>
-  );
+  </>;
 }
 export default LinkPages;

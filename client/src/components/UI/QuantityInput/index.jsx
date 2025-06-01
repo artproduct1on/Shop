@@ -10,7 +10,7 @@ function QuantityInput({
   return (
     <div className={`${s.quantityInput} ${className}`}>
       <button
-        onClick={() => onQuantityChange(1)}
+        onClick={() => onQuantityChange(-1)}
         disabled={value <= min}
         className={s.button}
       >
@@ -18,7 +18,7 @@ function QuantityInput({
       </button>
       <span className={s.value}>{value}</span>
       <button
-        onClick={() => onQuantityChange(-1)}
+        onClick={() => onQuantityChange(1)}
         disabled={value >= max}
         className={s.button}
       >
