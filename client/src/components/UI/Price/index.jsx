@@ -5,7 +5,8 @@ function Price({
   price,
   discont,
   className = "",
-  variant = "small"
+  variant = "small",
+  quantity = 1,
 }) {
 
   if (!price) return <p>No Price</p>;
@@ -13,9 +14,9 @@ function Price({
   return discont && discont < price ? (
     <p data-variant={variant} className={`${s.newPrice} ${className}`}>
       ${formatPrice(discont)}
-      <span data-variant={variant} className={s.oldPrice}>
+      <p data-variant={variant} className={s.oldPrice}>
         ${formatPrice(price)}
-      </span>
+      </p>
     </p>
   ) : (
     <p data-variant={variant} className={`${s.newPrice} ${className}`}>

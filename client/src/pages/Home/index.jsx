@@ -9,6 +9,7 @@ import Form from "../../components/Form";
 import discountService from "../../services/discountService";
 import { useFetchData } from "../../hooks/useFetchData";
 import { API_GET } from "../../utils/constants";
+import SectionHeader from "../../components/SectionHeader";
 
 function Home() {
   const [formMessage, setFormMessage] = useState(null);
@@ -32,8 +33,11 @@ function Home() {
       </section>
 
       <section className={s.sectionCards}>
-        <h2 className="section-title">Categories</h2>
-        <hr className={s.sectionCardsDivider} />
+        <SectionHeader
+          title="Categories"
+          LinkPagesTitle="All categories"
+          LinkPagesTo="/categories"
+        />
         <div className={s.sectionCardsContainer}>
           {
             categories.loading ?
@@ -43,11 +47,7 @@ function Home() {
                 : categoriesArray.map((card) => <CardCategory key={card.id} category={card} />)
           }
         </div>
-        <LinkPages
-          to="/categories"
-          title="All categories"
-          className={s.sectionCardsLink}
-        />
+
       </section>
 
       <section className={s.discount}>
@@ -56,8 +56,13 @@ function Home() {
       </section>
 
       <section className={s.sectionCards}>
-        <h2 className="section-title">Sale</h2>
-        <hr className={s.sectionCardsDivider} />
+
+        <SectionHeader
+          title="Sale"
+          LinkPagesTitle="All sale"
+          LinkPagesTo="/sales"
+        />
+
         <div className={s.sectionCardsContainer}>
           {
             products.loading ?
@@ -69,12 +74,6 @@ function Home() {
                   : productsArray.map((product) => <CardProduct key={product.id} product={product} />)
           }
         </div>
-        <LinkPages
-          to="/sales"
-          title="All sales"
-          className={s.sectionCardsLink}
-        />
-
       </section>
     </>
   );

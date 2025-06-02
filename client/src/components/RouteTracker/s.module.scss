@@ -5,17 +5,17 @@
   width: 100%;
 }
 
+
 @media screen and (min-width: 768px) {
   .nav {
     @include var.flex(center, flex-start);
     padding: 3.2rem var(--containerPadding) 0;
   }
 
-  .hr {
-    width: 1.6rem;
-    height: 0.1rem;
-    border: none;
-    background-color: var.$borderColor;
+  .link {
+    hr {
+      width: 1.6rem;
+    }
   }
 }
 
