@@ -10,16 +10,18 @@
 @media screen and (min-width: 480px) {
 
     .link {
-        
         width: 100%;
         translate: 0 1.45rem;
-
     }
 }
 
 @media screen and (min-width: 768px) {
     .link {
         translate: 0 1.8rem;
+    }
+
+    .title {
+        width: max-content;
     }
 }
 

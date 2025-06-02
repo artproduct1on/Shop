@@ -21,11 +21,11 @@
   width: 3.6rem;
   height: 3.6rem;
   background: white;
-  border: 0.2rem solid var.$borderColor;
+  border: 0.1rem solid var.$borderColor;
   border-radius: var.$radiusSmall;
   cursor: pointer;
   position: relative;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition: background-color var.$transitionTime, border-color var.$transitionTime;
 }
 
 .checkbox:checked {

@@ -12,14 +12,25 @@ function Price({
   if (!price) return <p>No Price</p>;
 
   return discont && discont < price ? (
-    <p data-variant={variant} className={`${s.newPrice} ${className}`}>
+    <p
+      className={`${s.newPrice} ${className}`}
+      data-variant={variant}
+    >
       ${formatPrice(discont)}
-      <p data-variant={variant} className={s.oldPrice}>
+
+      <span
+        className={s.oldPrice}
+        data-variant={variant}
+      >
         ${formatPrice(price)}
-      </p>
+      </span>
+
     </p>
   ) : (
-    <p data-variant={variant} className={`${s.newPrice} ${className}`}>
+    <p
+      data-variant={variant}
+      className={`${s.newPrice} ${className}`}
+    >
       ${formatPrice(price)}
     </p>
   );

@@ -10,8 +10,8 @@ function SectionHeader({
 
   return <>
     {titleMain ?
-      <h1 className="section-title">{title}</h1> :
-      <h2 className="section-title">{title}</h2>
+      <h1 className={`section-title ${s.title}`}>{title}</h1> :
+      <h2 className={`section-title ${s.title}`}>{title}</h2>
     }
     <LinkPages
       className={s.link}
