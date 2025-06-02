@@ -53,7 +53,12 @@ function Cart() {
   return (
     <>
       <section className={s.sectionCart}>
-        <h2 className={`section-title ${s.cartTitle}`}>Shopping cart</h2>
+
+        <SectionHeader
+          title="Shopping cart"
+          LinkPagesTitle="Back to the store"
+          LinkPagesTo="/"
+        />
 
         <ul className={s.cartList}>
           {cartList.map((item) => (
@@ -88,7 +93,6 @@ function Cart() {
             </li>
           ))}
         </ul>
-        <LinkPages title="Back to the store" to="/" className={s.cartLink} />
       </section>
     </>
   );
