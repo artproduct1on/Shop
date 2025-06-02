@@ -21,4 +21,10 @@
     <path d="M12.5 5.5V19.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   </symbol>
 
+  <symbol id="arrowDown" viewBox="0 0 20 20">
+    <path d="M16 7.00012L10 13L4 7.00012" stroke-width="1.34998" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+
+
 </svg>

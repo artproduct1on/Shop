@@ -1,0 +1,62 @@
+@use '../../../assets/styles/var.scss' as var;
+
+.block {
+  position: relative;
+}
+
+.btn {
+  @include var.flex(center, space-between);
+  background: none;
+  border-radius: var.$radiusSmall;
+  border: .1rem solid var.$borderColor;
+  width: 20rem;
+  padding: 0.8rem 0.8rem 0.8rem 1.6rem;
+  color: var.$textColor;
+  cursor: pointer;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+    fill: none;
+    stroke: var.$textColor;
+    transition: rotate var.$transitionTime;
+  }
+}
+
+.btn[data-active="true"] {
+  svg {
+    rotate: -180deg;
+  }
+}
+
+.btn,
+.li {
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 126%;
+}
+
+.ul {
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  z-index: 10;
+  list-style-type: none;
+  padding: 1.6rem;
+  background: var.$bgColor;
+  gap: .4rem;
+  @include var.flex(flex-start, flex-start, column);
+
+}
+
+.li[data-active="false"] {
+  color: var.$spanColor;
+  cursor: pointer;
+}
+
+.li[data-active="true"] {
+  color: var.$textColor;
+}
+
+@media screen and (min-width: 768px) {}

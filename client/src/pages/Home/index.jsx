@@ -16,8 +16,6 @@ function Home() {
   const categories = useFetchData(API_GET.CATEGORIES + "all");
   const products = useFetchData(API_GET.PRODUCTS + "all");
 
-  console.log(categories);
-
   const categoriesArray = categories.data?.slice(0, 4);
   const productsArray = products.data?.filter((product) => product.discont_price !== null).slice(0, 4);
 
@@ -30,7 +28,7 @@ function Home() {
           Amazing Discounts <br />
           on Garden Products!
         </h1>
-        <Button to="/all-sales" name="Check out" />
+        <Button to="/sales" name="Check out" />
       </section>
 
       <section className={s.sectionCards}>
