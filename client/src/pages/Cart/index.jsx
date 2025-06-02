@@ -28,15 +28,19 @@ function Cart() {
   if (cartList.length === 0) {
     return (
       <>
-        <section>
-          <h2>Shopping cart</h2>
+        <section className={s.sectionCartIsEmpty}>
+          <SectionHeader
+            title="Shopping cart"
+            LinkPagesTitle="Back to the store"
+            LinkPagesTo="/"
+          ></SectionHeader>
           <p>Looks like you have no items in your basket currently.</p>
           <Button
             name="Continue Shopping"
             to="/products"
             variant="green"
+            className = {s.buttonCartisEmpty}
           ></Button>
-          <LinkPages title="Back to the store" to="/" />
         </section>
       </>
     );
@@ -49,12 +53,7 @@ function Cart() {
   return (
     <>
       <section className={s.sectionCart}>
-
-        <SectionHeader
-          title="Shopping cart"
-          LinkPagesTitle="Back to the store"
-          LinkPagesTo="/"
-        />
+        <h2 className={`section-title ${s.cartTitle}`}>Shopping cart</h2>
 
         <ul className={s.cartList}>
           {cartList.map((item) => (
@@ -89,9 +88,14 @@ function Cart() {
             </li>
           ))}
         </ul>
+        <LinkPages title="Back to the store" to="/" className={s.cartLink} />
       </section>
     </>
   );
 }
 
 export default Cart;
+
+{
+  /* <p className={s.total}>Total: ${formatPrice(total)}</p> */
+}

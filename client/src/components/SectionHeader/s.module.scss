@@ -4,13 +4,16 @@
     order: 1;
     justify-self: center;
     align-self: self-start;
+    margin: 0 auto;
 }
 
 @media screen and (min-width: 480px) {
 
     .link {
+        
         width: 100%;
         translate: 0 1.45rem;
+
     }
 }
 
