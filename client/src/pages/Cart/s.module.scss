@@ -1,0 +1,60 @@
+@use "../../assets/styles/var.scss" as var;
+.sectionFormCart {
+  position: relative;
+  @include var.flex(center, flex-start, column);
+  width: calc(100% - var(--containerPadding) * 2);
+  margin-top: 5.6rem;
+  padding: 2.4rem var(--containerPadding);
+  gap: 2.4rem;
+  background:  #F2F6D3;
+  border-radius: var.$radiusBig;
+  letter-spacing: 0%;
+}
+
+.formCart {
+@include var.flex(center, flex-start, column);
+  width: 100%;
+  gap: 0.8rem;
+
+  button {
+    margin-top: 1.2rem;
+    width: 100%;
+  }
+}
+.summary{
+    @include var.flex(flex-start, center, column);
+     width: 100%;
+}
+.orderDetails{
+  font-weight: 700;
+  font-size: 2.8rem;
+  line-height: 110%;
+  color: #282828;
+}
+.input {
+  @include var.flex(center, flex-start, column);
+  width: 100%;
+  padding: 1.2rem var(--containerPadding);
+  border: 0.1rem solid var.$bgColor;
+  border-radius: var.$radiusSmall;
+  color: var.$secondTextColor;
+
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 130%;
+  letter-spacing: 0%;
+
+  &::placeholder {
+    color: var.$spanColor;
+  }
+}
+.error {
+  color: red;
+  font-size: 2rem;
+}
+
+.success {
+  color: var.$secondTextColor;
+  font-size: 2rem;
+}

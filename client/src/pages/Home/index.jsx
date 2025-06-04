@@ -30,7 +30,7 @@ function Home() {
           Amazing Discounts <br />
           on Garden Products!
         </h1>
-        <Button to="/all-sales" name="Check out" />
+        <Button to="/sales" name="Check out" />
       </section>
 
       <section className={s.sectionCards}>
