@@ -1,0 +1,38 @@
+@use '../../assets/styles/var.scss' as var;
+
+.link {
+    order: 1;
+    justify-self: center;
+    align-self: self-start;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 480px) {
+
+    .link {
+        width: 100%;
+        translate: 0 1.45rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .link {
+        translate: 0 1.8rem;
+    }
+
+    .title {
+        width: max-content;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .link {
+        translate: 0 2.2rem;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .link {
+        translate: 0 3rem;
+    }
+}

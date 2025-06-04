@@ -64,28 +64,17 @@
 
 .sectionCards {
   display: grid;
-  align-items: center;
   margin-top: 5.6rem;
   width: 100%;
   padding: 0 var(--containerPadding);
   gap: 2.4rem 0.8rem;
 }
 
-.sectionCardsDivider {
-  display: none;
-  border: none;
-  height: 0.1rem;
-  background-color: var.$borderColor;
-}
 
 .sectionCardsContainer {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-}
-
-.sectionCardsLink {
-  margin: auto;
 }
 
 
@@ -111,16 +100,7 @@
   }
 
   .sectionCards {
-    grid-template-columns: min-content 1fr min-content;
-  }
-
-  .sectionCardsDivider {
-    display: block;
-    translate: 0.8rem 0.5rem;
-  }
-
-  .sectionCardsLink {
-    translate: 0 0.5rem;
+    grid-template-columns: min-content 1fr;
   }
 
   .sectionCardsContainer {
@@ -215,9 +195,7 @@
       translate: -87%;
     }
 
-    form {
-      grid-column: 2/3;
-    }
+
   }
 
   .sectionCards {

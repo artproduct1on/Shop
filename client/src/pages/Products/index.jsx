@@ -5,16 +5,16 @@ import Loader from "../../components/UI/Loader";
 import { useParams, useLocation } from "react-router-dom";
 import CartProduct from "../../components/CardProduct";
 import RouteTracker from "../../components/RouteTracker";
-import FilterPrice from "../../components/Filter";
+import Filter from "../../components/Filter";
 import { pageSwitcher } from "./utils.js";
 import { API_GET } from "../../utils/constants.js";
 
 function Products() {
-  const [filter, setFilter] = useState({
+  const [filterProducts, setFilterProducts] = useState({
     from: "",
     to: "",
     discounted: false,
-    sort: "default"
+    sort: { value: "default", title: "by default" }
   });
 
   const { pathname } = useLocation();
@@ -27,8 +27,8 @@ function Products() {
   const info = !loading && pageSwitcher(pathname, data);
 
   const applyPriceRangeFilter = (products) => {
-    const from = Number(filter.from);
-    const to = Number(filter.to);
+    const from = Number(filterProducts.from);
+    const to = Number(filterProducts.to);
 
     return products.filter(product => {
       const actualPrice = product.discont_price && product.discont_price < product.price
@@ -45,14 +45,14 @@ function Products() {
   };
 
   const applyDiscountFilter = (products) =>
-    filter.discounted
+    filterProducts.discounted
       ? products.filter(product => product.discont_price && product.discont_price < product.price)
       : products;
 
   const applySort = (products) => {
     const sorted = [...products];
 
-    switch (filter.sort) {
+    switch (filterProducts.sort.value) {
       case "newest":
         return sorted.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       case "price_desc":
@@ -82,7 +82,7 @@ function Products() {
 
       <section className={s.section}>
         <h1 className="section-title">{info.sectionTitle}</h1>
-        <FilterPrice onFilterChange={setFilter} />
+        <Filter onFilterChange={setFilterProducts} />
 
         {info.productsList.length > 0 ?
           <ul className={s.productsList}>

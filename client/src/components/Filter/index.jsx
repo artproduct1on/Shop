@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import DiscountCheckbox from "../UI/Checkbox/index";
 import s from "./s.module.scss";
+import Select from "../UI/Select";
 
 const FilterPrice = ({ onFilterChange }) => {
   const location = useLocation();
@@ -9,14 +10,16 @@ const FilterPrice = ({ onFilterChange }) => {
   const [priceFrom, setPriceFrom] = useState("");
   const [priceTo, setPriceTo] = useState("");
   const [discounted, setDiscounted] = useState(false);
-  const [sort, setSort] = useState("default");
+  const [sort, setSort] = useState({ value: "default", title: "by default" });
 
-  useEffect(() => {
+  const resetFilter = (checked) => {
     setPriceFrom("");
     setPriceTo("");
-    setDiscounted(false);
-    setSort("default");
-  }, [location.pathname]);
+    setSort({ value: "default", title: "by default" });
+    setDiscounted(checked);
+  };
+
+  useEffect(() => resetFilter(), [location.pathname]);
 
   useEffect(() => {
     onFilterChange({
@@ -39,13 +42,6 @@ const FilterPrice = ({ onFilterChange }) => {
     if (value >= 0 || e.target.value === "") {
       setPriceTo(e.target.value);
     }
-  };
-
-  const resetFilter = (checked) => {
-    setPriceFrom("");
-    setPriceTo("");
-    setSort("default");
-    setDiscounted(checked);
   };
 
   return (
@@ -80,17 +76,19 @@ const FilterPrice = ({ onFilterChange }) => {
 
       <div className={s.filterContainer}>
         <label className={s.label} htmlFor="sort">Sorted</label>
-        <select
-          className={s.select}
+
+        <Select
           id="sort"
           value={sort}
-          onChange={(e) => setSort(e.target.value)}
-        >
-          <option value="default">by default</option>
-          <option value="newest">newest</option>
-          <option value="price_desc">price: high-low</option>
-          <option value="price_asc">price: low-high</option>
-        </select>
+          onChange={(i) => setSort(i)}
+          options={[
+            { value: "default", title: "by default" },
+            { value: "newest", title: "newest" },
+            { value: "price_desc", title: "price: high-low" },
+            { value: "price_asc", title: "rice: low-high" },
+          ]}
+        />
+
       </div>
     </fieldset>
   );

@@ -22,21 +22,22 @@
   font-size: 3.6rem;
   font-weight: 600;
 
-  span {
-    font-size: 1.8rem;
-    font-weight: 500;
-  }
+}
+
+.oldPrice[data-variant="small"] {
+  font-size: 1.8rem;
+  font-weight: 500;
 }
 
 .newPrice[data-variant="medium"] {
   gap: 1.2rem;
   font-size: 4rem;
   font-weight: 700;
+}
 
-  span {
-    font-size: 2.8rem;
-    font-weight: 500;
-  }
+.oldPrice[data-variant="medium"] {
+  font-size: 2.8rem;
+  font-weight: 500;
 }
 
 @media screen and (min-width: 480px) {
@@ -49,27 +50,27 @@
   .newPrice[data-variant="small"] {
     font-size: 4rem;
 
-    span {
-      font-size: 2rem;
-    }
+  }
+
+  .oldPrice[data-variant="small"] {
+    font-size: 2rem;
   }
 
   .newPrice[data-variant="medium"] {
     font-size: 5.6rem;
     gap: 2rem;
 
-    span {
-      font-size: 3.2rem;
+  }
 
-    }
+  .oldPrice[data-variant="medium"] {
+    font-size: 3.2rem;
+
   }
 }
 
 @media screen and (min-width: 1000px) {
-  .newPrice[data-variant="medium"] {
-    span {
-      font-size: 4rem;
-    }
+  .oldPrice[data-variant="medium"] {
+    font-size: 4rem;
   }
 }
 

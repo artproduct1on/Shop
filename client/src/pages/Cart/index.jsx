@@ -1,7 +1,20 @@
+import { useSelector, useDispatch } from "react-redux";
+import {
+  removeFromCart,
+  changeQuantity,
+  clearCart,
+} from "../../redux/slices/cartSlice";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../../components/UI/Button";
-import s from "./s.module.scss";
+import Loader from "../../components/UI/Loader";
+import Button from "../../components/UI/Button";
+
+import Price from "../../components/UI/Price";
+import Icon from "../../components/UI/Icon";
+import QuantityInput from "../../components/UI/QuantityInput";
+import SectionHeader from "../../components/SectionHeader";
+
 
 const LOCAL_STORAGE_KEYS = {
   CART: "cart_state",
@@ -12,7 +25,7 @@ const API_POST = {
   ORDER: "/api/order/send",
 };
 
-function CartForm() {
+function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [discount, setDiscount] = useState(null);
   const [formMessage, setFormMessage] = useState(null);
@@ -34,8 +47,42 @@ function CartForm() {
     if (discount.type === "percent") discountAmount = (subtotal * discount.value) / 100;
     else if (discount.type === "fixed") discountAmount = discount.value;
   }
+  const dispatch = useDispatch();
+  const { cartList, status } = useSelector((state) => state.cart);
+  console.log(cartList);
 
-  const total = Math.max(subtotal - discountAmount, 0);
+  if (status === "loading") {
+    return <Loader></Loader>;
+  }
+  if (status === "failed") {
+    return <div className={s.cart}>Error loading cart</div>;
+  }
+  if (cartList.length === 0) {
+    return (
+      <>
+        <section className={s.sectionCartIsEmpty}>
+          <SectionHeader
+            title="Shopping cart"
+            LinkPagesTitle="Back to the store"
+            LinkPagesTo="/"
+          ></SectionHeader>
+          <p>Looks like you have no items in your basket currently.</p>
+          <Button
+            name="Continue Shopping"
+            to="/products"
+            variant="green"
+            className = {s.buttonCartisEmpty}
+          ></Button>
+        </section>
+      </>
+    );
+  }
+  const total = cartList.reduce(
+    (sum, item) => sum + (item.discont_price || item.price) * item.quantity,
+    0
+  );
+
+  const totalForm = Math.max(subtotal - discountAmount, 0);
 
   const validateField = (name, value) => {
     switch (name) {
@@ -80,12 +127,55 @@ function CartForm() {
   };
 
   return (
-    <section className={s.sectionFormCart}>
+    <>
+      <section className={s.sectionCart}>
+
+        <SectionHeader
+          title="Shopping cart"
+          LinkPagesTitle="Back to the store"
+          LinkPagesTo="/"
+        />
+
+        <ul className={s.cartList}>
+          {cartList.map((item) => (
+            <li key={item.id} className={s.cartItem}>
+              <img src={item.image} className={s.cartImg}></img>
+              <div className={s.cartContent}>
+                <h3 className={s.cartContentTitle}>{item.title}</h3>
+                <button
+                  onClick={() => dispatch(removeFromCart(item.id))}
+                  className={s.removeButton}
+                >
+                  <Icon id="clear" />
+                </button>
+                <QuantityInput
+                  className={s.cartContentQuantity}
+                  value={item.quantity}
+                  min={1}
+                  max={100}
+                  onQuantityChange={(num) =>
+                    dispatch(changeQuantity({ id: item.id, num }))
+                  }
+                />
+
+                <Price
+                  className={s.cartContentPrice}
+                  price={item.price}
+                  discont={item.discont_price}
+                  quantity={item.quantity}
+                  variant="small"
+                />
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+       <section className={s.sectionFormCart}>
       <form onSubmit={handleSubmit(onSubmit)} className={s.formCart}>
         <div className={s.summary}>
           <h2 className={s.orderDetails}>Order details</h2>
           <p>{itemCount} items</p>
-          <p>Total ${total.toFixed(2)}</p>
+          <p>Total ${totalForm.toFixed(2)}</p>
         </div>
 
         <input
@@ -121,7 +211,12 @@ function CartForm() {
         <Button name="Order" type="submit" />
       </form>
     </section>
+    </>
   );
 }
 
-export default CartForm;
+export default Cart;
+
+{
+  /* <p className={s.total}>Total: ${formatPrice(total)}</p> */
+}

@@ -1,6 +1,9 @@
 import s from "./s.module.scss";
 
-const DiscountCheckbox = ({ discounted, onChangeReset }) => {
+const DiscountCheckbox = ({
+  discounted = false,
+  onChangeReset
+}) => {
   const handleChange = (e) => {
     onChangeReset(e.target.checked);
   };
