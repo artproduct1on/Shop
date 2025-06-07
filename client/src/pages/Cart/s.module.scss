@@ -1,36 +1,45 @@
 @use "../../assets/styles/var.scss" as var;
-.sectionFormCart {
-  position: relative;
+.formCart {
   @include var.flex(center, flex-start, column);
-  width: calc(100% - var(--containerPadding) * 2);
-  margin-top: 5.6rem;
+  margin-top: 2.2rem;
+  margin-bottom: 2.4rem;
   padding: 2.4rem var(--containerPadding);
-  gap: 2.4rem;
+  gap: 0.8rem;
   background:  #F2F6D3;
   border-radius: var.$radiusBig;
-  letter-spacing: 0%;
-}
-
-.formCart {
-@include var.flex(center, flex-start, column);
-  width: 100%;
-  gap: 0.8rem;
-
   button {
-    margin-top: 1.2rem;
     width: 100%;
+    margin-top: 1.2rem;
   }
 }
-.summary{
+
+.summaryFormCart {
     @include var.flex(flex-start, center, column);
      width: 100%;
+     margin-bottom: 1.2rem;
+     letter-spacing: 0%;
+     h2 {
+        font-weight: 700;
+        font-size: 2.8rem;
+        line-height: 110%;
+        color: #282828;
+     }
+  p {
+   @include var.flex(center, space-between, row);
+   width: 100%;
+   font-weight: 500;
+   font-size: 2.8rem;
+   line-height: 130%;
+   color: var.$spanColor;
 }
-.orderDetails{
-  font-weight: 700;
-  font-size: 2.8rem;
-  line-height: 110%;
-  color: #282828;
+  span {
+    font-weight: 700;
+    font-size: 4rem;
+    line-height: 110%;
+    color: #282828;
 }
+}
+
 .input {
   @include var.flex(center, flex-start, column);
   width: 100%;
@@ -47,6 +56,11 @@
 
   &::placeholder {
     color: var.$spanColor;
+  }
+  &:focus {
+    border-color: var.$spanColor;
+    color: var.$spanColor;
+    outline: none;
   }
 }
 .error {
@@ -65,7 +79,6 @@
     padding: 0 var(--containerPadding);
     @include var.flex(start, start, column, nowrap);
     gap: 2.4rem;
-
     p {
         width: 100%;
         font-weight: 500;
@@ -73,12 +86,8 @@
         line-height: 130%;
         letter-spacing: 0%;
         color: var.$textColor;
-
     }
-
 }
-
-
 
 .sectionCart {
     display: grid;
@@ -86,14 +95,12 @@
     width: 100%;
     margin-top: 3.2rem;
     padding: 0 var(--containerPadding);
-    gap: 2.4rem;
 }
-
-
 
 .cartList {
     @include var.flex(center, center, column);
     width: 100%;
+    margin-top: 2.4rem;
     list-style: none;
     overflow: hidden;
     gap: 1.2rem;
@@ -121,6 +128,7 @@
     @include var.flex(flex-start, flex-start, row, wrap);
     padding: 2rem;
     gap: 1.2rem;
+    background-color: white;
 }
 
 .cartContentTitle {
@@ -187,31 +195,94 @@
         grid-row: 3/4;
 
     }
-
-    
-}
-
-@media screen and (min-width: 768px) {
-    .sectionCart {
-        gap: 3.2rem;
+    .formCart {
+        order: 2;
+        grid-column: 1 / -1;
     }
-
+    .summaryFormCart{
+      span {
+       font-size: 4.8rem;
+    } 
+}  
+}
+@media screen and (min-width: 768px) {
     .cartContentPrice {
         width: fit-content;
     }
+    .cartList {
+        margin-top: 3.2rem;
+    }
+   
+  .formCart {
+    padding: 3.2rem var(--containerPadding);
+    gap: 1.2rem;
+    button {
+      width: fit-content;
+      font-size: 1.6rem;
+      margin-top: 1.2rem;
+      align-self: flex-start;
+    }
+  }
+
+    .summaryFormCart{
+      h2 {
+        font-size: 3.2rem;
+        padding-bottom: 1.2rem;
+    }
+      p {
+        font-size: 3.2rem;  
+    }
+      span {
+        font-size: 5.6rem;
+    } 
+  } 
 }
 
 @media screen and (min-width: 1000px) {
-    .sectionCart {
-        margin-top: 4rem;
-        gap: 4rem;
+  .cartContentPrice {
+    width: 100%;
+  }
+  .sectionCart {
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
+    gap: 2rem
+    
+  }
+ 
+  .cartList {
+    margin-top: 2rem;
+    order: 1;
+    grid-column: 1 / 2;
+  }
+  .formCart {
+    margin-top: 2rem;
+    order: 2;
+    grid-column: 2 / 3;
+    button {
+      width: 100%;
     }
+  }
+  .summaryFormCart {
+    margin-bottom: 0.8rem;
+      h2 {
+        font-size: 4rem;
+    }
+      p {
+        font-size: 4rem;  
+    }
+      span {
+        font-size: 6.4rem;
+    } 
+  } 
 }
-
-
-
-
-
-
-
-
+ @media screen and (min-width: 1440px) {
+.sectionCart {
+    grid-template-columns:2fr 1fr;
+    padding: 3.2rem var(--containerPadding);
+  }
+  .summaryFormCart{
+      h2 {
+        padding-bottom: 2.4rem;
+    }
+  }
+ }

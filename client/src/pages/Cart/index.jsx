@@ -4,85 +4,48 @@ import {
   changeQuantity,
   clearCart,
 } from "../../redux/slices/cartSlice";
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+
 import Button from "../../components/UI/Button";
 import Loader from "../../components/UI/Loader";
-import Button from "../../components/UI/Button";
-
 import Price from "../../components/UI/Price";
 import Icon from "../../components/UI/Icon";
 import QuantityInput from "../../components/UI/QuantityInput";
 import SectionHeader from "../../components/SectionHeader";
 
-
-const LOCAL_STORAGE_KEYS = {
-  CART: "cart_state",
-  DISCOUNT: "discount_request",
-};
+import s from "./s.module.scss";
 
 const API_POST = {
   ORDER: "/api/order/send",
 };
 
 function Cart() {
-  const [cartItems, setCartItems] = useState([]);
-  const [discount, setDiscount] = useState(null);
+  const dispatch = useDispatch();
+  const { cartList, status } = useSelector((state) => state.cart);
   const [formMessage, setFormMessage] = useState(null);
+  const [discount, setDiscount] = useState(null);
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({ mode: "onChange" });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({ mode: "onChange" });
 
-  useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.CART)) || [];
-    const savedDiscount = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.DISCOUNT)) || null;
-    setCartItems(savedCart);
-    setDiscount(savedDiscount);
-  }, []);
-
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const itemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const subtotal = cartList.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
   let discountAmount = 0;
   if (discount) {
     if (discount.type === "percent") discountAmount = (subtotal * discount.value) / 100;
     else if (discount.type === "fixed") discountAmount = discount.value;
   }
-  const dispatch = useDispatch();
-  const { cartList, status } = useSelector((state) => state.cart);
-  console.log(cartList);
 
-  if (status === "loading") {
-    return <Loader></Loader>;
-  }
-  if (status === "failed") {
-    return <div className={s.cart}>Error loading cart</div>;
-  }
-  if (cartList.length === 0) {
-    return (
-      <>
-        <section className={s.sectionCartIsEmpty}>
-          <SectionHeader
-            title="Shopping cart"
-            LinkPagesTitle="Back to the store"
-            LinkPagesTo="/"
-          ></SectionHeader>
-          <p>Looks like you have no items in your basket currently.</p>
-          <Button
-            name="Continue Shopping"
-            to="/products"
-            variant="green"
-            className = {s.buttonCartisEmpty}
-          ></Button>
-        </section>
-      </>
-    );
-  }
-  const total = cartList.reduce(
-    (sum, item) => sum + (item.discont_price || item.price) * item.quantity,
-    0
-  );
-
-  const totalForm = Math.max(subtotal - discountAmount, 0);
+  const total = Math.max(subtotal - discountAmount, 0);
+  const itemCount = cartList.reduce((acc, item) => acc + item.quantity, 0);
 
   const validateField = (name, value) => {
     switch (name) {
@@ -107,29 +70,50 @@ function Cart() {
   const onSubmit = async (data) => {
     const payload = {
       customer: data,
-      products: cartItems.map(({ id, quantity }) => ({ id, quantity })),
+      products: cartList.map(({ id, quantity }) => ({ id, quantity })),
       discount,
       total,
     };
+
     try {
       await fetch(API_POST.ORDER, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+
       setFormMessage({ type: "success", text: "Order placed successfully!" });
-      localStorage.removeItem(LOCAL_STORAGE_KEYS.CART);
-      setCartItems([]);
+      dispatch(clearCart());
       reset();
     } catch {
       setFormMessage({ type: "error", text: "Failed to place order." });
     }
   };
 
+  if (status === "loading") return <Loader />;
+  if (status === "failed") return <div className={s.cart}>Error loading cart</div>;
+  if (cartList.length === 0) {
+    return (
+      <section className={s.sectionCartIsEmpty}>
+        <SectionHeader
+          title="Shopping cart"
+          LinkPagesTitle="Back to the store"
+          LinkPagesTo="/"
+        />
+        <p>Looks like you have no items in your basket currently.</p>
+        <Button
+          name="Continue Shopping"
+          to="/products"
+          variant="green"
+          className={s.buttonCartisEmpty}
+        />
+      </section>
+    );
+  }
+
   return (
     <>
       <section className={s.sectionCart}>
-
         <SectionHeader
           title="Shopping cart"
           LinkPagesTitle="Back to the store"
@@ -139,15 +123,17 @@ function Cart() {
         <ul className={s.cartList}>
           {cartList.map((item) => (
             <li key={item.id} className={s.cartItem}>
-              <img src={item.image} className={s.cartImg}></img>
+              <img src={item.image} className={s.cartImg} alt={item.title} />
               <div className={s.cartContent}>
                 <h3 className={s.cartContentTitle}>{item.title}</h3>
+
                 <button
                   onClick={() => dispatch(removeFromCart(item.id))}
                   className={s.removeButton}
                 >
                   <Icon id="clear" />
                 </button>
+
                 <QuantityInput
                   className={s.cartContentQuantity}
                   value={item.quantity}
@@ -169,48 +155,48 @@ function Cart() {
             </li>
           ))}
         </ul>
+        <form onSubmit={handleSubmit(onSubmit)} className={s.formCart}>
+          <div className={s.summaryFormCart}>
+            <h2>Order details</h2>
+            <p>{itemCount} items</p>
+             <p>Total
+              <span className={s.totalPriceCart}>${total.toFixed(2)}</span>
+             </p>
+          </div>
+
+          <input
+            className={s.input}
+            type="text"
+            placeholder="Name"
+            {...register("name", { validate: (v) => validateField("name", v) })}
+          />
+          {errors.name && <p className={s.error}>{errors.name.message}</p>}
+
+          <input
+            className={s.input}
+            type="tel"
+            placeholder="Phone Number"
+            {...register("phone", { validate: (v) => validateField("phone", v) })}
+          />
+          {errors.phone && <p className={s.error}>{errors.phone.message}</p>}
+
+          <input
+            className={s.input}
+            type="email"
+            placeholder="Email"
+            {...register("email", { validate: (v) => validateField("email", v) })}
+          />
+          {errors.email && <p className={s.error}>{errors.email.message}</p>}
+
+          {formMessage && (
+            <p className={formMessage.type === "success" ? s.success : s.error}>
+              {formMessage.text}
+            </p>
+          )}
+
+          <Button name="Order" type="submit" />
+        </form>
       </section>
-       <section className={s.sectionFormCart}>
-      <form onSubmit={handleSubmit(onSubmit)} className={s.formCart}>
-        <div className={s.summary}>
-          <h2 className={s.orderDetails}>Order details</h2>
-          <p>{itemCount} items</p>
-          <p>Total ${totalForm.toFixed(2)}</p>
-        </div>
-
-        <input
-          className={s.input}
-          type="text"
-          placeholder="Name"
-          {...register("name", { validate: value => validateField("name", value) })}
-        />
-        {errors.name && <p className={s.error}>{errors.name.message}</p>}
-
-        <input
-          className={s.input}
-          type="tel"
-          placeholder="Phone"
-          {...register("phone", { validate: value => validateField("phone", value) })}
-        />
-        {errors.phone && <p className={s.error}>{errors.phone.message}</p>}
-
-        <input
-          className={s.input}
-          type="email"
-          placeholder="Email"
-          {...register("email", { validate: value => validateField("email", value) })}
-        />
-        {errors.email && <p className={s.error}>{errors.email.message}</p>}
-
-        {formMessage && (
-          <p className={formMessage.type === "success" ? s.success : s.error}>
-            {formMessage.text}
-          </p>
-        )}
-
-        <Button name="Order" type="submit" />
-      </form>
-    </section>
     </>
   );
 }
