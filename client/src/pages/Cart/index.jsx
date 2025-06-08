@@ -1,3 +1,4 @@
+import s from "./s.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import {
   removeFromCart,
@@ -6,6 +7,7 @@ import {
 } from "../../redux/slices/cartSlice";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { API_POST } from "../../utils/constants";
 
 import Button from "../../components/UI/Button";
 import Loader from "../../components/UI/Loader";
@@ -14,17 +16,14 @@ import Icon from "../../components/UI/Icon";
 import QuantityInput from "../../components/UI/QuantityInput";
 import SectionHeader from "../../components/SectionHeader";
 
-import s from "./s.module.scss";
-
-const API_POST = {
-  ORDER: "/api/order/send",
-};
+import { totalPrice, validateField } from "../../utils/helpers";
+import { post } from "../../utils/api";
+import Input from "../../components/UI/Input";
 
 function Cart() {
   const dispatch = useDispatch();
   const { cartList, status } = useSelector((state) => state.cart);
   const [formMessage, setFormMessage] = useState(null);
-  const [discount, setDiscount] = useState(null);
 
   const {
     register,
@@ -33,55 +32,14 @@ function Cart() {
     reset,
   } = useForm({ mode: "onChange" });
 
-  const subtotal = cartList.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
-
-  let discountAmount = 0;
-  if (discount) {
-    if (discount.type === "percent") discountAmount = (subtotal * discount.value) / 100;
-    else if (discount.type === "fixed") discountAmount = discount.value;
-  }
-
-  const total = Math.max(subtotal - discountAmount, 0);
-  const itemCount = cartList.reduce((acc, item) => acc + item.quantity, 0);
-
-  const validateField = (name, value) => {
-    switch (name) {
-      case "name":
-        if (!value) return "Name is required";
-        if (value.length < 2) return "Enter at least 2 letters";
-        if (value.length > 50) return "Enter no more than 50 letters";
-        return true;
-      case "phone":
-        if (!value) return "Phone number is required";
-        if (!/^\+?[0-9\s\-()]{7,20}$/.test(value)) return "Invalid phone number";
-        return true;
-      case "email":
-        if (!value) return "Email is required";
-        if (!/^\S+@\S+\.\S+$/.test(value)) return "Invalid email format";
-        return true;
-      default:
-        return true;
-    }
-  };
-
   const onSubmit = async (data) => {
     const payload = {
       customer: data,
-      products: cartList.map(({ id, quantity }) => ({ id, quantity })),
-      discount,
-      total,
+      products: cartList,
     };
 
     try {
-      await fetch(API_POST.ORDER, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
+      post(API_POST.ORDER, JSON.stringify(payload));
       setFormMessage({ type: "success", text: "Order placed successfully!" });
       dispatch(clearCart());
       reset();
@@ -92,6 +50,7 @@ function Cart() {
 
   if (status === "loading") return <Loader />;
   if (status === "failed") return <div className={s.cart}>Error loading cart</div>;
+
   if (cartList.length === 0) {
     return (
       <section className={s.sectionCartIsEmpty}>
@@ -111,6 +70,12 @@ function Cart() {
     );
   }
 
+  const totalPriceFormated = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(totalPrice(cartList));
+  const itemCount = cartList.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <>
       <section className={s.sectionCart}>
@@ -118,6 +83,7 @@ function Cart() {
           title="Shopping cart"
           LinkPagesTitle="Back to the store"
           LinkPagesTo="/"
+          classNameLink={s.sectionCartHeaderLink}
         />
 
         <ul className={s.cartList}>
@@ -159,34 +125,46 @@ function Cart() {
           <div className={s.summaryFormCart}>
             <h2>Order details</h2>
             <p>{itemCount} items</p>
-             <p>Total
-              <span className={s.totalPriceCart}>${total.toFixed(2)}</span>
-             </p>
+            <p>Total
+              <span className={s.totalPriceCart}>${totalPriceFormated}</span>
+            </p>
           </div>
 
-          <input
-            className={s.input}
+          <Input
+            variant="background"
             type="text"
             placeholder="Name"
-            {...register("name", { validate: (v) => validateField("name", v) })}
+            error={errors.name?.message}
+            register={{
+              ...register("name", {
+                validate: (v) => validateField("name", v)
+              })
+            }}
           />
-          {errors.name && <p className={s.error}>{errors.name.message}</p>}
 
-          <input
-            className={s.input}
+          <Input
+            variant="background"
             type="tel"
             placeholder="Phone Number"
-            {...register("phone", { validate: (v) => validateField("phone", v) })}
+            error={errors.phone?.message}
+            register={{
+              ...register("phone", {
+                validate: (value) => validateField("phone", value),
+              })
+            }}
           />
-          {errors.phone && <p className={s.error}>{errors.phone.message}</p>}
 
-          <input
-            className={s.input}
+          <Input
+            variant="background"
             type="email"
             placeholder="Email"
-            {...register("email", { validate: (v) => validateField("email", v) })}
+            error={errors.email?.message}
+            register={{
+              ...register("email", {
+                validate: (value) => validateField("email", value),
+              })
+            }}
           />
-          {errors.email && <p className={s.error}>{errors.email.message}</p>}
 
           {formMessage && (
             <p className={formMessage.type === "success" ? s.success : s.error}>
@@ -202,7 +180,3 @@ function Cart() {
 }
 
 export default Cart;
-
-{
-  /* <p className={s.total}>Total: ${formatPrice(total)}</p> */
-}

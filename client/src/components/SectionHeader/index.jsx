@@ -6,6 +6,7 @@ function SectionHeader({
   title = "No Title",
   LinkPagesTitle = "No Title",
   LinkPagesTo = "",
+  classNameLink
 }) {
 
   return <>
@@ -14,7 +15,7 @@ function SectionHeader({
       <h2 className={`section-title ${s.title}`}>{title}</h2>
     }
     <LinkPages
-      className={s.link}
+      className={`${s.link} ${classNameLink}`}
       to={LinkPagesTo}
       title={LinkPagesTitle}
       devider={true}

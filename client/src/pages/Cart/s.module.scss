@@ -1,12 +1,14 @@
 @use "../../assets/styles/var.scss" as var;
+
 .formCart {
   @include var.flex(center, flex-start, column);
   margin-top: 2.2rem;
   margin-bottom: 2.4rem;
   padding: 2.4rem var(--containerPadding);
   gap: 0.8rem;
-  background:  #F2F6D3;
+  background: #F2F6D3;
   border-radius: var.$radiusBig;
+
   button {
     width: 100%;
     margin-top: 1.2rem;
@@ -14,59 +16,38 @@
 }
 
 .summaryFormCart {
-    @include var.flex(flex-start, center, column);
-     width: 100%;
-     margin-bottom: 1.2rem;
-     letter-spacing: 0%;
-     h2 {
-        font-weight: 700;
-        font-size: 2.8rem;
-        line-height: 110%;
-        color: #282828;
-     }
+  @include var.flex(flex-start, center, column);
+  width: 100%;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0%;
+
+  h2 {
+    font-weight: 700;
+    font-size: 2.8rem;
+    line-height: 110%;
+    color: #282828;
+  }
+
   p {
-   @include var.flex(center, space-between, row);
-   width: 100%;
-   font-weight: 500;
-   font-size: 2.8rem;
-   line-height: 130%;
-   color: var.$spanColor;
-}
+    @include var.flex(center, space-between, row);
+    width: 100%;
+    font-weight: 500;
+    font-size: 2.8rem;
+    line-height: 130%;
+    color: var.$spanColor;
+  }
+
   span {
     font-weight: 700;
     font-size: 4rem;
     line-height: 110%;
     color: #282828;
-}
-}
-
-.input {
-  @include var.flex(center, flex-start, column);
-  width: 100%;
-  padding: 1.2rem var(--containerPadding);
-  border: 0.1rem solid var.$bgColor;
-  border-radius: var.$radiusSmall;
-  color: var.$secondTextColor;
-
-  font-family: Montserrat;
-  font-weight: 500;
-  font-size: 1.8rem;
-  line-height: 130%;
-  letter-spacing: 0%;
-
-  &::placeholder {
-    color: var.$spanColor;
-  }
-  &:focus {
-    border-color: var.$spanColor;
-    color: var.$spanColor;
-    outline: none;
   }
 }
-.error {
-  color: red;
-  font-size: 2rem;
-}
+
+
+
+
 
 .success {
   color: var.$secondTextColor;
@@ -74,148 +55,150 @@
 }
 
 .sectionCartIsEmpty {
+  width: 100%;
+  margin-top: 3.2rem;
+  padding: 0 var(--containerPadding);
+  @include var.flex(start, start, column, nowrap);
+  gap: 2.4rem;
+
+  p {
     width: 100%;
-    margin-top: 3.2rem;
-    padding: 0 var(--containerPadding);
-    @include var.flex(start, start, column, nowrap);
-    gap: 2.4rem;
-    p {
-        width: 100%;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 130%;
-        letter-spacing: 0%;
-        color: var.$textColor;
-    }
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 130%;
+    letter-spacing: 0%;
+    color: var.$textColor;
+  }
 }
 
 .sectionCart {
-    display: grid;
-    align-items: center;
-    width: 100%;
-    margin-top: 3.2rem;
-    padding: 0 var(--containerPadding);
+  display: grid;
+  align-items: center;
+  width: 100%;
+  margin-top: 3.2rem;
+  padding: 0 var(--containerPadding);
 }
 
 .cartList {
-    @include var.flex(center, center, column);
-    width: 100%;
-    margin-top: 2.4rem;
-    list-style: none;
-    overflow: hidden;
-    gap: 1.2rem;
+  @include var.flex(center, center, column);
+  width: 100%;
+  margin-top: 2.4rem;
+  list-style: none;
+  overflow: hidden;
+  gap: 1.2rem;
 }
 
 
 .cartItem {
-    display: grid;
-    grid-template-columns: 11.6rem 1fr;
-    border-radius: var.$radiusBig;
-    border: 0.1rem solid var.$borderColor;
-    width: 100%;
+  display: grid;
+  grid-template-columns: 11.6rem 1fr;
+  border-radius: var.$radiusBig;
+  border: 0.1rem solid var.$borderColor;
+  width: 100%;
 }
 
 .cartImg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-top-left-radius: var.$radiusBig;
-    border-bottom-left-radius: var.$radiusBig;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: var.$radiusBig;
+  border-bottom-left-radius: var.$radiusBig;
 
 }
 
 .cartContent {
-    @include var.flex(flex-start, flex-start, row, wrap);
-    padding: 2rem;
-    gap: 1.2rem;
-    background-color: white;
+  @include var.flex(flex-start, flex-start, row, wrap);
+  padding: 2rem;
+  gap: 1.2rem;
 }
 
 .cartContentTitle {
-    width: calc(100% - 3.6rem);
-    font-weight: 500;
-    font-size: 1.8rem;
-    line-height: 130%;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  width: calc(100% - 3.6rem);
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 130%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cartContentPrice {
-    height: 4rem;
-    width: 100%;
-}
-
-.cartContentQuantity {
-    width: 16.4rem;
+  height: 4rem;
+  width: 100%;
 }
 
 .removeButton {
-    cursor: pointer;
-    width: 2.4rem;
-    height: 2.4rem;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: none;
+  cursor: pointer;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
 
-    svg {
-        height: 100%;
-        width: 100%;
-        stroke: var.$spanColor;
-    }
+  svg {
+    height: 100%;
+    width: 100%;
+    stroke: var.$spanColor;
+  }
 }
 
 
 @media screen and (min-width: 480px) {
-    .sectionCart {
-        grid-template-columns: min-content 1fr;
-    }
+  .sectionCart {
+    grid-template-columns: min-content 1fr;
+  }
 
-    .cartList {
-        order: 1;
-        grid-column: 1/3;
-    }
-    .sectionCartIsEmpty {
-        display: grid;
-        grid-template-columns: min-content 1fr;
-        gap: 2.4rem 0.8rem;
+  .cartList {
+    order: 1;
+    grid-column: 1/3;
+  }
 
-        p {
-            grid-row: 2/3;
-            grid-column: 1/3;
-        }
-    }
+  .sectionCartIsEmpty {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    gap: 2.4rem 0.8rem;
 
-    .buttonCartisEmpty {
-        grid-row: 3/4;
+    p {
+      grid-row: 2/3;
+      grid-column: 1/3;
+    }
+  }
 
+  .buttonCartisEmpty {
+    grid-row: 3/4;
+
+  }
+
+  .formCart {
+    order: 2;
+    grid-column: 1 / -1;
+  }
+
+  .summaryFormCart {
+    span {
+      font-size: 4.8rem;
     }
-    .formCart {
-        order: 2;
-        grid-column: 1 / -1;
-    }
-    .summaryFormCart{
-      span {
-       font-size: 4.8rem;
-    } 
-}  
+  }
 }
+
 @media screen and (min-width: 768px) {
-    .cartContentPrice {
-        width: fit-content;
-    }
-    .cartList {
-        margin-top: 3.2rem;
-    }
-   
+  .cartContentPrice {
+    width: fit-content;
+  }
+
+  .cartList {
+    margin-top: 3.2rem;
+  }
+
   .formCart {
     padding: 3.2rem var(--containerPadding);
     gap: 1.2rem;
+
     button {
       width: fit-content;
       font-size: 1.6rem;
@@ -224,65 +207,80 @@
     }
   }
 
-    .summaryFormCart{
-      h2 {
-        font-size: 3.2rem;
-        padding-bottom: 1.2rem;
+  .summaryFormCart {
+    h2 {
+      font-size: 3.2rem;
+      padding-bottom: 1.2rem;
     }
-      p {
-        font-size: 3.2rem;  
+
+    p {
+      font-size: 3.2rem;
     }
-      span {
-        font-size: 5.6rem;
-    } 
-  } 
+
+    span {
+      font-size: 5.6rem;
+    }
+  }
 }
 
 @media screen and (min-width: 1000px) {
+
+  .sectionCart {
+    grid-template-columns: 1fr 1fr 47rem;
+    align-items: flex-start;
+    gap: 2rem
+  }
+
+  .sectionCartHeaderLink {
+    grid-column: 2 / 4;
+  }
+
   .cartContentPrice {
     width: 100%;
   }
-  .sectionCart {
-    grid-template-columns: 1fr 1fr;
-    align-items: flex-start;
-    gap: 2rem
-    
-  }
- 
+
   .cartList {
     margin-top: 2rem;
     order: 1;
-    grid-column: 1 / 2;
+    grid-column: 1 / 3;
   }
+
   .formCart {
     margin-top: 2rem;
     order: 2;
-    grid-column: 2 / 3;
+    grid-column: 3 / 4;
+
     button {
       width: 100%;
     }
   }
+
   .summaryFormCart {
     margin-bottom: 0.8rem;
-      h2 {
-        font-size: 4rem;
+
+    h2 {
+      font-size: 4rem;
     }
-      p {
-        font-size: 4rem;  
+
+    p {
+      font-size: 4rem;
     }
-      span {
-        font-size: 6.4rem;
-    } 
-  } 
+
+    span {
+      font-size: 6.4rem;
+    }
+  }
 }
- @media screen and (min-width: 1440px) {
-.sectionCart {
-    grid-template-columns:2fr 1fr;
+
+@media screen and (min-width: 1440px) {
+  .sectionCart {
+    grid-template-columns: min-content 1fr 54.8rem;
     padding: 3.2rem var(--containerPadding);
   }
-  .summaryFormCart{
-      h2 {
-        padding-bottom: 2.4rem;
+
+  .summaryFormCart {
+    h2 {
+      padding-bottom: 2.4rem;
     }
   }
- }
+}

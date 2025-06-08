@@ -12,34 +12,7 @@
   }
 }
 
-.inputWrapper {
-  width: 100%;
-}
 
-.input {
-  @include var.flex(center, flex-start, column);
-  background: none;
-  outline: none;
-  width: 100%;
-  padding: 1.2rem var(--containerPadding);
-  border: 0.1rem solid var.$bgColor;
-  border-radius: var.$radiusSmall;
-
-  color: var.$secondTextColor;
-  font-family: Montserrat;
-  font-weight: 500;
-  font-size: 1.8rem;
-  line-height: 130%;
-
-  &::placeholder {
-    color: var.$secondTextColor;
-  }
-}
-
-.error {
-  color: red;
-  font-size: 2rem;
-}
 
 .success {
   color: var.$secondTextColor;
@@ -55,14 +28,7 @@
       margin-top: 0.8rem;
     }
   }
-
-  .input {
-    font-size: 2rem;
-  }
 }
-
-
-
 
 @media screen and (min-width: 1440px) {
   .form {
@@ -73,7 +39,4 @@
     }
   }
 
-  .input {
-    padding: 1.6rem 3.2rem;
-  }
 }
