@@ -25,6 +25,16 @@ $radiusBig: 1.2rem;
   flex-wrap: $fw;
 }
 
+@mixin text($cl: $textColor, $fs: 1.8rem, $fw: 500, $lh: 130%) {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: $cl;
+  font-size: $fs;
+  font-weight: $fw;
+  line-height: $lh;
+}
+
 @mixin positionCenter {
   top: 50%;
   left: 50%;

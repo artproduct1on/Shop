@@ -8,6 +8,8 @@ import {
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { API_POST } from "../../utils/constants";
+import { totalPrice, validateField } from "../../utils/helpers";
+import { post } from "../../utils/api";
 
 import Button from "../../components/UI/Button";
 import Loader from "../../components/UI/Loader";
@@ -15,9 +17,6 @@ import Price from "../../components/UI/Price";
 import Icon from "../../components/UI/Icon";
 import QuantityInput from "../../components/UI/QuantityInput";
 import SectionHeader from "../../components/SectionHeader";
-
-import { totalPrice, validateField } from "../../utils/helpers";
-import { post } from "../../utils/api";
 import Input from "../../components/UI/Input";
 
 function Cart() {
@@ -88,6 +87,7 @@ function Cart() {
 
         <ul className={s.cartList}>
           {cartList.map((item) => (
+
             <li key={item.id} className={s.cartItem}>
               <img src={item.image} className={s.cartImg} alt={item.title} />
               <div className={s.cartContent}>
@@ -119,6 +119,7 @@ function Cart() {
                 />
               </div>
             </li>
+
           ))}
         </ul>
         <form onSubmit={handleSubmit(onSubmit)} className={s.formCart}>

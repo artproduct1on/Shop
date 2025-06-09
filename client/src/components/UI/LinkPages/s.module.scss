@@ -5,14 +5,11 @@
 }
 
 .link {
+    @include var.text(var.$spanColor, 1.4rem, 500, 126%);
     padding: 1.1rem 2.35rem;
     border: 0.1rem solid var.$borderColor;
     border-radius: var.$radiusSmall;
     transition: var.$transitionTime;
-    color: var.$spanColor;
-    font-family: Montserrat;
-    font-weight: 500;
-    font-size: 1.4rem;
     text-align: center;
     text-decoration: none;
     text-wrap: nowrap;

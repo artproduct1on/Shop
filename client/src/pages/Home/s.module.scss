@@ -16,11 +16,7 @@
 }
 
 .bannerTitle {
-  font-weight: 700;
-  font-size: 5.2rem;
-  line-height: 1.2;
-  letter-spacing: 0;
-  color: var.$secondTextColor;
+  @include var.text(var.$secondTextColor, 5.2rem, 700, 1.2);
 }
 
 // ----------------
@@ -52,12 +48,8 @@
 }
 
 .discountTitle {
-  font-weight: 700;
-  font-size: 4rem;
-  line-height: 1.1;
-  letter-spacing: 0;
+  @include var.text(var.$secondTextColor, 4rem, 700, 1.1);
   text-align: center;
-  color: var.$secondTextColor;
 }
 
 // ----------------

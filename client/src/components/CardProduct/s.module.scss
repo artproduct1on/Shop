@@ -1,11 +1,10 @@
 @use '../../assets/styles/var.scss' as var;
 
 .card {
-  position: relative;
   @include var.flex(center, center, column);
+  position: relative;
   gap: 2rem;
   text-decoration: none;
-  color: inherit;
   border-radius: var.$radiusBig;
   border: 0.1rem solid var.$borderColor;
   overflow: hidden;
@@ -51,11 +50,7 @@
 }
 
 .productTitle {
-  font-weight: 500;
-  font-size: 1.8rem;
-  color: var.$textColor;
-  line-height: 130%;
-  letter-spacing: 0%;
+  @include var.text;
   width: 100%;
   height: 100%;
 }

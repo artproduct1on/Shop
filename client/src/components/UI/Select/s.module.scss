@@ -31,23 +31,19 @@
 
 .btn,
 .li {
-  font-family: Montserrat;
-  font-weight: 500;
-  font-size: 1.6rem;
-  line-height: 126%;
+  @include var.text(var.$textColor, 1.6rem, 500, 126%);
 }
 
 .ul {
-  width: 100%;
+  @include var.flex(flex-start, flex-start, column);
+  gap: 0.4rem;
   position: absolute;
   top: 100%;
   z-index: 10;
-  list-style-type: none;
+  width: 100%;
   padding: 1.6rem;
   background: var.$bgColor;
-  gap: .4rem;
-  @include var.flex(flex-start, flex-start, column);
-
+  list-style-type: none;
 }
 
 .li[data-active="false"] {

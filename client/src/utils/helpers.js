@@ -17,8 +17,8 @@ export function formatPrice(price) {
 
 export function totalPrice(list) {
   return list.reduce((acc, item) =>
-    acc + (item.price - item.discont_price) * item.quantity
-    , 0);
+    acc + (item.price - item.discont_price) * item.quantity,
+    0);
 }
 
 export function validateField(name, value) {

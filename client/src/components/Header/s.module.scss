@@ -63,10 +63,8 @@
 }
 
 .navLink {
+  @include var.text;
   text-decoration: none;
-  color: var.$textColor;
-  font-size: 1.8rem;
-  font-weight: 500;
   width: 100%;
 
   &:hover {
@@ -106,6 +104,7 @@
 
 .count {
   @include var.flex(center, center);
+  @include var.text(var.$bgColor, 0.8rem, 600);
   position: absolute;
   top: 15%;
   left: 0;
@@ -114,9 +113,6 @@
   padding: 0.2rem;
   border-radius: 50%;
   background: var.$primaryColor;
-  color: var.$bgColor;
-  font-weight: 600;
-  font-size: 0.8rem;
   transition: var.$transitionTime;
 }
 

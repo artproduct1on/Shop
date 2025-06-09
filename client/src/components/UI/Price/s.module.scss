@@ -2,6 +2,7 @@
 
 .newPrice {
   @include var.flex(start, start, row, wrap);
+  font-family: "Montserrat", sans-serif;
   color: var.$textColor;
   white-space: nowrap;
   line-height: 110%;
@@ -9,6 +10,7 @@
 }
 
 .oldPrice {
+  font-family: "Montserrat", sans-serif;
   align-self: flex-end;
   text-decoration: line-through;
   color: var.$spanColor;

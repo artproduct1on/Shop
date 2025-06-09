@@ -6,36 +6,22 @@
 }
 
 .descriptionTitle {
-  font-family: Montserrat;
-  font-weight: 600;
-  font-size: 1.8rem;
-  line-height: 130%;
-  letter-spacing: 0%;
-  color: var.$textColor;
+  @include var.text(var.$textColor, 1.8rem, 600);
 }
 
 .descriptionText {
-  font-family: Montserrat;
-  font-weight: 400;
-  font-size: 1.4rem;
-  line-height: 130%;
-  letter-spacing: 0%;
-  color: var.$textColor;
+  @include var.text(var.$textColor, 1.4rem, 400);
 }
 
 .descriptionBtn {
+  @include var.text(var.$textColor, 1.4rem);
+
   width: min-content;
   border: none;
   background: none;
-  font-family: Montserrat;
-  font-weight: 500;
-  font-size: 1.4rem;
-  line-height: 130%;
-  letter-spacing: 0%;
   text-decoration: underline;
   text-decoration-style: solid;
   text-wrap: nowrap;
-  color: var.$textColor;
   cursor: pointer;
 
   &:hover {

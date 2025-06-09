@@ -1,22 +1,19 @@
 @use '../../../assets/styles/var.scss' as var;
 
 .button {
-  border-radius: var.$radiusSmall;
-  padding: 1.2rem 5.2rem;
-  font-size: 1.8rem;
-  line-height: 130%;
+  @include var.text(var.$textColor, 1.8rem, 600);
   text-align: center;
   text-decoration: none;
   text-wrap: nowrap;
-  font-weight: 600;
-  font-family: 'Montserrat', sans-serif;
+  border-radius: var.$radiusSmall;
+  padding: 1.2rem 5.2rem;
   border: none;
   cursor: pointer;
 }
 
 .green {
   background: var.$primaryColor;
-  color: white;
+  color: var.$bgColor;
 }
 
 .white {

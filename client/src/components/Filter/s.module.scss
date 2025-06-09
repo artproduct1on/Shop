@@ -2,14 +2,10 @@
 
 .filter {
   @include var.flex(center, flex-start, row, wrap);
+  gap: 1.6rem;
   min-width: 100%;
   height: 100%;
   border-radius: var.$radiusSmall;
-  gap: 1.6rem;
-  font-weight: 600;
-  font-size: 1.8rem;
-  line-height: 1.3;
-  letter-spacing: 0;
   border: none;
 }
 
@@ -19,23 +15,14 @@
 }
 
 .label {
+  @include var.text(var.$textColor, 1.8rem, 600);
   cursor: pointer;
-  width: 600;
-  font-size: 1.8rem;
-  line-height: 1.3;
-  color: var.$textColor;
 }
 
 .filterInput {
+  @include var.text(var.$spanColor, 1.6rem);
   width: 11.2rem;
   padding: 0.8rem 1.6rem;
   border-radius: var.$radiusSmall;
   border: 0.1rem solid var.$borderColor;
-  color: var.$spanColor;
-}
-
-.checkbox {
-  padding: 1.3rem 1.7rem;
-  cursor: pointer;
-  border: 1px solid #DDDDDD;
 }

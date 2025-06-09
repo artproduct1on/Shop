@@ -7,17 +7,13 @@
 
 .input {
   @include var.flex(center, flex-start, column);
+  @include var.text;
   background: none;
   outline: none;
   width: 100%;
   padding: 1.2rem var(--containerPadding);
   border: 0.1rem solid var.$bgColor;
   border-radius: var.$radiusSmall;
-
-  font-family: Montserrat;
-  font-weight: 500;
-  font-size: 1.8rem;
-  line-height: 130%;
 }
 
 .outline {
@@ -37,7 +33,6 @@
     color: var.$spanColor;
   }
 }
-
 
 .error {
   color: red;

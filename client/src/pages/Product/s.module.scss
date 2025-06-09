@@ -10,10 +10,7 @@
 }
 
 .title {
-  color: var.$textColor;
-  font-size: 2.8rem;
-  font-family: Montserrat;
-  font-weight: 700;
+  @include var.text(var.$textColor, 2.8rem, 700);
   height: min-content;
 }
 

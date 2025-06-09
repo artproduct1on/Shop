@@ -19,29 +19,19 @@
   @include var.flex(flex-start, center, column);
   width: 100%;
   margin-bottom: 1.2rem;
-  letter-spacing: 0%;
 
   h2 {
-    font-weight: 700;
-    font-size: 2.8rem;
-    line-height: 110%;
-    color: #282828;
+    @include var.text(var.$textColor, 2.8rem, 700, 110%);
   }
 
   p {
     @include var.flex(center, space-between, row);
+    @include var.text(var.$spanColor, 2.8rem, 500, 130%);
     width: 100%;
-    font-weight: 500;
-    font-size: 2.8rem;
-    line-height: 130%;
-    color: var.$spanColor;
   }
 
   span {
-    font-weight: 700;
-    font-size: 4rem;
-    line-height: 110%;
-    color: #282828;
+    @include var.text(var.$textColor, 4rem, 700, 110%);
   }
 }
 

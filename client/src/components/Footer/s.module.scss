@@ -26,22 +26,14 @@
   border-radius: var.$radiusBig;
 }
 
-
 .contactTitle {
-  font-weight: 500;
-  font-size: 1.8rem;
-  line-height: 130%;
-  color: var.$spanColor;
+  @include var.text(var.$spanColor);
 }
 
 .contactInfo {
+  @include var.text(var.$textColor, 2.8rem, 600, 110%);
   width: 100%;
-  font-weight: 600;
-  font-size: 2.8rem;
-  line-height: 110%;
-  color: var.$textColor;
   text-decoration: none;
-  letter-spacing: 0%;
 
   &:hover {
     color: var.$primaryColor;
