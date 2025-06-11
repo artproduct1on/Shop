@@ -71,8 +71,9 @@ function Cart() {
 
   const totalPriceFormated = new Intl.NumberFormat("de-DE", {
     minimumFractionDigits: 2,
-    maximumFractionDigits: 2
+    maximumFractionDigits: 2,
   }).format(totalPrice(cartList));
+
   const itemCount = cartList.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
