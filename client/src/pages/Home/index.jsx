@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Loader from "../../components/UI/Loader";
-import LinkPages from "../../components/UI/LinkPages";
 import s from "./s.module.scss";
 import CardCategory from "../../components/CardCategory";
 import CardProduct from "../../components/CardProduct";
@@ -10,20 +9,13 @@ import discountService from "../../services/discountService";
 import { useFetchData } from "../../hooks/useFetchData";
 import { API_GET } from "../../utils/constants";
 import SectionHeader from "../../components/SectionHeader";
-import Errors from "../../components/Errors";
+import Error from "../../components/Error";
 
 function Home() {
   const [formMessage, setFormMessage] = useState(null);
 
-  const categories = useFetchData(API_GET.CATEGORIES + "adfsaf");
+  const categories = useFetchData(API_GET.CATEGORIES + "all");
   const products = useFetchData(API_GET.PRODUCTS + "all");
-  const productsIsArray = Array.isArray(categories.data);
-
-  const categoriesArray =
-    productsIsArray && categories.data?.slice(0, 4);
-  const productsArray = products.data
-    ?.filter((product) => product.discont_price !== null)
-    .slice(0, 4);
 
   const onSubmit = async (data) => setFormMessage(await discountService(data));
 
@@ -47,9 +39,9 @@ function Home() {
           {categories.loading ? (
             <Loader />
           ) : categories.error ? (
-            <Errors error={categories.error} />
+            <Error error={categories.error} />
           ) : (
-            categoriesArray.map((card) => (
+            categories.data.slice(0, 4).map((card) => (
               <CardCategory key={card.id} category={card} />
             ))
           )}
@@ -72,13 +64,12 @@ function Home() {
           {products.loading ? (
             <Loader />
           ) : products.error ? (
-            <h3>Error: {products.error}</h3>
-          ) : productsArray.length === 0 ? (
-            <h3>No sale products available</h3>
+            <Error error={products.error} />
           ) : (
-            productsArray.map((product) => (
-              <CardProduct key={product.id} product={product} />
-            ))
+            products.data?.filter((product) => product.discont_price !== null)
+              .slice(0, 4).map((product) => (
+                <CardProduct key={product.id} product={product} />
+              ))
           )}
         </div>
       </section>

@@ -15,6 +15,7 @@ export const useFetchData = (path, redirect) => {
     try {
       const { data } = await get(path);
       if (!data && redirect) return navigate("/not-found", { replace: true });
+      if (data.status === "ERR") setError(data.message);
       setData(data);
 
     } catch (err) {
