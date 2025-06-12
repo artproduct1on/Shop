@@ -1,15 +1,15 @@
 import Button from "../UI/Button";
 import s from "./s.module.scss";
-function Error({ error }) {
+function Error({ error, className = ""}) {
 
   return (
     <section
-      className={s.errorSection}
+      className={`${s.errorSection} ${className}`}
     >
-      <h2>Error</h2>
-      <p>{error}</p>
+      <h2 className={`section-title ${s.errorTitle}`}>Error</h2>
+      <p className={s.errorText}>{error}</p>
       <Button
-        name="Go Home"
+        name="Reload page"
         onClick={() => window.location.reload()}
       />
     </section>

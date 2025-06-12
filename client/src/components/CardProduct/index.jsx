@@ -50,7 +50,7 @@ function CardProduct({ product }) {
       />
 
       <div className={s.productInfo}>
-        <p className={s.productTitle}>{title}</p>
+        <p className={s.productInfoTitle}>{title}</p>
         <Price
           price={price}
           discont={discont_price}

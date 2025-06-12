@@ -20,8 +20,9 @@
 }
 
 .title {
-  @include var.text(var.$textColor, 1.8rem, 350);
+  @include var.text(var.$textColor, 1.8rem, 500);
   min-height: 2.3rem;
+  text-align: center;
 }
 
 @media screen and (min-width: 480px) {
@@ -31,9 +32,13 @@
 }
 
 @media screen and (min-width: 768px) {
+  .card{
+    gap: 1.6rem ;
+  }
   .img {
     height: 25rem;
   }
+  
 }
 
 @media screen and (min-width: 1000px) {

@@ -8,6 +8,7 @@ import RouteTracker from "../../components/RouteTracker";
 import Filter from "../../components/Filter";
 import { pageSwitcher } from "./utils.js";
 import { API_GET } from "../../utils/constants.js";
+import Error from "../../components/Error/index.jsx";
 
 function Products() {
   const [filterProducts, setFilterProducts] = useState({
@@ -73,6 +74,7 @@ function Products() {
   };
 
   if (loading || !info) return <Loader />;
+  if (error) return <Error error={error} className={s.error} />;
 
   const filteredProducts = applySort(applyDiscountFilter(applyPriceRangeFilter(info.productsList)));
 

@@ -5,16 +5,17 @@ export default function Input({
   type = "text",
   placeholder = "",
   error = null,
-  register
+  register,
 }) {
-  return <div className={s.wrapper}>
-    <input
-      className={`${s.input} ${variant === "outline" ? s.outline : s.background}`}
-      type={type}
-      {...register}
-      placeholder={placeholder}
-    />
-    {error && <p className={s.error}>{error}</p>}
-  </div>;
-
+  return (
+    <div className={s.wrapper}>
+      <input
+        className={`${s.input} ${variant === "outline" ? s.outline : s.background}`}
+        type={type}
+        {...register}
+        placeholder={placeholder}
+      />
+      {error && <p className={s.error}>{error}</p>}
+    </div>
+  );
 }

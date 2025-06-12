@@ -18,10 +18,11 @@ import Icon from "../../components/UI/Icon";
 import QuantityInput from "../../components/UI/QuantityInput";
 import SectionHeader from "../../components/SectionHeader";
 import Input from "../../components/UI/Input";
+import Error from "../../components/Error";
 
 function Cart() {
   const dispatch = useDispatch();
-  const { cartList, status } = useSelector((state) => state.cart);
+  const { cartList, status, error } = useSelector((state) => state.cart);
   const [formMessage, setFormMessage] = useState(null);
 
   const {
@@ -48,7 +49,8 @@ function Cart() {
   };
 
   if (status === "loading") return <Loader />;
-  if (status === "failed") return <div className={s.cart}>Error loading cart</div>;
+  if (status === "failed")
+    return <Error error={error?.message || "error"} className={s.error} />;
 
   if (cartList.length === 0) {
     return (
@@ -58,7 +60,9 @@ function Cart() {
           LinkPagesTitle="Back to the store"
           LinkPagesTo="/"
         />
-        <p>Looks like you have no items in your basket currently.</p>
+        <p className={s.sectionCartIsEmptyText}>
+          Looks like you have no items in your basket currently.
+        </p>
         <Button
           name="Continue Shopping"
           to="/products"
@@ -88,7 +92,6 @@ function Cart() {
 
         <ul className={s.cartList}>
           {cartList.map((item) => (
-
             <li key={item.id} className={s.cartItem}>
               <img src={item.image} className={s.cartImg} alt={item.title} />
               <div className={s.cartContent}>
@@ -120,15 +123,17 @@ function Cart() {
                 />
               </div>
             </li>
-
           ))}
         </ul>
         <form onSubmit={handleSubmit(onSubmit)} className={s.formCart}>
-          <div className={s.summaryFormCart}>
-            <h2>Order details</h2>
-            <p>{itemCount} items</p>
-            <p>Total
-              <span className={s.totalPriceCart}>${totalPriceFormated}</span>
+          <div className={s.formCartSummary}>
+            <h2 className={s.formCartSummaryTitle}>Order details</h2>
+            <p className={s.formCartSummaryText}>{itemCount} items</p>
+            <p className={s.formCartSummaryTotal}>
+              Total
+              <span className={s.formCartSummaryTotalPrice}>
+                ${totalPriceFormated}
+              </span>
             </p>
           </div>
 
@@ -139,8 +144,8 @@ function Cart() {
             error={errors.name?.message}
             register={{
               ...register("name", {
-                validate: (v) => validateField("name", v)
-              })
+                validate: (v) => validateField("name", v),
+              }),
             }}
           />
 
@@ -152,7 +157,7 @@ function Cart() {
             register={{
               ...register("phone", {
                 validate: (value) => validateField("phone", value),
-              })
+              }),
             }}
           />
 
@@ -164,7 +169,7 @@ function Cart() {
             register={{
               ...register("email", {
                 validate: (value) => validateField("email", value),
-              })
+              }),
             }}
           />
 

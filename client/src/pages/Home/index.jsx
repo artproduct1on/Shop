@@ -39,7 +39,7 @@ function Home() {
           {categories.loading ? (
             <Loader />
           ) : categories.error ? (
-            <Error error={categories.error} />
+            <Error error={categories.error} className={s.error}/>
           ) : (
             categories.data.slice(0, 4).map((card) => (
               <CardCategory key={card.id} category={card} />
@@ -64,7 +64,7 @@ function Home() {
           {products.loading ? (
             <Loader />
           ) : products.error ? (
-            <Error error={products.error} />
+            <Error error={products.error} className={s.error}/>
           ) : (
             products.data?.filter((product) => product.discont_price !== null)
               .slice(0, 4).map((product) => (

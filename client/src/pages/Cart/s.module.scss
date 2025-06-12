@@ -15,26 +15,34 @@
   }
 }
 
-.summaryFormCart {
+.formCartSummary {
   @include var.flex(flex-start, center, column);
   width: 100%;
   margin-bottom: 1.2rem;
-
-  h2 {
-    @include var.text(var.$textColor, 2.8rem, 700, 110%);
-  }
-
-  p {
-    @include var.flex(center, space-between, row);
-    @include var.text(var.$spanColor, 2.8rem, 500, 130%);
-    width: 100%;
-  }
-
-  span {
-    @include var.text(var.$textColor, 4rem, 700, 110%);
-  }
 }
 
+.formCartSummaryTitle {
+  @include var.text(var.$textColor, 2.8rem, 700, 110%);
+}
+
+.formCartSummaryText {
+  @include var.flex(center, space-between, row);
+  margin-top: 1.2rem;
+
+}
+.formCartSummaryTotal{
+  @include var.flex(flex-end, space-between, row);
+}
+
+.formCartSummaryText,
+.formCartSummaryTotal {
+  @include var.text(var.$spanColor, 2.8rem, 500, 130%);
+  width: 100%;
+}
+
+.formCartSummaryTotalPrice {
+  @include var.text(var.$textColor, 4rem, 700, 110%);
+}
 
 
 
@@ -51,14 +59,11 @@
   @include var.flex(start, start, column, nowrap);
   gap: 2.4rem;
 
-  p {
-    width: 100%;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 130%;
-    letter-spacing: 0%;
-    color: var.$textColor;
-  }
+}
+
+.sectionCartIsEmptyText {
+  @include var.text;
+  width: 100%;
 }
 
 .sectionCart {
@@ -152,11 +157,12 @@
     display: grid;
     grid-template-columns: min-content 1fr;
     gap: 2.4rem 0.8rem;
+  }
 
-    p {
-      grid-row: 2/3;
-      grid-column: 1/3;
-    }
+  .sectionCartIsEmptyText {
+    grid-row: 2/3;
+    grid-column: 1/3;
+
   }
 
   .buttonCartisEmpty {
@@ -169,10 +175,8 @@
     grid-column: 1 / -1;
   }
 
-  .summaryFormCart {
-    span {
-      font-size: 4.8rem;
-    }
+  .formCartSummaryTotalPrice {
+    font-size: 4.8rem;
   }
 }
 
@@ -188,28 +192,24 @@
   .formCart {
     padding: 3.2rem var(--containerPadding);
     gap: 1.2rem;
-
-    button {
-      width: fit-content;
-      font-size: 1.6rem;
-      margin-top: 1.2rem;
-      align-self: flex-start;
-    }
   }
 
-  .summaryFormCart {
-    h2 {
-      font-size: 3.2rem;
-      padding-bottom: 1.2rem;
-    }
+  .formCartSummaryTitle {
+    font-size: 3.2rem;
+    padding-bottom: 1.2rem;
+  }
 
-    p {
-      font-size: 3.2rem;
-    }
+  .formCartSummaryText,
+  .formCartSummaryTotal {
+    font-size: 3.2rem;
+  }
 
-    span {
-      font-size: 5.6rem;
-    }
+  .formCartSummaryTotalPrice {
+    font-size: 5.6rem;
+  }
+
+  .sectionCartIsEmptyText {
+    font-size: 2rem;
   }
 }
 
@@ -245,20 +245,21 @@
     }
   }
 
-  .summaryFormCart {
+  .formCartSummary {
     margin-bottom: 0.8rem;
+  }
 
-    h2 {
-      font-size: 4rem;
-    }
+  .formCartSummaryTitle {
+    font-size: 4rem;
+  }
 
-    p {
-      font-size: 4rem;
-    }
+  .formCartSummaryText,
+  .formCartSummaryTotal {
+    font-size: 4rem;
+  }
 
-    span {
-      font-size: 6.4rem;
-    }
+  .formCartSummaryTotalPrice {
+    font-size: 6.4rem;
   }
 }
 
@@ -268,9 +269,7 @@
     padding: 3.2rem var(--containerPadding);
   }
 
-  .summaryFormCart {
-    h2 {
-      padding-bottom: 2.4rem;
-    }
+  .formCartSummaryTitle {
+    padding-bottom: 2.4rem;
   }
 }

@@ -16,7 +16,7 @@
   -webkit-appearance: none;
   width: 3.6rem;
   height: 3.6rem;
-  background: white;
+  background: var.$secondTextColor;
   border: 0.1rem solid var.$borderColor;
   border-radius: var.$radiusSmall;
   cursor: pointer;
@@ -34,9 +34,18 @@
       top: 0.65rem;
       width: 0.7rem;
       height: 1.3rem;
-      border: solid white;
+      border: 0.1rem solid var.$secondTextColor;
       border-width: 0 0.3rem 0.3rem 0;
       transform: rotate(45deg);
     }
   }
+}
+@media screen and (min-width: 768px) {
+  .filterContainer{
+    gap: 1.6rem;
+  }
+  .label{
+    font-size: 2rem;
+  }
+  
 }
