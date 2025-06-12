@@ -12,6 +12,7 @@ import ExpandableText from "../../components/ExpandableText";
 import { addToCart } from "../../redux/slices/cartSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import Error from "../../components/Error";
 
 function Product() {
   const [quantity, setQuantity] = useState(1);
@@ -21,6 +22,8 @@ function Product() {
   const { data, loading, error } = useFetchData(API_GET.PRODUCTS + productId, true);
 
   if (loading || !data.product) return <Loader />;
+  if (error)
+    return <Error error={error?.message || "error"} className={s.error} />;
 
   const { product } = data;
 

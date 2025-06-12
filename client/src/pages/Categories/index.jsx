@@ -4,6 +4,7 @@ import { useFetchData } from "../../hooks/useFetchData";
 import { API_GET } from "../../utils/constants";
 import Loader from "../../components/UI/Loader";
 import s from "./s.module.scss";
+import Error from "../../components/Error";
 
 function Categories() {
 
@@ -24,7 +25,7 @@ function Categories() {
         loading ?
           <Loader />
           : error ?
-            <h3>Error: {error}</h3>
+            <Error error={error} className={s.error}/>
             : data.map((card) => <CardCategory key={card.id} category={card} />)
       }
     </div>

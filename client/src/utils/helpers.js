@@ -16,9 +16,10 @@ export function formatPrice(price) {
 };
 
 export function totalPrice(list) {
-  return list.reduce((acc, item) =>
-    acc + (item.price - item.discont_price) * item.quantity,
-    0);
+  return list.reduce((acc, item) => {
+    const price = item.discont_price ? item.price - (item.price - item.discont_price) : item.price;
+    return acc + price * item.quantity;
+  }, 0);
 }
 
 export function validateField(name, value) {

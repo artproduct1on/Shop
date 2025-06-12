@@ -18,10 +18,11 @@ import Icon from "../../components/UI/Icon";
 import QuantityInput from "../../components/UI/QuantityInput";
 import SectionHeader from "../../components/SectionHeader";
 import Input from "../../components/UI/Input";
+import Error from "../../components/Error";
 
 function Cart() {
   const dispatch = useDispatch();
-  const { cartList, status } = useSelector((state) => state.cart);
+  const { cartList, status, error } = useSelector((state) => state.cart);
   const [formMessage, setFormMessage] = useState(null);
   const [isOrderConfirmed, setIsOrderConfirmed] = useState(false);
 
@@ -54,7 +55,8 @@ function Cart() {
   };
 
   if (status === "loading") return <Loader />;
-  if (status === "failed") return <div className={s.cart}>Error loading cart</div>;
+  if (status === "failed")
+    return <Error error={error?.message || "error"} className={s.error} />;
 
   if (cartList.length === 0 && !isOrderConfirmed) {
     return (
@@ -64,7 +66,9 @@ function Cart() {
           LinkPagesTitle="Back to the store"
           LinkPagesTo="/"
         />
-        <p>Looks like you have no items in your basket currently.</p>
+        <p className={s.sectionCartIsEmptyText}>
+          Looks like you have no items in your basket currently.
+        </p>
         <Button
           name="Continue Shopping"
           to="/products"
@@ -77,8 +81,9 @@ function Cart() {
 
   const totalPriceFormated = new Intl.NumberFormat("de-DE", {
     minimumFractionDigits: 2,
-    maximumFractionDigits: 2
+    maximumFractionDigits: 2,
   }).format(totalPrice(cartList));
+
   const itemCount = cartList.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
@@ -91,101 +96,100 @@ function Cart() {
             <h2>Congratulations!</h2>
             <p>Your order has been successfully placed on the website.</p>
             <p>A manager will contact you shortly to confirm your order.</p>
+            </div>
           </div>
-        </div>
-        </div>
+        </div> 
       )}
+      <section className={s.sectionCart}>
+        <SectionHeader
+          title="Shopping cart"
+          LinkPagesTitle="Back to the store"
+          LinkPagesTo="/"
+          classNameLink={s.sectionCartHeaderLink}
+        />
 
-      {!isOrderConfirmed && cartList.length > 0 && (
-        <section className={s.sectionCart}>
-          <SectionHeader
-            title="Shopping cart"
-            LinkPagesTitle="Back to the store"
-            LinkPagesTo="/"
-            classNameLink={s.sectionCartHeaderLink}
+        <ul className={s.cartList}>
+          {cartList.map((item) => (
+            <li key={item.id} className={s.cartItem}>
+              <img src={item.image} className={s.cartImg} alt={item.title} />
+              <div className={s.cartContent}>
+                <h3 className={s.cartContentTitle}>{item.title}</h3>
+
+                <button
+                  onClick={() => dispatch(removeFromCart(item.id))}
+                  className={s.removeButton}
+                >
+                  <Icon id="clear" />
+                </button>
+
+                <QuantityInput
+                  className={s.cartContentQuantity}
+                  value={item.quantity}
+                  min={1}
+                  max={100}
+                  onQuantityChange={(num) =>
+                    dispatch(changeQuantity({ id: item.id, num }))
+                  }
+                />
+
+                <Price
+                  className={s.cartContentPrice}
+                  price={item.price}
+                  discont={item.discont_price}
+                  quantity={item.quantity}
+                  variant="small"
+                />
+              </div>
+            </li>
+          ))}
+        </ul>
+        <form onSubmit={handleSubmit(onSubmit)} className={s.formCart}>
+          <div className={s.formCartSummary}>
+            <h2 className={s.formCartSummaryTitle}>Order details</h2>
+            <p className={s.formCartSummaryText}>{itemCount} items</p>
+            <p className={s.formCartSummaryTotal}>
+              Total
+              <span className={s.formCartSummaryTotalPrice}>
+                ${totalPriceFormated}
+              </span>
+            </p>
+          </div>
+
+          <Input
+            variant="background"
+            type="text"
+            placeholder="Name"
+            error={errors.name?.message}
+            register={{
+              ...register("name", {
+                validate: (v) => validateField("name", v),
+              }),
+            }}
           />
 
-          <ul className={s.cartList}>
-            {cartList.map((item) => (
-              <li key={item.id} className={s.cartItem}>
-                <img src={item.image} className={s.cartImg} alt={item.title} />
-                <div className={s.cartContent}>
-                  <h3 className={s.cartContentTitle}>{item.title}</h3>
+          <Input
+            variant="background"
+            type="tel"
+            placeholder="Phone Number"
+            error={errors.phone?.message}
+            register={{
+              ...register("phone", {
+                validate: (value) => validateField("phone", value),
+              }),
+            }}
+          />
 
-                  <button
-                    onClick={() => dispatch(removeFromCart(item.id))}
-                    className={s.removeButton}
-                  >
-                    <Icon id="clear" />
-                  </button>
-
-                  <QuantityInput
-                    className={s.cartContentQuantity}
-                    value={item.quantity}
-                    min={1}
-                    max={100}
-                    onQuantityChange={(num) =>
-                      dispatch(changeQuantity({ id: item.id, num }))
-                    }
-                  />
-
-                  <Price
-                    className={s.cartContentPrice}
-                    price={item.price}
-                    discont={item.discont_price}
-                    quantity={item.quantity}
-                    variant="small"
-                  />
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          <form onSubmit={handleSubmit(onSubmit)} className={s.formCart}>
-            <div className={s.summaryFormCart}>
-              <h2>Order details</h2>
-              <p>{itemCount} items</p>
-              <p>Total
-                <span className={s.totalPriceCart}>${totalPriceFormated}</span>
-              </p>
-            </div>
-
-            <Input
-              variant="background"
-              type="text"
-              placeholder="Name"
-              error={errors.name?.message}
-              register={{
-                ...register("name", {
-                  validate: (v) => validateField("name", v)
-                })
-              }}
-            />
-
-            <Input
-              variant="background"
-              type="tel"
-              placeholder="Phone Number"
-              error={errors.phone?.message}
-              register={{
-                ...register("phone", {
-                  validate: (value) => validateField("phone", value),
-                })
-              }}
-            />
-
-            <Input
-              variant="background"
-              type="email"
-              placeholder="Email"
-              error={errors.email?.message}
-              register={{
-                ...register("email", {
-                  validate: (value) => validateField("email", value),
-                })
-              }}
-            />
-
+          <Input
+            variant="background"
+            type="email"
+            placeholder="Email"
+            error={errors.email?.message}
+            register={{
+              ...register("email", {
+                validate: (value) => validateField("email", value),
+              }),
+            }}
+          />
             {formMessage && (
               <p className={formMessage.type === "success" ? s.success : s.error}>
                 {formMessage.text}
@@ -195,7 +199,6 @@ function Cart() {
             <Button name="Order" type="submit" />
           </form>
         </section>
-      )}
     </>
   );
 }

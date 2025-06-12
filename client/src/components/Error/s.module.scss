@@ -1,0 +1,20 @@
+@use "../../assets/styles/var.scss" as var;
+
+.errorSection {
+  display: flex;
+  @include var.flex(center, center, column, wrap);
+  min-height: 30rem;
+  background-color: var.$bgColor;
+  width: 100%;
+}
+
+.errorTitle{
+  color: var.$spanColor;
+  margin-bottom: 0.1rem;
+}
+
+
+.errorText {
+  @include var.text();
+  margin-bottom: 2rem;
+}
