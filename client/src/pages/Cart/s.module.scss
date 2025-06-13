@@ -1,53 +1,5 @@
 @use "../../assets/styles/var.scss" as var;
 
-.formCart {
-  @include var.flex(center, flex-start, column);
-  margin-top: 2.2rem;
-  margin-bottom: 2.4rem;
-  padding: 2.4rem var(--containerPadding);
-  gap: 0.8rem;
-  background: #F2F6D3;
-  border-radius: var.$radiusBig;
-
-  button {
-    width: 100%;
-    margin-top: 1.2rem;
-  }
-}
-
-.formCartSummary {
-  @include var.flex(flex-start, center, column);
-  width: 100%;
-  margin-bottom: 1.2rem;
-}
-
-.formCartSummaryTitle {
-  @include var.text(var.$textColor, 2.8rem, 700, 110%);
-}
-
-.formCartSummaryText {
-  @include var.flex(center, space-between, row);
-  margin-top: 1.2rem;
-
-}
-
-.formCartSummaryTotal {
-  @include var.flex(flex-end, space-between, row);
-}
-
-.formCartSummaryText,
-.formCartSummaryTotal {
-  @include var.text(var.$spanColor, 2.8rem, 500, 130%);
-  width: 100%;
-}
-
-.formCartSummaryTotalPrice {
-  @include var.text(var.$textColor, 4rem, 700, 110%);
-}
-
-
-
-
 .success {
   color: var.$secondTextColor;
   font-size: 2rem;
@@ -109,10 +61,8 @@
 }
 
 .cartContentTitle {
+  @include var.text;
   width: calc(100% - 3.6rem);
-  font-weight: 500;
-  font-size: 1.8rem;
-  line-height: 130%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -144,7 +94,50 @@
 }
 
 
+.formCart {
+  @include var.flex(center, flex-start, column);
+  margin-top: 2.2rem;
+  margin-bottom: 2.4rem;
+  padding: 2.4rem var(--containerPadding);
+  gap: 0.8rem;
+  background: #F2F6D3;
+  border-radius: var.$radiusBig;
 
+  button {
+    width: 100%;
+    margin-top: 1.2rem;
+  }
+}
+
+.formCartSummary {
+  @include var.flex(flex-start, center, column);
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+.formCartSummaryTitle {
+  @include var.text(var.$textColor, 2.8rem, 700, 110%);
+}
+
+.formCartSummaryText {
+  @include var.flex(center, space-between, row);
+  margin-top: 1.2rem;
+
+}
+
+.formCartSummaryTotal {
+  @include var.flex(flex-end, space-between, row);
+}
+
+.formCartSummaryText,
+.formCartSummaryTotal {
+  @include var.text(var.$spanColor, 2.8rem, 500, 130%);
+  width: 100%;
+}
+
+.formCartSummaryTotalPrice {
+  @include var.text(var.$textColor, 4rem, 700, 110%);
+}
 
 @media screen and (min-width: 480px) {
   .sectionCart {

@@ -4,6 +4,7 @@ import { LOCAL_STORAGE_KEYS } from "../../utils/constants";
 
 const initialState = {
   cartList: [],
+  cartCount: 0,
   status: "idle",
   error: null,
 };
@@ -15,6 +16,8 @@ export const initializeCartFromLocalStorage = createAsyncThunk(
     return savedState ? savedState : [];
   }
 );
+const itemCountHeandler = (list) => list.reduce((acc, item) => acc + item.quantity, 0);
+
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -28,13 +31,16 @@ const cartSlice = createSlice({
       } else {
         state.cartList.push({ ...payload, quantity: payload.quantity || 1 });
       };
-      setToStorage(LOCAL_STORAGE_KEYS.CART, state.cartList);
+      state.cartCount = itemCountHeandler(state.cartList);
+
+      setToStorage(LOCAL_STORAGE_KEYS.CART, { list: state.cartList, count: state.cartCount });
     },
 
     removeFromCart: (state, { payload }) => {
       // payload - id
       state.cartList = state.cartList.filter((item) => item.id !== payload);
-      setToStorage(LOCAL_STORAGE_KEYS.CART, state.cartList);
+      state.cartCount = itemCountHeandler(state.cartList);
+      setToStorage(LOCAL_STORAGE_KEYS.CART, { list: state.cartList, count: state.cartCount });
     },
 
     changeQuantity: (state, { payload }) => {
@@ -47,8 +53,9 @@ const cartSlice = createSlice({
         } else {
           existingItem.quantity += payload.num;
         }
+        state.cartCount = itemCountHeandler(state.cartList);
 
-        setToStorage(LOCAL_STORAGE_KEYS.CART, state.cartList);
+        setToStorage(LOCAL_STORAGE_KEYS.CART, { list: state.cartList, count: state.cartCount });
       }
     },
 
@@ -62,7 +69,8 @@ const cartSlice = createSlice({
     builder
       .addCase(initializeCartFromLocalStorage.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.cartList = action.payload;
+        state.cartList = action.payload.list || [];
+        state.cartCount = action.payload.count || 0;
       })
       .addCase(initializeCartFromLocalStorage.pending, (state) => {
         state.status = "loading";

@@ -11,8 +11,7 @@ function Header() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [animation, setAnimation] = useState(false);
 
-  const { cartList } = useSelector((state) => state.cart);
-  const count = cartList.length > 0 ? cartList.reduce((acc, i) => acc + i.quantity, 0) : 0;
+  const { cartList, cartCount } = useSelector((state) => state.cart);
 
   const animationTimeoutRef = useRef(null);
   useEffect(() => {
@@ -112,9 +111,9 @@ function Header() {
         aria-controls="cart"
       >
         {
-          count > 0 &&
+          cartCount > 0 &&
           <span className={s.count} data-animation={animation}>
-            {count}
+            {cartCount}
           </span>
         }
         <Icon id="cart" />

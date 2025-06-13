@@ -23,7 +23,7 @@ import Congratulations from "../../components/Congratulations";
 
 function Cart() {
   const dispatch = useDispatch();
-  const { cartList, status, error } = useSelector((state) => state.cart);
+  const { cartList, status, error, cartCount } = useSelector((state) => state.cart);
   const [formMessage, setFormMessage] = useState(null);
   const [isOrderConfirmed, setIsOrderConfirmed] = useState(false);
 
@@ -84,8 +84,6 @@ function Cart() {
     maximumFractionDigits: 2,
   }).format(totalPrice(cartList));
 
-  const itemCount = cartList.reduce((acc, item) => acc + item.quantity, 0);
-
   return (
     <>
       {isOrderConfirmed && <Congratulations handleCloseModal={handleCloseModal} />}
@@ -136,7 +134,7 @@ function Cart() {
         <form onSubmit={handleSubmit(onSubmit)} className={s.formCart}>
           <div className={s.formCartSummary}>
             <h2 className={s.formCartSummaryTitle}>Order details</h2>
-            <p className={s.formCartSummaryText}>{itemCount} items</p>
+            <p className={s.formCartSummaryText}>{cartCount} items</p>
             <p className={s.formCartSummaryTotal}>
               Total
               <span className={s.formCartSummaryTotalPrice}>
