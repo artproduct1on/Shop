@@ -44,6 +44,7 @@ function Header() {
   function handleOpenMenu() {
     setIsOpenMenu(!isOpenMenu);
   };
+
   function handleClickMenu(e) {
     const classTarget = e.target.className;
     if (classTarget === s.nav || classTarget === s.navLink) {

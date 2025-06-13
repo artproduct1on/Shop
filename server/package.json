@@ -10,7 +10,7 @@
     "start:dev": "concurrently \"npm run server\" \"npm run client:dev\"",
     "start:prod": "npm install && cross-env NODE_ENV=production node index.js"
   },
-  "author": "hayk",
+  "author": "Artem Zaikin, Yevhen Hryshyn, Diana Diudiaieva",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
