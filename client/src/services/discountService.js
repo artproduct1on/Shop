@@ -26,7 +26,7 @@ export default async function discountService(data) {
 
     return {
       type: "error",
-      text: res.message
+      text: "Something wrong with LS!"
     };
 
   } catch {
