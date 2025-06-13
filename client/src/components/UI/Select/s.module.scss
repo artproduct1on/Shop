@@ -6,7 +6,7 @@
 
 .btn {
   @include var.flex(center, space-between);
-  background: none;
+  background: var.$secondTextColor;
   border-radius: var.$radiusSmall;
   border: .1rem solid var.$borderColor;
   width: 20rem;

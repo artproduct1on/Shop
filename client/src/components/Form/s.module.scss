@@ -11,11 +11,30 @@
     width: 100%;
   }
 }
-
+.error {
+  font-family: "Montserrat", sans-serif;
+  color: var.$secondTextColor;
+  text-align: left;
+  align-self: flex-start;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.26;
+  letter-spacing: 0;
+}
+.errorIcon {
+  display: inline-block;
+  vertical-align: top;
+}
 
 .success {
+  font-family: "Montserrat", sans-serif;
   color: var.$secondTextColor;
-  font-size: 2rem;
+  text-align: left;
+  align-self: flex-start;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.26;
+  letter-spacing: 0;
 }
 
 
@@ -27,6 +46,17 @@
       margin-top: 0.8rem;
     }
   }
+  .error {
+  font-size: 1.6rem;
+}
+.success{
+ font-size: 1.6rem;
+}
+
+.errorIcon {
+width: 2rem;
+height: 2rem;
+}
 }
 
 @media screen and (min-width: 1440px) {

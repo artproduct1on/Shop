@@ -3,6 +3,7 @@ import s from "./s.module.scss";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import { validateField } from "../../utils/helpers";
+import errorImg from "../../assets/img/errorImg.svg"
 
 function Form({ onSubmit, formMessage }) {
   const {
@@ -61,10 +62,13 @@ function Form({ onSubmit, formMessage }) {
       />
 
       {formMessage && (
-        <p className={formMessage.type === "success" ? s.success : s.error}>
-          {formMessage.text}
-        </p>
-      )}
+  <p className={formMessage.type === "success" ? s.success : s.error}>
+    {formMessage.type === "error" && (
+      <img src={errorImg} alt="Error" className={s.errorIcon} />
+    )}
+    {formMessage.text}
+  </p>
+)}
 
       <Button name="Get a discount" type="submit" variant="white" className={s.discountButton} />
     </form>
