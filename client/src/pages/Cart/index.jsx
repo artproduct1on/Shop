@@ -19,6 +19,7 @@ import QuantityInput from "../../components/UI/QuantityInput";
 import SectionHeader from "../../components/SectionHeader";
 import Input from "../../components/UI/Input";
 import Error from "../../components/Error";
+import Congratulations from "../../components/Congratulations";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -50,13 +51,12 @@ function Cart() {
 
   const handleCloseModal = () => {
     setIsOrderConfirmed(false);
-    dispatch(clearCart()); 
-    reset(); 
+    dispatch(clearCart());
+    reset();
   };
 
   if (status === "loading") return <Loader />;
-  if (status === "failed")
-    return <Error error={error?.message || "error"} className={s.error} />;
+  if (status === "failed") return <Error error={error?.message || "error"} className={s.error} />;
 
   if (cartList.length === 0 && !isOrderConfirmed) {
     return (
@@ -88,18 +88,7 @@ function Cart() {
 
   return (
     <>
-      {isOrderConfirmed && (
-        <div className={s.modal} onClick={handleCloseModal}>
-          <div className={s.modalOverlay} onClick={(e) => e.stopPropagation()}>
-            <div className={s.closeIcon} onClick={handleCloseModal}></div>
-          <div className={s.modalContent}>
-            <h2>Congratulations!</h2>
-            <p>Your order has been successfully placed on the website.</p>
-            <p>A manager will contact you shortly to confirm your order.</p>
-            </div>
-          </div>
-        </div> 
-      )}
+      {isOrderConfirmed && <Congratulations handleCloseModal={handleCloseModal} />}
       <section className={s.sectionCart}>
         <SectionHeader
           title="Shopping cart"
@@ -117,6 +106,7 @@ function Cart() {
 
                 <button
                   onClick={() => dispatch(removeFromCart(item.id))}
+                  type="button"
                   className={s.removeButton}
                 >
                   <Icon id="clear" />
@@ -190,15 +180,15 @@ function Cart() {
               }),
             }}
           />
-            {formMessage && (
-              <p className={formMessage.type === "success" ? s.success : s.error}>
-                {formMessage.text}
-              </p>
-            )}
+          {formMessage && (
+            <p className={formMessage.type === "success" ? s.success : s.error}>
+              {formMessage.text}
+            </p>
+          )}
 
-            <Button name="Order" type="submit" />
-          </form>
-        </section>
+          <Button name="Order" type="submit" />
+        </form>
+      </section>
     </>
   );
 }

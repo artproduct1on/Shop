@@ -1,0 +1,82 @@
+@use "../../assets/styles/var.scss" as var;
+
+.modal {
+  @include var.flex;
+  @include var.positionCenter;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  height: 100vh;
+  background-color: #28282866;
+  padding: 0 var(--containerPadding);
+}
+
+.modalOverlay {
+  position: relative;
+  width: 100%;
+  max-width: 54.8rem;
+  border-radius: var.$radiusSmall;
+  background: var.$primaryColor;
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  gap: 1.2rem;
+  padding: 2.4rem 2rem 7.6rem;
+}
+
+.modalBtn {
+  grid-column: 2/3;
+  background: none;
+  border: none;
+  @include var.flex;
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    stroke: var.$bgColor;
+  }
+}
+
+.modalTitle {
+  @include var.text(var.$secondTextColor, 2.8rem, 600, 110%);
+  grid-column: 1/3;
+  margin-bottom: 0.8rem;
+}
+
+.modalText {
+  @include var.text(var.$secondTextColor, 1.8rem, 600, 110%);
+  grid-column: 1/3;
+}
+
+
+@media screen and (min-width: 480px) {
+  .modalOverlay {
+    padding: 2.4rem 2rem;
+  }
+
+  .modalTitle {
+    font-size: 3.6rem;
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .modalText {
+    grid-column: 1/2;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modalOverlay {
+    gap: 1.6rem;
+  }
+
+  .modalTitle {
+    font-size: 4rem;
+  }
+
+  .modalText {
+    font-size: 2rem;
+  }
+}

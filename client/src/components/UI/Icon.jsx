@@ -1,7 +1,7 @@
 
-const Icon = ({ id = "", classname}) => (
+const Icon = ({ id = "", classname }) => (
   <svg aria-hidden="true">
-    <use xlinkHref={`/sprite.svg#${id}`} className={classname}/>
+    <use xlinkHref={`/sprite.svg#${id}`} className={classname} />
   </svg>
 );
 
