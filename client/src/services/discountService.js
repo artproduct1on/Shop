@@ -7,12 +7,13 @@ export default async function discountService(data) {
   try {
     const storedData = await getFromStorage(LOCAL_STORAGE_KEYS.DISCOUNT);
 
-    if (storedData?.find(i => i.phone === data.phone || i.email === data.email))
+    if (storedData && storedData.find(i => i.phone === data.phone || i.email === data.email)) {
       return { type: "error", text: "Wrong input. Try again" };
+    };
 
     const res = await post(API_POST.SALE, data);
 
-    if (res.statusText === "OK") {
+    if (res.status === 200) {
       setToStorage(
         LOCAL_STORAGE_KEYS.DISCOUNT,
         storedData ? [...storedData, data] : [data]
