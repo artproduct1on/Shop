@@ -60,8 +60,9 @@ const cartSlice = createSlice({
     },
 
     clearCart: (state) => {
-      state.cartList = [];
       setToStorage(LOCAL_STORAGE_KEYS.CART, []);
+      state.cartList = [];
+      state.cartCount = 0;
     },
   },
 
