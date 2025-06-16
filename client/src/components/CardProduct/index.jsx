@@ -37,6 +37,7 @@ function CardProduct({ product }) {
       />
 
       <img
+        loading="lazy"
         className={s.img}
         src={image}
         alt={title}

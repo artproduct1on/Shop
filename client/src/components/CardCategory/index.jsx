@@ -9,6 +9,7 @@ function CardCategory({ category }) {
       className={s.card}
     >
       <img
+        loading="lazy"
         src={category.image}
         alt={category.title}
         className={s.img}
