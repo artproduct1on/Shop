@@ -20,7 +20,7 @@ export function pageSwitcher(pathname, data) {
           },
         ],
         sectionTitle: "Discounted items",
-        productsList: Array.isArray(data) && data.filter(product => product.discont_price && product.discont_price < product.price),
+        productsList: Array.isArray(data) ? data.filter(product => product.discont_price && product.discont_price < product.price) : [],
       };
     default:
 

@@ -31,7 +31,7 @@ function Products() {
     const from = Number(filterProducts.from);
     const to = Number(filterProducts.to);
 
-    return products.filter(product => {
+    return products?.filter(product => {
       const actualPrice = product.discont_price && product.discont_price < product.price
         ? product.discont_price
         : product.price;
@@ -75,6 +75,7 @@ function Products() {
 
   if (loading || !info) return <Loader />;
   if (error) return <Error error={error} className={s.error} />;
+  if (!info || !info.productsList) return <h1 className="section-title">No products found or data not available</h1>;
 
   const filteredProducts = applySort(applyDiscountFilter(applyPriceRangeFilter(info.productsList)));
 
