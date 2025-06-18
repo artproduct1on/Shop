@@ -1,0 +1,54 @@
+name: Deploy Express.js to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # або master, якщо ваша основна гілка називається master
+  workflow_dispatch: # Дозволяє запускати workflow вручну
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20' # Вкажіть бажану версію Node.js, наприклад, '18', '20', або 'latest'
+
+    - name: Install dependencies
+      run: npm install # Або yarn install, pnpm install, якщо ви використовуєте інший менеджер пакетів
+
+    # Цей крок залежить від того, що ви хочете розгорнути на GitHub Pages.
+    # GitHub Pages призначені для статичних сайтів.
+    # Якщо ваш Express.js додаток є БЕКЕНДОМ, ви не можете розгорнути його безпосередньо на GitHub Pages,
+    # оскільки GitHub Pages не підтримує серверні додатки.
+    #
+    # Якщо ваш Express.js додаток СТВОРЮЄ СТАТИЧНІ ФАЙЛИ (наприклад, для фронтенду, якщо ви використовуєте Express для сервірування статичних файлів),
+    # тоді вам потрібно буде додати крок для збирання цих статичних файлів.
+    #
+    # Приклад для фронтенду (наприклад, React/Next.js) всередині проекту Express:
+    # - name: Build frontend
+    #   run: npm run build # Припустимо, що у вас є скрипт "build" у package.json для створення статичних файлів
+    #   working-directory: ./client # Якщо ваш фронтенд знаходиться у папці 'client'
+
+    - name: Upload artifact (якщо у вас є статичні файли для розгортання)
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./public # Або ./build, ./dist - папка, де знаходяться ваші статичні файли для GitHub Pages
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build-and-deploy # Залежить від успішного завершення попередньої роботи
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+          
